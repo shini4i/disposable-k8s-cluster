@@ -1,0 +1,19 @@
+# IDE related excludes
+.idea
+.vscode
+
+# Project configuration excludes
+.env
+.envrc
+
+# Terraform related excludes
+**/.terraform
+**/.terraform.lock.hcl
+**/terraform.tfstate
+**/terraform.tfstate.backup
+
+# Generated kubeconfig
+kubeconfig
+
+# Directory containing generated Application yaml files
+cluster-state

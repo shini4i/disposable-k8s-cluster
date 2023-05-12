@@ -1,0 +1,1 @@
+variable "chart_version" {}
