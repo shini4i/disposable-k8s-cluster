@@ -31,6 +31,21 @@ resource "helm_release" "this" {
     value = "websecure"
   }
 
+  set {
+    name = "service.type"
+    value = "NodePort"
+  }
+
+  set {
+    name = "ports.web.nodePort"
+    value = "30080"
+  }
+
+  set {
+    name = "ports.websecure.nodePort"
+    value = "30443"
+  }
+
   depends_on = [
     kubernetes_namespace.this
   ]
