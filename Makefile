@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := help
 
-CLOUD_PROVIDER ?= digitalocean
+CLOUD_PROVIDER ?= kind
 DOMAIN = $(DISPOSABLE_DOMAIN)
 
 .PHONY: tfswitch
