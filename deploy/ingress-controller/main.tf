@@ -16,35 +16,13 @@ resource "helm_release" "this" {
   max_history = 1
   timeout     = 600
 
-  set {
-    name  = "providers.kubernetesCRD.allowCrossNamespace"
-    value = "true"
-  }
-
-  set {
-    name  = "providers.kubernetesIngress.publishedService.enabled"
-    value = "true"
-  }
-
-  set {
-    name  = "ports.web.redirectTo"
-    value = "websecure"
-  }
-
-  set {
-    name = "service.type"
-    value = "NodePort"
-  }
-
-  set {
-    name = "ports.web.nodePort"
-    value = "30080"
-  }
-
-  set {
-    name = "ports.websecure.nodePort"
-    value = "30443"
-  }
+  values = [
+    templatefile(
+      "${path.module}/templates/traefik.tpl",
+      {
+        local_setup          = var.local_setup
+      })
+  ]
 
   depends_on = [
     kubernetes_namespace.this
