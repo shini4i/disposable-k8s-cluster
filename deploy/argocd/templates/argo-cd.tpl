@@ -14,6 +14,9 @@ server:
     enabled: true
     annotations:
       cert-manager.io/cluster-issuer: "le-disposable-dns"
+%{ if local_setup == true }
+      external-dns.alpha.kubernetes.io/target: 127.0.0.1
+%{ endif ~}
     hosts:
       - ${fqdn}
     tls:

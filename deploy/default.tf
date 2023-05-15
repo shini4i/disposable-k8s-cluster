@@ -5,6 +5,8 @@ module "argo-cd" {
 
   argo_cd_version = var.argo_cd_version
   domain          = var.domain
+
+  local_setup   = local.local_setup
 }
 
 module "cert-manager" {
@@ -17,18 +19,19 @@ module "cert-manager" {
   le_use_stage_issuer  = var.le_use_stage_issuer
 }
 
-#module "external-dns" {
-#  source = "./external_dns"
-#
-#  chart_version = var.external_dns_chart_version
-#
-#  cloudflare_api_token = var.cloudflare_api_token
-#  domain               = var.domain
-#}
+module "external-dns" {
+  source = "./external_dns"
+
+  chart_version = var.external_dns_chart_version
+
+  cloudflare_api_token = var.cloudflare_api_token
+  domain               = var.domain
+}
 
 module "traefik" {
   source = "./ingress-controller"
 
   chart_version = var.traefik_chart_version
+
   local_setup   = local.local_setup
 }
