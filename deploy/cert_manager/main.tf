@@ -23,7 +23,12 @@ resource "helm_release" "this" {
 
   set {
     name = "extraArgs[0]"
-    value = "--dns01-recursive-nameservers='1.1.1.1:53'"
+    value = "--dns01-recursive-nameservers=\"8.8.8.8:53\""
+  }
+
+  set {
+    name = "extraArgs[1]"
+    value = "--dns01-recursive-nameservers-only"
   }
 
   depends_on = [
