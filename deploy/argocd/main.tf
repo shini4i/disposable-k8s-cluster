@@ -20,7 +20,6 @@ resource "helm_release" "this" {
     templatefile(
       "${path.module}/templates/argo-cd.tpl",
       {
-        argo_cd_version = var.argo_cd_version
         fqdn            = "argo-cd.${var.domain}"
         local_setup     = var.local_setup
       })

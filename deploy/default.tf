@@ -3,7 +3,6 @@ module "argo-cd" {
 
   chart_version = var.argo_cd_chart_version
 
-  argo_cd_version = var.argo_cd_version
   domain          = var.domain
 
   local_setup   = local.local_setup
