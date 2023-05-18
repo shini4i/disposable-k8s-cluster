@@ -12,6 +12,8 @@ txtOwnerId: "disposable"
 
 provider: "cloudflare"
 
+policy: sync
+
 cloudflare:
   proxied: false
   secretName: cloudflare-token
