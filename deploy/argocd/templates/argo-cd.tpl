@@ -25,8 +25,14 @@ server:
           - ${fqdn}
     https: false
 
-  config:
-    helm.valuesFileSchemes: https, secrets+age-import
-    exec.enabled: "true"
-
   extraArgs: ["--insecure"]
+
+  configs:
+   exec.enabled: "true"
+
+   rbac:
+     create: true
+
+     policy.default: "role:admin"
+
+  accounts.watcher: login,apiKey
