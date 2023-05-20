@@ -30,3 +30,9 @@ server:
   configs:
    exec.enabled: "true"
 
+   rbac:
+     create: true
+
+     policy.default: "role:admin"
+
+  accounts.watcher: login,apiKey
