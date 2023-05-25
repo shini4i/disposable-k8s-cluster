@@ -2,6 +2,7 @@
 
 CLOUD_PROVIDER ?= kind
 DOMAIN = $(DISPOSABLE_DOMAIN)
+USE_LETSENCRYPT_STAGE ?= false
 
 .PHONY: tfswitch
 tfswitch:
@@ -35,7 +36,7 @@ info:
 destroy: ## Destroy ephemeral Kubernetes cluster
 	@echo "Purging cluster content..."
 ifneq ($(CLOUD_PROVIDER),kind)
-	@$(MAKE) -C deploy destroy DOMAIN=$(DOMAIN)
+	@$(MAKE) -C deploy destroy DOMAIN=$(DOMAIN) CLOUD_PROVIDER=$(CLOUD_PROVIDER)
 endif
 	@echo "Destroying ephemeral Kubernetes cluster..."
 	@echo "Using $(CLOUD_PROVIDER) as cloud provider"
