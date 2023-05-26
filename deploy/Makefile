@@ -9,4 +9,4 @@ deploy:
 
 .PHONY: destroy
 destroy:
-	@terraform destroy -var "domain=$(DOMAIN)" -var "cloud_provider=${CLOUD_PROVIDER}" -auto-approve
+	@terraform destroy -var "domain=$(DOMAIN)" -var "cloud_provider=${CLOUD_PROVIDER}" -var "le_use_stage_issuer=${USE_LETSENCRYPT_STAGE}" -auto-approve
