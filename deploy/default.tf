@@ -3,8 +3,9 @@ module "argo-cd" {
 
   chart_version = var.argo_cd_chart_version
 
-  argo_cd_version = var.argo_cd_version
   domain          = var.domain
+
+  local_setup   = local.local_setup
 }
 
 module "cert-manager" {
@@ -30,4 +31,6 @@ module "traefik" {
   source = "./ingress-controller"
 
   chart_version = var.traefik_chart_version
+
+  local_setup   = local.local_setup
 }

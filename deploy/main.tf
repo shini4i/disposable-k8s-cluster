@@ -32,3 +32,7 @@ provider "helm" {
 provider "kubectl" {
   config_path = "../kubeconfig"
 }
+
+locals {
+  local_setup = var.cloud_provider == "kind" ? true : false
+}

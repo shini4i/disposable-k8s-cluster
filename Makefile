@@ -1,7 +1,8 @@
 .DEFAULT_GOAL := help
 
-CLOUD_PROVIDER ?= digitalocean
+CLOUD_PROVIDER ?= kind
 DOMAIN = $(DISPOSABLE_DOMAIN)
+USE_LETSENCRYPT_STAGE ?= false
 
 .PHONY: tfswitch
 tfswitch:
@@ -25,7 +26,7 @@ provision: ## Provision ephemeral Kubernetes cluster
 .PHONY: deploy
 deploy: ## Deploy common services to ephemeral Kubernetes cluster
 	@echo "Deploying common services to ephemeral Kubernetes cluster..."
-	@$(MAKE) -C deploy deploy DOMAIN=$(DOMAIN)
+	@$(MAKE) -C deploy deploy DOMAIN=$(DOMAIN) CLOUD_PROVIDER=$(CLOUD_PROVIDER)
 
 .PHONY: info
 info:
@@ -34,7 +35,9 @@ info:
 .PHONY: destroy
 destroy: ## Destroy ephemeral Kubernetes cluster
 	@echo "Purging cluster content..."
-	@$(MAKE) -C deploy destroy DOMAIN=$(DOMAIN)
+ifneq ($(CLOUD_PROVIDER),kind)
+	@$(MAKE) -C deploy destroy DOMAIN=$(DOMAIN) CLOUD_PROVIDER=$(CLOUD_PROVIDER)
+endif
 	@echo "Destroying ephemeral Kubernetes cluster..."
 	@echo "Using $(CLOUD_PROVIDER) as cloud provider"
 	@$(MAKE) -C provision/$(CLOUD_PROVIDER) destroy

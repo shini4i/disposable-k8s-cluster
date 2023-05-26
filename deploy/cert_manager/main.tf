@@ -21,6 +21,16 @@ resource "helm_release" "this" {
     value = "true"
   }
 
+  set {
+    name = "extraArgs[0]"
+    value = "--dns01-recursive-nameservers=\"8.8.8.8:53\""
+  }
+
+  set {
+    name = "extraArgs[1]"
+    value = "--dns01-recursive-nameservers-only"
+  }
+
   depends_on = [
     kubernetes_namespace.this
   ]
