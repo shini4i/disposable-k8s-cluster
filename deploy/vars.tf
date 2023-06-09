@@ -6,3 +6,4 @@ variable "domain" {}
 variable "cloudflare_api_token" {}
 variable "le_use_stage_issuer" { type = bool }
 variable "cloud_provider" {}
+variable "skip_expose" { type = bool }

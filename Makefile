@@ -4,6 +4,9 @@ CLOUD_PROVIDER ?= kind
 DOMAIN = $(DISPOSABLE_DOMAIN)
 USE_LETSENCRYPT_STAGE ?= false
 
+# If set to true, will skip the creation of traefik, cert-manager and external-dns
+SKIP_EXPOSE ?= false
+
 .PHONY: tfswitch
 tfswitch:
 	@echo "===> Ensuring the correct terraform version is used"
@@ -26,7 +29,7 @@ provision: ## Provision ephemeral Kubernetes cluster
 .PHONY: deploy
 deploy: ## Deploy common services to ephemeral Kubernetes cluster
 	@echo "Deploying common services to ephemeral Kubernetes cluster..."
-	@$(MAKE) -C deploy deploy DOMAIN=$(DOMAIN) CLOUD_PROVIDER=$(CLOUD_PROVIDER)
+	@$(MAKE) -C deploy deploy DOMAIN=$(DOMAIN) CLOUD_PROVIDER=$(CLOUD_PROVIDER) SKIP_EXPOSE=$(SKIP_EXPOSE)
 
 .PHONY: info
 info:
