@@ -27,5 +27,10 @@ server:
 
   extraArgs: ["--insecure"]
 
-  configs:
+configs:
+  cm:
+   url: https://${fqdn}
    exec.enabled: "true"
+
+   # this should not be set in production, but for testing purposes it's fine
+   accounts.admin: apiKey
