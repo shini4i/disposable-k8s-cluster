@@ -12,6 +12,8 @@ module "cert-manager" {
   cloudflare_api_token = var.cloudflare_api_token
   domain               = var.domain
   le_use_stage_issuer  = var.le_use_stage_issuer
+
+  depends_on = [module.argo-cd]
 }
 
 module "external-dns" {
@@ -20,6 +22,8 @@ module "external-dns" {
   chart_version        = var.external_dns_chart_version
   cloudflare_api_token = var.cloudflare_api_token
   domain               = var.domain
+
+  depends_on = [module.argo-cd]
 }
 
 module "traefik" {
@@ -27,4 +31,6 @@ module "traefik" {
   source        = "./ingress-controller"
   chart_version = var.traefik_chart_version
   local_setup   = local.local_setup
+
+  depends_on = [module.argo-cd]
 }

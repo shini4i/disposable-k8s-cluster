@@ -1,6 +1,6 @@
 resource "kubernetes_secret" "this" {
   metadata {
-    name = "cloudflare-token"
+    name      = "cloudflare-token"
     namespace = "kube-system"
   }
 
@@ -9,27 +9,14 @@ resource "kubernetes_secret" "this" {
   }
 }
 
-resource "helm_release" "this" {
-  name      = "external-dns"
-  namespace = "kube-system"
+locals {
+  external_dns = templatefile("${path.module}/templates/external-dns.tpl", {
+    fqdn           = var.domain
+    targetRevision = var.chart_version
+  })
+}
 
-  version = var.chart_version
-
-  repository = "https://charts.bitnami.com/bitnami"
-  chart      = "external-dns"
-
-  max_history = 1
-  timeout     = 600
-
-  values = [
-    templatefile(
-      "${path.module}/templates/external-dns.tpl",
-      {
-        fqdn          = var.domain
-      })
-  ]
-
-  depends_on = [
-    kubernetes_secret.this
-  ]
+resource "kubectl_manifest" "external-dns" {
+  yaml_body  = local.external_dns
+  depends_on = [kubernetes_secret.this]
 }

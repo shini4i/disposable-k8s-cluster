@@ -1,21 +1,46 @@
-sources:
-  - ingress
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: external-dns
+  namespace: argo-cd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://charts.bitnami.com/bitnami
+    chart: external-dns
+    targetRevision: "${targetRevision}"
+    helm:
+      values: |
+        fullnameOverride: external-dns
 
-domainFilters:
-%{ if length(split(".", fqdn)) >= 3 ~}
-  - ${element(split(".", fqdn), 1)}.${element(split(".", fqdn), 2)}
-%{ endif ~}
-  - ${fqdn}
+        sources:
+        - ingress
 
-registry: "txt"
-txtOwnerId: "disposable"
+        domainFilters:
+        - ${fqdn}
 
-provider: "cloudflare"
+        registry: "txt"
+        txtOwnerId: "disposable"
 
-policy: sync
+        provider: "cloudflare"
 
-cloudflare:
-  proxied: false
-  secretName: cloudflare-token
+        policy: sync
 
-logLevel: "debug"
+        cloudflare:
+          proxied: false
+          secretName: cloudflare-token
+
+        logLevel: "debug"
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-system
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
