@@ -7,7 +7,7 @@ module "argo-cd" {
 
 module "cert-manager" {
   count                = var.skip_expose ? 0 : 1
-  source               = "./cert_manager"
+  source               = "./cert-manager"
   chart_version        = var.cert_manager_chart_version
   cloudflare_api_token = var.cloudflare_api_token
   domain               = var.domain
@@ -18,7 +18,7 @@ module "cert-manager" {
 
 module "external-dns" {
   count                = var.skip_expose ? 0 : 1
-  source               = "./external_dns"
+  source               = "./external-dns"
   chart_version        = var.external_dns_chart_version
   cloudflare_api_token = var.cloudflare_api_token
   domain               = var.domain

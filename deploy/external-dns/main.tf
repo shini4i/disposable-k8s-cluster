@@ -18,5 +18,6 @@ locals {
 
 resource "kubectl_manifest" "external-dns" {
   yaml_body  = local.external_dns
+  wait       = true
   depends_on = [kubernetes_secret.this]
 }

@@ -1,44 +1,23 @@
+locals {
+  cert-manager = templatefile("${path.module}/templates/cert-manager.tpl", {
+    targetRevision = var.chart_version
+  })
+}
+
 resource "kubernetes_namespace" "this" {
   metadata {
     name = "cert-manager"
   }
 }
 
-resource "helm_release" "this" {
-  name      = "cert-manager"
-  namespace = "cert-manager"
-
-  version = var.chart_version
-
-  repository = "https://charts.jetstack.io"
-  chart      = "cert-manager"
-
-  max_history = 1
-  timeout     = 600
-
-  set {
-    name  = "installCRDs"
-    value = "true"
-  }
-
-  set {
-    name = "extraArgs[0]"
-    value = "--dns01-recursive-nameservers=\"8.8.8.8:53\""
-  }
-
-  set {
-    name = "extraArgs[1]"
-    value = "--dns01-recursive-nameservers-only"
-  }
-
-  depends_on = [
-    kubernetes_namespace.this
-  ]
+resource "kubectl_manifest" "cert-manager" {
+  yaml_body = local.cert-manager
+  wait      = true
 }
 
 resource "kubernetes_secret" "this" {
   metadata {
-    name = "cloudflare-api-token-secret"
+    name      = "cloudflare-api-token-secret"
     namespace = "cert-manager"
   }
 
@@ -46,15 +25,13 @@ resource "kubernetes_secret" "this" {
     api-token = var.cloudflare_api_token
   }
 
-  depends_on = [
-    helm_release.this
-  ]
+  depends_on = [kubectl_manifest.cert-manager]
 }
 
 resource "kubectl_manifest" "this" {
   count = var.le_use_stage_issuer ? 0 : 1
 
-  yaml_body = <<YAML
+  yaml_body  = <<YAML
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
@@ -81,7 +58,7 @@ YAML
 resource "kubectl_manifest" "this_staging" {
   count = var.le_use_stage_issuer ? 1 : 0
 
-  yaml_body = <<YAML
+  yaml_body  = <<YAML
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
