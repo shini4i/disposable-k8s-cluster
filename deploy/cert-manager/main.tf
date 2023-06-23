@@ -5,6 +5,7 @@ locals {
   clusterIssuer = templatefile("${path.module}/templates/cluster-issuer.tpl", {
     domain             = var.domain
     use_staging_server = var.le_use_stage_issuer
+    targetRevision     = "0.2.5"
   })
 }
 
@@ -21,16 +22,6 @@ resource "kubectl_manifest" "cert-manager" {
   depends_on = [kubernetes_namespace.this]
 }
 
-resource "null_resource" "wait-for-webhook-server" {
-  provisioner "local-exec" {
-    command     = "sleep 15 && kubectl rollout status deployment cert-manager-webhook -n cert-manager"
-    environment = {
-      KUBECONFIG = "../kubeconfig"
-    }
-  }
-
-  depends_on = [kubectl_manifest.cert-manager]
-}
 
 resource "kubernetes_secret" "this" {
   metadata {
@@ -42,7 +33,7 @@ resource "kubernetes_secret" "this" {
     api-token = var.cloudflare_api_token
   }
 
-  depends_on = [null_resource.wait-for-webhook-server]
+  depends_on = [kubectl_manifest.cert-manager]
 }
 
 resource "kubectl_manifest" "cluster-issuer" {
