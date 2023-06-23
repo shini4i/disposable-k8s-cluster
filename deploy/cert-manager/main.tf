@@ -17,6 +17,19 @@ resource "kubernetes_namespace" "this" {
 resource "kubectl_manifest" "cert-manager" {
   yaml_body = local.cert-manager
   wait      = true
+
+  depends_on = [kubernetes_namespace.this]
+}
+
+resource "null_resource" "wait-for-webhook-server" {
+  provisioner "local-exec" {
+    command     = "sleep 15 && kubectl rollout status deployment cert-manager-webhook -n cert-manager"
+    environment = {
+      KUBECONFIG = "../kubeconfig"
+    }
+  }
+
+  depends_on = [kubectl_manifest.cert-manager]
 }
 
 resource "kubernetes_secret" "this" {
@@ -29,7 +42,7 @@ resource "kubernetes_secret" "this" {
     api-token = var.cloudflare_api_token
   }
 
-  depends_on = [kubectl_manifest.cert-manager]
+  depends_on = [null_resource.wait-for-webhook-server]
 }
 
 resource "kubectl_manifest" "cluster-issuer" {
