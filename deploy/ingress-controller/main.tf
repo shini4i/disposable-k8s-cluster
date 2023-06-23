@@ -1,5 +1,5 @@
 locals {
-  traefik = templatefile("${path.module}/templates/traefik.tpl", {
+  traefik = templatefile("${path.module}/templates/traefik.tftpl", {
     targetRevision = var.chart_version
     local_setup    = var.local_setup
   })

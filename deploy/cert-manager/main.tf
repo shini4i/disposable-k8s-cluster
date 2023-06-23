@@ -1,8 +1,8 @@
 locals {
-  cert-manager = templatefile("${path.module}/templates/cert-manager.tpl", {
+  cert-manager = templatefile("${path.module}/templates/cert-manager.tftpl", {
     targetRevision = var.chart_version
   })
-  clusterIssuer = templatefile("${path.module}/templates/cluster-issuer.tpl", {
+  clusterIssuer = templatefile("${path.module}/templates/cluster-issuer.tftpl", {
     domain             = var.domain
     use_staging_server = var.le_use_stage_issuer
     targetRevision     = "0.2.5"

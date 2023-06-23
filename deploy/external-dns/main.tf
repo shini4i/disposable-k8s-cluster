@@ -10,7 +10,7 @@ resource "kubernetes_secret" "this" {
 }
 
 locals {
-  external_dns = templatefile("${path.module}/templates/external-dns.tpl", {
+  external_dns = templatefile("${path.module}/templates/external-dns.tftpl", {
     fqdn           = var.domain
     targetRevision = var.chart_version
   })
