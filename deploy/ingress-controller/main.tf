@@ -9,4 +9,3 @@ resource "kubectl_manifest" "traefik" {
   yaml_body  = local.traefik
   wait       = true
 }
-
