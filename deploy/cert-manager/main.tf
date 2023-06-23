@@ -22,7 +22,6 @@ resource "kubectl_manifest" "cert-manager" {
   depends_on = [kubernetes_namespace.this]
 }
 
-
 resource "kubernetes_secret" "this" {
   metadata {
     name      = "cloudflare-api-token-secret"
