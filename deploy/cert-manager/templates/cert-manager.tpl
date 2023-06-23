@@ -21,7 +21,7 @@ spec:
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: kube-system
+    namespace: cert-manager
 
   syncPolicy:
     automated:

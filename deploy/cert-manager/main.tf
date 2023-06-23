@@ -2,6 +2,10 @@ locals {
   cert-manager = templatefile("${path.module}/templates/cert-manager.tpl", {
     targetRevision = var.chart_version
   })
+  clusterIssuer = templatefile("${path.module}/templates/cluster-issuer.tpl", {
+    domain             = var.domain
+    use_staging_server = var.le_use_stage_issuer
+  })
 }
 
 resource "kubernetes_namespace" "this" {
@@ -28,56 +32,8 @@ resource "kubernetes_secret" "this" {
   depends_on = [kubectl_manifest.cert-manager]
 }
 
-resource "kubectl_manifest" "this" {
-  count = var.le_use_stage_issuer ? 0 : 1
-
-  yaml_body  = <<YAML
-apiVersion: cert-manager.io/v1
-kind: ClusterIssuer
-metadata:
- name: le-disposable-dns
- namespace: cert-manager
-spec:
- acme:
-   email: disposable@${var.domain}
-   server: https://acme-v02.api.letsencrypt.org/directory
-   privateKeySecretRef:
-     name: disposable-issuer-account-key
-   solvers:
-     - dns01:
-         cloudflare:
-           apiTokenSecretRef:
-             name: cloudflare-api-token-secret
-             key: api-token
-YAML
-  depends_on = [
-    kubernetes_secret.this
-  ]
-}
-
-resource "kubectl_manifest" "this_staging" {
-  count = var.le_use_stage_issuer ? 1 : 0
-
-  yaml_body  = <<YAML
-apiVersion: cert-manager.io/v1
-kind: ClusterIssuer
-metadata:
- name: le-disposable-dns
- namespace: cert-manager
-spec:
- acme:
-   email: disposable@${var.domain}
-   server: https://acme-staging-v02.api.letsencrypt.org/directory
-   privateKeySecretRef:
-     name: disposable-issuer-account-key
-   solvers:
-     - dns01:
-         cloudflare:
-           apiTokenSecretRef:
-             name: cloudflare-api-token-secret
-             key: api-token
-YAML
-  depends_on = [
-    kubernetes_secret.this
-  ]
+resource "kubectl_manifest" "cluster-issuer" {
+  yaml_body  = local.clusterIssuer
+  wait       = true
+  depends_on = [kubernetes_secret.this]
 }
