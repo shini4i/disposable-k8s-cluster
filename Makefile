@@ -1,21 +1,17 @@
 .DEFAULT_GOAL := help
 
-CONFIGU_SET_NAME ?= disposable-kind
+CONFIG_TYPE ?= local
 
-ifneq ($(wildcard .env),)
-    include .env
+ifeq ($(CONFIG_TYPE),configu)
+	include .includes/configu_config.mk
+else
+	include .includes/local_config.mk
 endif
-
-.PHONY: init
-init: ## Initialize the project configuration
-	@echo "===> Initializing the project"
-	@configu eval \
-     --store 'configu' --set $(CONFIGU_SET_NAME) --schema './project-config.cfgu.json' \
-     | configu export --format 'Dotenv' > .env
 
 .PHONY: tfswitch
 tfswitch:
 	@echo "===> Ensuring the correct terraform version is used"
+	@echo $(DOMAIN)
 	@tfswitch
 
 .PHONY: help
