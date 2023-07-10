@@ -11,7 +11,6 @@ endif
 .PHONY: tfswitch
 tfswitch:
 	@echo "===> Ensuring the correct terraform version is used"
-	@echo $(DOMAIN)
 	@tfswitch
 
 .PHONY: help
@@ -20,7 +19,7 @@ help: ## Print this help
 	@grep -E '^[a-z.A-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 .PHONY: bootstrap
-bootstrap: tfswitch provision deploy info ## Bootstrap ephemeral Kubernetes cluster (provision infrastructure and deploy common services)
+bootstrap: init tfswitch provision deploy info ## Bootstrap ephemeral Kubernetes cluster (provision infrastructure and deploy common services)
 
 .PHONY: provision
 provision: ## Provision ephemeral Kubernetes cluster
