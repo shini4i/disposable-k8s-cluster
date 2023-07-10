@@ -1,0 +1,18 @@
+{
+  "CLOUD_PROVIDER": {
+    "type": "String",
+    "default": "kind"
+  },
+  "DOMAIN": {
+    "type": "RegEx",
+    "pattern": "^[a-zA-Z0-9-]{1,63}\\.[a-zA-Z]{2,}$"
+  },
+  "LETS_ENCRYPT_STAGE": {
+    "type": "Boolean",
+    "default": "false"
+  },
+  "SKIP_EXPOSE": {
+    "type": "Boolean",
+    "default": "false"
+  }
+}

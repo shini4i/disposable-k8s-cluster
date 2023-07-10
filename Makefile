@@ -1,11 +1,17 @@
 .DEFAULT_GOAL := help
 
-CLOUD_PROVIDER ?= kind
-DOMAIN = $(DISPOSABLE_DOMAIN)
-USE_LETSENCRYPT_STAGE ?= false
+CONFIGU_SET_NAME ?= disposable-kind
 
-# If set to true, will skip the creation of traefik, cert-manager and external-dns
-SKIP_EXPOSE ?= false
+ifneq ($(wildcard .env),)
+    include .env
+endif
+
+.PHONY: init
+init: ## Initialize the project configuration
+	@echo "===> Initializing the project"
+	@configu eval \
+     --store 'configu' --set $(CONFIGU_SET_NAME) --schema './project-config.cfgu.json' \
+     | configu export --format 'Dotenv' > .env
 
 .PHONY: tfswitch
 tfswitch:
