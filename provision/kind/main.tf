@@ -10,7 +10,7 @@ terraform {
 }
 
 resource "kind_cluster" "disposable" {
-  name = "disposable-cluster"
+  name           = "disposable-cluster"
   wait_for_ready = true
 
   kubeconfig_path = "../../kubeconfig"

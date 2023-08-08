@@ -20,9 +20,9 @@ resource "helm_release" "this" {
     templatefile(
       "${path.module}/templates/argo-cd.tftpl",
       {
-        fqdn            = "argo-cd.${var.domain}"
-        local_setup     = var.local_setup
-      })
+        fqdn        = "argo-cd.${var.domain}"
+        local_setup = var.local_setup
+    })
   ]
 
   depends_on = [
