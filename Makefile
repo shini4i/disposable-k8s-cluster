@@ -33,7 +33,11 @@ deploy: ## Deploy common services to ephemeral Kubernetes cluster
 
 .PHONY: info
 info:
-	@bash ./.scripts/collect-data.sh
+	@bash ./.scripts/wait-for-bootstrap.sh
+
+.PHONY: generate-argo-token
+generate-argo-token:
+	@bash ./.scripts/generate-argo-token.sh $(DOMAIN)
 
 .PHONY: destroy
 destroy: ## Destroy ephemeral Kubernetes cluster
