@@ -31,3 +31,13 @@ configs:
 
    # this should not be set in production, but for testing purposes it's fine
    accounts.admin: apiKey
+
+%{ if local_setup == true }
+   resource.customizations: |
+     networking.k8s.io/Ingress:
+       health.lua: |
+         hs = {}
+         hs.status = "Healthy"
+         hs.message = "Skipped for KIND based ArgoCD"
+         return hs
+%{ endif ~}
