@@ -27,7 +27,6 @@ module "external-dns" {
 }
 
 module "traefik" {
-  count         = var.skip_expose ? 0 : 1
   source        = "./ingress-controller"
   chart_version = var.traefik_chart_version
   local_setup   = local.local_setup

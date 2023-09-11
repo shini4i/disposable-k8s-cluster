@@ -4,7 +4,7 @@ CLOUD_PROVIDER ?= kind
 DOMAIN = $(DISPOSABLE_DOMAIN)
 USE_LETSENCRYPT_STAGE ?= false
 
-# If set to true, will skip the creation of traefik, cert-manager and external-dns
+# If set to true, will skip the creation of cert-manager and external-dns
 SKIP_EXPOSE ?= false
 
 .PHONY: tfswitch
@@ -48,3 +48,15 @@ endif
 	@echo "Destroying ephemeral Kubernetes cluster..."
 	@echo "Using $(CLOUD_PROVIDER) as cloud provider"
 	@$(MAKE) -C provision/$(CLOUD_PROVIDER) destroy
+
+.PHONY: stop
+stop: ## Stop KIND cluster
+	@echo "Stopping kind cluster..."
+	@docker stop disposable-cluster-control-plane
+	@docker stop disposable-cluster-worker
+
+.PHONY: start
+start: ## Start KIND cluster
+	@echo "Starting kind cluster..."
+	@docker start disposable-cluster-control-plane
+	@docker start disposable-cluster-worker
