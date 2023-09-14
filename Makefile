@@ -3,7 +3,7 @@
 CLOUD_PROVIDER ?= kind
 DOMAIN = $(DISPOSABLE_DOMAIN)
 USE_LETSENCRYPT_STAGE ?= false
-ARGO_WATCHER_ENABLED ?= true
+ARGO_WATCHER_ENABLED ?= false
 
 # If set to true, will skip the creation of cert-manager and external-dns
 SKIP_EXPOSE ?= false
