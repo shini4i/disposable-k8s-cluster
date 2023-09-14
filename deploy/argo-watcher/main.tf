@@ -6,28 +6,28 @@ locals {
   })
 }
 
-data "external" "argo_script" {
+data "external" "this" {
   program = ["bash", "${path.module}/scripts/token_generator.sh"]
 }
 
 resource "kubernetes_namespace" "this" {
   metadata {
-    name = "argo-watcher"
+    name = var.namespace
   }
 }
 
 resource "kubernetes_secret" "this" {
   metadata {
     name      = "argo-watcher-secret"
-    namespace = "argo-watcher"
+    namespace = var.namespace
   }
 
   data = {
-    ARGO_TOKEN = data.external.argo_script.result["ARGO_TOKEN"]
+    ARGO_TOKEN = data.external.this.result["ARGO_TOKEN"]
   }
 }
 
-resource "kubectl_manifest" "external-dns" {
+resource "kubectl_manifest" "argo-watcher" {
   yaml_body  = local.argo_watcher
   wait       = true
   depends_on = [kubernetes_secret.this]
