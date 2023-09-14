@@ -1,0 +1,54 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo-watcher
+  namespace: argo-cd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://shini4i.github.io/charts/
+    chart: argo-watcher
+    targetRevision: "${targetRevision}"
+    helm:
+      values: |
+        fullnameOverride: argo-watcher
+
+        logLevel: DEBUG
+
+        argo:
+          url: http://argo-cd-server.argo-cd
+          skipTlsVerify: true
+          username: admin
+          timeout: 1800
+          apiTimeout: 180
+          secretName: "argo-watcher-secret"
+
+        ingress:
+          enabled: true
+          annotations:
+            cert-manager.io/cluster-issuer: "le-disposable-dns"
+            %{ if local_setup == true }
+            external-dns.alpha.kubernetes.io/target: 127.0.0.1
+            %{ endif }
+          hosts:
+            - host: argo-watcher.${domain}
+              paths:
+                - path: /
+                  pathType: ImplementationSpecific
+          tls:
+            - secretName: argo-watcher-tls
+              hosts:
+                - argo-watcher.${domain}
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argo-watcher
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

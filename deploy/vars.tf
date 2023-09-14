@@ -1,4 +1,5 @@
 variable "argo_cd_chart_version" {}
+variable "argo_watcher_chart_version" {}
 variable "traefik_chart_version" {}
 variable "cert_manager_chart_version" {}
 variable "external_dns_chart_version" {}
