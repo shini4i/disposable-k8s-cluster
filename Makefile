@@ -45,6 +45,7 @@ destroy: ## Destroy ephemeral Kubernetes cluster
 ifneq ($(CLOUD_PROVIDER),kind)
 	@$(MAKE) -C deploy destroy DOMAIN=$(DOMAIN) CLOUD_PROVIDER=$(CLOUD_PROVIDER) SKIP_EXPOSE=$(SKIP_EXPOSE)
 endif
+	@rm -f /tmp/disposable-argo-token
 	@echo "Destroying ephemeral Kubernetes cluster..."
 	@echo "Using $(CLOUD_PROVIDER) as cloud provider"
 	@$(MAKE) -C provision/$(CLOUD_PROVIDER) destroy

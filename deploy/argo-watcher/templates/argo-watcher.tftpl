@@ -17,12 +17,11 @@ spec:
 
         logLevel: DEBUG
 
+        image:
+          tag: v0.6.0-pre.20230914
+
         argo:
           url: http://argo-cd-server.argo-cd
-          skipTlsVerify: true
-          username: admin
-          timeout: 1800
-          apiTimeout: 180
           secretName: "argo-watcher-secret"
 
         ingress:
