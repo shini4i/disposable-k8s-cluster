@@ -37,14 +37,14 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | n/a | `any` | n/a | yes |
-| <a name="input_domain"></a> [domain](#input\_domain) | n/a | `any` | n/a | yes |
-| <a name="input_local_setup"></a> [local\_setup](#input\_local\_setup) | n/a | `bool` | n/a | yes |
-| <a name="input_namespace"></a> [namespace](#input\_namespace) | n/a | `string` | `"argo-watcher"` | no |
+| <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | The version of the chart to deploy | `any` | n/a | yes |
+| <a name="input_domain"></a> [domain](#input\_domain) | The domain to use for the ingress | `any` | n/a | yes |
+| <a name="input_local_setup"></a> [local\_setup](#input\_local\_setup) | Whether the setup is KIND based or not | `bool` | n/a | yes |
+| <a name="input_namespace"></a> [namespace](#input\_namespace) | The namespace to deploy the chart into | `string` | `"argo-watcher"` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_argo_watcher_deploy_token"></a> [argo\_watcher\_deploy\_token](#output\_argo\_watcher\_deploy\_token) | n/a |
+| <a name="output_argo_watcher_deploy_token"></a> [argo\_watcher\_deploy\_token](#output\_argo\_watcher\_deploy\_token) | Argo Watcher deploy token |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

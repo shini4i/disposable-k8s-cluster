@@ -6,13 +6,13 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.4 |
-| <a name="requirement_kind"></a> [kind](#requirement\_kind) | 0.0.17 |
+| <a name="requirement_kind"></a> [kind](#requirement\_kind) | 0.2.1 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_kind"></a> [kind](#provider\_kind) | 0.0.17 |
+| <a name="provider_kind"></a> [kind](#provider\_kind) | 0.2.1 |
 
 ## Modules
 
@@ -22,7 +22,7 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [kind_cluster.disposable](https://registry.terraform.io/providers/tehcyx/kind/0.0.17/docs/resources/cluster) | resource |
+| [kind_cluster.disposable](https://registry.terraform.io/providers/tehcyx/kind/0.2.1/docs/resources/cluster) | resource |
 
 ## Inputs
 
