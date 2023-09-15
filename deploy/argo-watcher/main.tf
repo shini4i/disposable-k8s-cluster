@@ -1,11 +1,3 @@
-locals {
-  argo_watcher = templatefile("${path.module}/templates/argo-watcher.tftpl", {
-    domain         = var.domain
-    targetRevision = var.chart_version
-    local_setup    = var.local_setup
-  })
-}
-
 resource "argocd_account_token" "this" {
   renew_after = "168h"
 }
