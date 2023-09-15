@@ -10,6 +10,12 @@ resource "argocd_account_token" "this" {
   renew_after = "168h"
 }
 
+resource "random_string" "this" {
+  length           = 16
+  special          = true
+  override_special = "/@£$"
+}
+
 resource "kubernetes_namespace" "this" {
   metadata {
     name = var.namespace
@@ -23,7 +29,8 @@ resource "kubernetes_secret" "this" {
   }
 
   data = {
-    ARGO_TOKEN = argocd_account_token.this.jwt
+    ARGO_TOKEN                = argocd_account_token.this.jwt
+    ARGO_WATCHER_DEPLOY_TOKEN = random_string.this.result
   }
 }
 
