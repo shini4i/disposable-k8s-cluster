@@ -7,14 +7,14 @@
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.4 |
 | <a name="requirement_argocd"></a> [argocd](#requirement\_argocd) | 6.0.3 |
-| <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | 2.20.0 |
+| <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | 2.23.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
 | <a name="provider_argocd"></a> [argocd](#provider\_argocd) | 6.0.3 |
-| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.20.0 |
+| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.23.0 |
 | <a name="provider_random"></a> [random](#provider\_random) | 3.5.1 |
 
 ## Modules
@@ -26,9 +26,9 @@ No modules.
 | Name | Type |
 |------|------|
 | [argocd_account_token.this](https://registry.terraform.io/providers/oboukili/argocd/6.0.3/docs/resources/account_token) | resource |
-| [kubernetes_manifest.this](https://registry.terraform.io/providers/hashicorp/kubernetes/2.20.0/docs/resources/manifest) | resource |
-| [kubernetes_namespace.this](https://registry.terraform.io/providers/hashicorp/kubernetes/2.20.0/docs/resources/namespace) | resource |
-| [kubernetes_secret.this](https://registry.terraform.io/providers/hashicorp/kubernetes/2.20.0/docs/resources/secret) | resource |
+| [kubernetes_manifest.this](https://registry.terraform.io/providers/hashicorp/kubernetes/2.23.0/docs/resources/manifest) | resource |
+| [kubernetes_namespace.this](https://registry.terraform.io/providers/hashicorp/kubernetes/2.23.0/docs/resources/namespace) | resource |
+| [kubernetes_secret.this](https://registry.terraform.io/providers/hashicorp/kubernetes/2.23.0/docs/resources/secret) | resource |
 | [random_string.this](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) | resource |
 
 ## Inputs
