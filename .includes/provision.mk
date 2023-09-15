@@ -6,3 +6,4 @@ provision:
 .PHONY: destroy
 destroy:
 	@terraform destroy -auto-approve
+	@rm -f terraform.tfstate terraform.tfstate.backup

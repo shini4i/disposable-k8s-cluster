@@ -6,8 +6,8 @@ locals {
   })
 }
 
-data "external" "this" {
-  program = ["bash", "${path.module}/scripts/token_generator.sh"]
+resource "argocd_account_token" "this" {
+  renew_after = "168h"
 }
 
 resource "kubernetes_namespace" "this" {
@@ -23,7 +23,7 @@ resource "kubernetes_secret" "this" {
   }
 
   data = {
-    ARGO_TOKEN = data.external.this.result["ARGO_TOKEN"]
+    ARGO_TOKEN = argocd_account_token.this.jwt
   }
 }
 
