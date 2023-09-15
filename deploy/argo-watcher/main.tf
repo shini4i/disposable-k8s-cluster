@@ -7,6 +7,7 @@ locals {
 }
 
 resource "argocd_account_token" "this" {
+  account     = "admin"
   renew_after = "168h"
 }
 
