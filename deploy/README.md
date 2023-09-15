@@ -32,24 +32,24 @@ No resources.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_argo_cd_chart_version"></a> [argo\_cd\_chart\_version](#input\_argo\_cd\_chart\_version) | n/a | `any` | n/a | yes |
-| <a name="input_argo_watcher_chart_version"></a> [argo\_watcher\_chart\_version](#input\_argo\_watcher\_chart\_version) | n/a | `any` | n/a | yes |
-| <a name="input_argo_watcher_enabled"></a> [argo\_watcher\_enabled](#input\_argo\_watcher\_enabled) | n/a | `bool` | n/a | yes |
-| <a name="input_cert_manager_chart_version"></a> [cert\_manager\_chart\_version](#input\_cert\_manager\_chart\_version) | n/a | `any` | n/a | yes |
-| <a name="input_cloud_provider"></a> [cloud\_provider](#input\_cloud\_provider) | n/a | `any` | n/a | yes |
-| <a name="input_cloudflare_api_token"></a> [cloudflare\_api\_token](#input\_cloudflare\_api\_token) | n/a | `any` | n/a | yes |
-| <a name="input_domain"></a> [domain](#input\_domain) | n/a | `any` | n/a | yes |
-| <a name="input_external_dns_chart_version"></a> [external\_dns\_chart\_version](#input\_external\_dns\_chart\_version) | n/a | `any` | n/a | yes |
-| <a name="input_le_use_stage_issuer"></a> [le\_use\_stage\_issuer](#input\_le\_use\_stage\_issuer) | n/a | `bool` | n/a | yes |
-| <a name="input_skip_expose"></a> [skip\_expose](#input\_skip\_expose) | n/a | `bool` | n/a | yes |
-| <a name="input_traefik_chart_version"></a> [traefik\_chart\_version](#input\_traefik\_chart\_version) | n/a | `any` | n/a | yes |
+| <a name="input_argo_cd_chart_version"></a> [argo\_cd\_chart\_version](#input\_argo\_cd\_chart\_version) | Argo CD chart version | `any` | n/a | yes |
+| <a name="input_argo_watcher_chart_version"></a> [argo\_watcher\_chart\_version](#input\_argo\_watcher\_chart\_version) | Argo CD chart version | `any` | n/a | yes |
+| <a name="input_argo_watcher_enabled"></a> [argo\_watcher\_enabled](#input\_argo\_watcher\_enabled) | If Argo-Watcher should be installed | `bool` | n/a | yes |
+| <a name="input_cert_manager_chart_version"></a> [cert\_manager\_chart\_version](#input\_cert\_manager\_chart\_version) | Cert Manager chart version | `any` | n/a | yes |
+| <a name="input_cloud_provider"></a> [cloud\_provider](#input\_cloud\_provider) | Cloud provider to use | `any` | n/a | yes |
+| <a name="input_cloudflare_api_token"></a> [cloudflare\_api\_token](#input\_cloudflare\_api\_token) | Cloudflare API token | `any` | n/a | yes |
+| <a name="input_domain"></a> [domain](#input\_domain) | Domain to use for the cluster | `any` | n/a | yes |
+| <a name="input_external_dns_chart_version"></a> [external\_dns\_chart\_version](#input\_external\_dns\_chart\_version) | External DNS chart version | `any` | n/a | yes |
+| <a name="input_le_use_stage_issuer"></a> [le\_use\_stage\_issuer](#input\_le\_use\_stage\_issuer) | Use the Let's Encrypt staging issuer | `bool` | n/a | yes |
+| <a name="input_skip_expose"></a> [skip\_expose](#input\_skip\_expose) | If cert-manager and external-dns installation should be skipped | `bool` | n/a | yes |
+| <a name="input_traefik_chart_version"></a> [traefik\_chart\_version](#input\_traefik\_chart\_version) | Traefik chart version | `any` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_argo_cd_password"></a> [argo\_cd\_password](#output\_argo\_cd\_password) | n/a |
-| <a name="output_argo_cd_url"></a> [argo\_cd\_url](#output\_argo\_cd\_url) | n/a |
-| <a name="output_argo_cd_username"></a> [argo\_cd\_username](#output\_argo\_cd\_username) | n/a |
-| <a name="output_argo_watcher_deploy_token"></a> [argo\_watcher\_deploy\_token](#output\_argo\_watcher\_deploy\_token) | n/a |
+| <a name="output_argo_cd_password"></a> [argo\_cd\_password](#output\_argo\_cd\_password) | The password of the Argo CD admin user |
+| <a name="output_argo_cd_url"></a> [argo\_cd\_url](#output\_argo\_cd\_url) | The URL of the Argo CD instance |
+| <a name="output_argo_cd_username"></a> [argo\_cd\_username](#output\_argo\_cd\_username) | The username of the Argo CD admin user |
+| <a name="output_argo_watcher_deploy_token"></a> [argo\_watcher\_deploy\_token](#output\_argo\_watcher\_deploy\_token) | The deploy token used to validate tasks for the Argo Watcher |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
