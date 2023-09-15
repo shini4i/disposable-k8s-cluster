@@ -19,7 +19,7 @@ help: ## Print this help
 	@grep -E '^[a-z.A-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 .PHONY: bootstrap
-bootstrap: tfswitch provision deploy info ## Bootstrap ephemeral Kubernetes cluster (provision infrastructure and deploy common services)
+bootstrap: tfswitch provision deploy ## Bootstrap ephemeral Kubernetes cluster (provision infrastructure and deploy common services)
 
 .PHONY: provision
 provision: ## Provision ephemeral Kubernetes cluster
@@ -31,10 +31,6 @@ provision: ## Provision ephemeral Kubernetes cluster
 deploy: ## Deploy common services to ephemeral Kubernetes cluster
 	@echo "Deploying common services to ephemeral Kubernetes cluster..."
 	@$(MAKE) -C deploy deploy DOMAIN=$(DOMAIN) CLOUD_PROVIDER=$(CLOUD_PROVIDER) SKIP_EXPOSE=$(SKIP_EXPOSE) ARGO_WATCHER_ENABLED=$(ARGO_WATCHER_ENABLED)
-
-.PHONY: info
-info:
-	@bash ./.scripts/wait-for-bootstrap.sh
 
 .PHONY: generate-argo-token
 generate-argo-token:

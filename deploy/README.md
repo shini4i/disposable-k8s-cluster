@@ -48,5 +48,8 @@ No resources.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_argo_cd_password"></a> [argo\_cd\_password](#output\_argo\_cd\_password) | n/a |
+| <a name="output_argo_cd_url"></a> [argo\_cd\_url](#output\_argo\_cd\_url) | n/a |
+| <a name="output_argo_cd_username"></a> [argo\_cd\_username](#output\_argo\_cd\_username) | n/a |
 | <a name="output_argo_watcher_deploy_token"></a> [argo\_watcher\_deploy\_token](#output\_argo\_watcher\_deploy\_token) | n/a |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
