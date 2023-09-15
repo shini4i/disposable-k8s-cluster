@@ -1,25 +1,24 @@
-locals {
-  cert-manager = templatefile("${path.module}/templates/cert-manager.tftpl", {
-    targetRevision = var.chart_version
-  })
-  clusterIssuer = templatefile("${path.module}/templates/cluster-issuer.tftpl", {
-    domain             = var.domain
-    use_staging_server = var.le_use_stage_issuer
-    targetRevision     = "0.2.5"
-  })
-}
-
 resource "kubernetes_namespace" "this" {
   metadata {
     name = "cert-manager"
   }
 }
 
-resource "kubectl_manifest" "cert-manager" {
-  yaml_body = local.cert-manager
-  wait      = true
+resource "kubernetes_manifest" "cert_manager" {
+  manifest = yamldecode(templatefile("${path.module}/templates/cert-manager.tftpl", {
+    targetRevision = var.chart_version
+  }))
 
-  depends_on = [kubernetes_namespace.this]
+  wait {
+    fields = {
+      "status.sync.status"   = "Synced",
+      "status.health.status" = "Healthy"
+    }
+  }
+
+  depends_on = [
+    kubernetes_namespace.this
+  ]
 }
 
 resource "kubernetes_secret" "this" {
@@ -32,11 +31,26 @@ resource "kubernetes_secret" "this" {
     api-token = var.cloudflare_api_token
   }
 
-  depends_on = [kubectl_manifest.cert-manager]
+  depends_on = [
+    kubernetes_manifest.cert_manager
+  ]
 }
 
-resource "kubectl_manifest" "cluster-issuer" {
-  yaml_body  = local.clusterIssuer
-  wait       = true
-  depends_on = [kubernetes_secret.this]
+resource "kubernetes_manifest" "cluster_issuer" {
+  manifest = yamldecode(templatefile("${path.module}/templates/cluster-issuer.tftpl", {
+    domain             = var.domain
+    use_staging_server = var.le_use_stage_issuer
+    targetRevision     = "0.2.5"
+  }))
+
+  wait {
+    fields = {
+      "status.sync.status"   = "Synced",
+      "status.health.status" = "Healthy"
+    }
+  }
+
+  depends_on = [
+    kubernetes_secret.this
+  ]
 }
