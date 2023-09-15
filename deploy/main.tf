@@ -16,6 +16,11 @@ terraform {
       source  = "gavinbunney/kubectl"
       version = "1.14.0"
     }
+
+    argocd = {
+      source  = "oboukili/argocd"
+      version = "6.0.3"
+    }
   }
 }
 
@@ -31,6 +36,14 @@ provider "helm" {
 
 provider "kubectl" {
   config_path = "../kubeconfig"
+}
+
+provider "argocd" {
+  port_forward_with_namespace = "argo-cd"
+  plain_text                  = true
+
+  username = "admin"
+  password = module.argo-cd.admin_password
 }
 
 locals {

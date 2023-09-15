@@ -13,6 +13,7 @@
 
 | Name | Version |
 |------|---------|
+| <a name="provider_external"></a> [external](#provider\_external) | 2.3.1 |
 | <a name="provider_helm"></a> [helm](#provider\_helm) | 2.9.0 |
 | <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.20.0 |
 
@@ -26,6 +27,7 @@ No modules.
 |------|------|
 | [helm_release.this](https://registry.terraform.io/providers/hashicorp/helm/2.9.0/docs/resources/release) | resource |
 | [kubernetes_namespace.this](https://registry.terraform.io/providers/hashicorp/kubernetes/2.20.0/docs/resources/namespace) | resource |
+| [external_external.admin_password](https://registry.terraform.io/providers/hashicorp/external/latest/docs/data-sources/external) | data source |
 
 ## Inputs
 
@@ -37,5 +39,7 @@ No modules.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_admin_password"></a> [admin\_password](#output\_admin\_password) | n/a |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

@@ -29,3 +29,8 @@ resource "helm_release" "this" {
     kubernetes_namespace.this
   ]
 }
+
+data "external" "admin_password" {
+  program    = ["bash", "${path.module}/scripts/get_admin_password.sh"]
+  depends_on = [helm_release.this]
+}
