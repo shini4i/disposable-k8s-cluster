@@ -9,15 +9,20 @@ resource "kubernetes_secret" "this" {
   }
 }
 
-locals {
-  external_dns = templatefile("${path.module}/templates/external-dns.tftpl", {
+resource "kubernetes_manifest" "this" {
+  manifest = yamldecode(templatefile("${path.module}/templates/external-dns.tftpl", {
     fqdn           = var.domain
     targetRevision = var.chart_version
-  })
-}
+  }))
 
-resource "kubectl_manifest" "external-dns" {
-  yaml_body  = local.external_dns
-  wait       = true
-  depends_on = [kubernetes_secret.this]
+  wait {
+    fields = {
+      "status.sync.status"   = "Synced",
+      "status.health.status" = "Healthy"
+    }
+  }
+
+  depends_on = [
+    kubernetes_secret.this
+  ]
 }

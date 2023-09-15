@@ -8,10 +8,6 @@ provider "helm" {
   }
 }
 
-provider "kubectl" {
-  config_path = "../kubeconfig"
-}
-
 provider "argocd" {
   port_forward_with_namespace = "argo-cd"
   plain_text                  = true
