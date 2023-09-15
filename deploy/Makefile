@@ -27,3 +27,8 @@ destroy:
 												-var "le_use_stage_issuer=${USE_LETSENCRYPT_STAGE}" \
 												-var "skip_expose=${SKIP_EXPOSE}" \
 												-var "argo_watcher_enabled=${ARGO_WATCHER_ENABLED}" -auto-approve
+	@rm -f terraform.tfstate terraform.tfstate.backup
+
+.PHONY: cleanup
+cleanup:
+	@rm -f terraform.tfstate terraform.tfstate.backup

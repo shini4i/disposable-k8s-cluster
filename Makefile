@@ -43,7 +43,9 @@ generate-argo-token:
 .PHONY: destroy
 destroy: ## Destroy ephemeral Kubernetes cluster
 	@echo "Purging cluster content..."
-ifneq ($(CLOUD_PROVIDER),kind)
+ifeq ($(CLOUD_PROVIDER),kind)
+	@$(MAKE) -C deploy cleanup
+else
 	@$(MAKE) -C deploy destroy DOMAIN=$(DOMAIN) CLOUD_PROVIDER=$(CLOUD_PROVIDER) SKIP_EXPOSE=$(SKIP_EXPOSE)
 endif
 	@rm -f /tmp/disposable-argo-token
