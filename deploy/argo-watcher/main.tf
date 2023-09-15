@@ -11,9 +11,8 @@ resource "argocd_account_token" "this" {
 }
 
 resource "random_string" "this" {
-  length           = 16
-  special          = true
-  override_special = "/@£$"
+  length  = 16
+  special = false
 }
 
 resource "kubernetes_namespace" "this" {

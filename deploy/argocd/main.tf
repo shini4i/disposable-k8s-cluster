@@ -1,12 +1,12 @@
 resource "kubernetes_namespace" "this" {
   metadata {
-    name = "argo-cd"
+    name = var.namespace
   }
 }
 
 resource "helm_release" "this" {
   name      = "argo-cd"
-  namespace = "argo-cd"
+  namespace = var.namespace
 
   version = var.chart_version
 
@@ -30,7 +30,13 @@ resource "helm_release" "this" {
   ]
 }
 
-data "external" "admin_password" {
-  program    = ["bash", "${path.module}/scripts/get_admin_password.sh"]
-  depends_on = [helm_release.this]
+data "kubernetes_secret" "admin_password" {
+  metadata {
+    name      = "argocd-initial-admin-secret"
+    namespace = var.namespace
+  }
+
+  depends_on = [
+    helm_release.this
+  ]
 }
