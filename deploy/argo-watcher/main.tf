@@ -30,6 +30,7 @@ resource "kubernetes_manifest" "this" {
     domain         = var.domain
     targetRevision = var.chart_version
     local_setup    = var.local_setup
+    imageTag       = var.image_tag
   }))
 
   wait {
