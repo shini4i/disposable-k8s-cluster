@@ -37,10 +37,6 @@ deploy: ## Deploy common services to ephemeral Kubernetes cluster
                               ARGO_WATCHER_ENABLED=$(ARGO_WATCHER_ENABLED) \
                               ARGO_WATCHER_IMAGE_TAG=$(ARGO_WATCHER_IMAGE_TAG)
 
-.PHONY: generate-argo-token
-generate-argo-token:
-	@bash ./.scripts/generate-argo-token.sh $(DOMAIN)
-
 .PHONY: destroy
 destroy: ## Destroy ephemeral Kubernetes cluster
 	@echo "Purging cluster content..."
