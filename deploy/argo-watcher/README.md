@@ -37,7 +37,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | The version of the chart to deploy | `any` | n/a | yes |
 | <a name="input_domain"></a> [domain](#input\_domain) | The domain to use for the ingress | `any` | n/a | yes |
-| <a name="input_image_tag"></a> [image\_tag](#input\_image\_tag) | The image tag to use for the deployment | `string` | `"v0.6.0-pre.20230914"` | no |
+| <a name="input_image_tag"></a> [image\_tag](#input\_image\_tag) | The image tag to use for the deployment | `string` | n/a | yes |
 | <a name="input_local_setup"></a> [local\_setup](#input\_local\_setup) | Whether the setup is KIND based or not | `bool` | n/a | yes |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | The namespace to deploy the chart into | `string` | `"argo-watcher"` | no |
 

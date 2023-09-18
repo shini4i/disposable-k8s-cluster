@@ -4,9 +4,16 @@ CLOUD_PROVIDER ?= kind
 DOMAIN = $(DISPOSABLE_DOMAIN)
 USE_LETSENCRYPT_STAGE ?= false
 ARGO_WATCHER_ENABLED ?= false
+ARGO_WATCHER_IMAGE_TAG ?=
 
 # If set to true, will skip the creation of cert-manager and external-dns
 SKIP_EXPOSE ?= false
+
+COMMON_MAKE_VARS := DOMAIN=$(DOMAIN) \
+                   CLOUD_PROVIDER=$(CLOUD_PROVIDER) \
+                   SKIP_EXPOSE=$(SKIP_EXPOSE) \
+                   ARGO_WATCHER_ENABLED=$(ARGO_WATCHER_ENABLED) \
+                   ARGO_WATCHER_IMAGE_TAG=$(ARGO_WATCHER_IMAGE_TAG)
 
 .PHONY: tfswitch
 tfswitch:
@@ -30,11 +37,7 @@ provision: ## Provision ephemeral Kubernetes cluster
 .PHONY: deploy
 deploy: ## Deploy common services to ephemeral Kubernetes cluster
 	@echo "Deploying common services to ephemeral Kubernetes cluster..."
-	@$(MAKE) -C deploy deploy DOMAIN=$(DOMAIN) CLOUD_PROVIDER=$(CLOUD_PROVIDER) SKIP_EXPOSE=$(SKIP_EXPOSE) ARGO_WATCHER_ENABLED=$(ARGO_WATCHER_ENABLED)
-
-.PHONY: generate-argo-token
-generate-argo-token:
-	@bash ./.scripts/generate-argo-token.sh $(DOMAIN)
+	@$(MAKE) -C deploy deploy $(COMMON_MAKE_VARS)
 
 .PHONY: destroy
 destroy: ## Destroy ephemeral Kubernetes cluster
@@ -42,7 +45,7 @@ destroy: ## Destroy ephemeral Kubernetes cluster
 ifeq ($(CLOUD_PROVIDER),kind)
 	@$(MAKE) -C deploy cleanup
 else
-	@$(MAKE) -C deploy destroy DOMAIN=$(DOMAIN) CLOUD_PROVIDER=$(CLOUD_PROVIDER) SKIP_EXPOSE=$(SKIP_EXPOSE)
+	@$(MAKE) -C deploy destroy $(COMMON_MAKE_VARS)
 endif
 	@rm -f /tmp/disposable-argo-token
 	@echo "Destroying ephemeral Kubernetes cluster..."

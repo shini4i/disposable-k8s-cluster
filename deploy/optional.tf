@@ -6,6 +6,8 @@ module "argo-watcher" {
   local_setup   = local.local_setup
   domain        = var.domain
 
+  image_tag = var.argo_watcher_image_tag_override
+
   providers = {
     argocd = argocd
   }
