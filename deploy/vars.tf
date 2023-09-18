@@ -11,6 +11,10 @@ variable "argo_watcher_enabled" {
   type        = bool
 }
 
+variable "argo_watcher_image_tag_override" {
+  description = "Image override for Argo-Watcher"
+}
+
 variable "traefik_chart_version" {
   description = "Traefik chart version"
 }

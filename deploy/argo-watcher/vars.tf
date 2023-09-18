@@ -18,6 +18,5 @@ variable "local_setup" {
 
 variable "image_tag" {
   description = "The image tag to use for the deployment"
-  default     = "v0.6.0-pre.20230914"
   type        = string
 }

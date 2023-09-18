@@ -17,8 +17,10 @@ spec:
 
         logLevel: DEBUG
 
+        %{ if imageTag != "" }
         image:
           tag: ${imageTag}
+        %{ endif }
 
         argo:
           url: http://argo-cd-server.argo-cd
