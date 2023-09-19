@@ -7,17 +7,40 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
-  source:
-    repoURL: https://charts.jetstack.io
-    chart: cert-manager
-    targetRevision: "${targetRevision}"
-    helm:
-      values: |
-        fullnameOverride: cert-manager
-        installCRDs: true
-        extraArgs:
-          - --dns01-recursive-nameservers=8.8.8.8:53
-          - --dns01-recursive-nameservers-only
+  sources:
+    - repoURL: https://charts.jetstack.io
+      chart: cert-manager
+      targetRevision: "${cm-targetRevision}"
+      helm:
+        values: |
+          fullnameOverride: cert-manager
+          installCRDs: true
+          extraArgs:
+            - --dns01-recursive-nameservers=8.8.8.8:53
+            - --dns01-recursive-nameservers-only
+    - repoURL: https://charts.adfinis.com
+      chart: cert-manager-issuers
+      targetRevision: "${cmi-targetRevision}"
+      helm:
+        values: |
+          clusterIssuers:
+            - name: le-disposable-dns
+              spec:
+                acme:
+                  email: disposable@${domain}
+                  %{ if use_staging_server }
+                  server: https://acme-staging-v02.api.letsencrypt.org/directory
+                  %{ else }
+                  server: https://acme-v02.api.letsencrypt.org/directory
+                  %{ endif }
+                  privateKeySecretRef:
+                    name: disposable-issuer-account-key
+                  solvers:
+                    - dns01:
+                        cloudflare:
+                          apiTokenSecretRef:
+                            name: cloudflare-api-token-secret
+                            key: api-token
 
   destination:
     server: https://kubernetes.default.svc

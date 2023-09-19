@@ -1,4 +1,8 @@
 variable "chart_version" {}
+variable "cert_manager_issuers_chart_version" {
+  description = "Version of the cert-manager-issuers chart to use"
+  default     = "0.2.5"
+}
 variable "cloudflare_api_token" {}
 variable "domain" {}
 variable "le_use_stage_issuer" {

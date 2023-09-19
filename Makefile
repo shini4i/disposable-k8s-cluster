@@ -1,19 +1,14 @@
+-include .env
+
+include config.mk
+
 .DEFAULT_GOAL := help
 
-CLOUD_PROVIDER ?= kind
-DOMAIN = $(DISPOSABLE_DOMAIN)
-USE_LETSENCRYPT_STAGE ?= false
-ARGO_WATCHER_ENABLED ?= false
-ARGO_WATCHER_IMAGE_TAG ?=
-
-# If set to true, will skip the creation of cert-manager and external-dns
-SKIP_EXPOSE ?= false
-
 COMMON_MAKE_VARS := DOMAIN=$(DOMAIN) \
-                   CLOUD_PROVIDER=$(CLOUD_PROVIDER) \
-                   SKIP_EXPOSE=$(SKIP_EXPOSE) \
-                   ARGO_WATCHER_ENABLED=$(ARGO_WATCHER_ENABLED) \
-                   ARGO_WATCHER_IMAGE_TAG=$(ARGO_WATCHER_IMAGE_TAG)
+                    CLOUD_PROVIDER=$(CLOUD_PROVIDER) \
+                    SKIP_EXPOSE=$(SKIP_EXPOSE) \
+                    ARGO_WATCHER_ENABLED=$(ARGO_WATCHER_ENABLED) \
+                    ARGO_WATCHER_IMAGE_TAG=$(ARGO_WATCHER_IMAGE_TAG)
 
 .PHONY: tfswitch
 tfswitch:
