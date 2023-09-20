@@ -81,6 +81,23 @@ To destroy the cluster, run the following command:
 make destroy
 ```
 
+<!-- BEGINNING OF PRE-COMMIT-MAKEFILE HOOK -->
+## Makefile targets
+
+▷ `bootstrap`: Bootstrap ephemeral Kubernetes cluster (provision infrastructure and deploy common services)
+
+▷ `provision`: Provision ephemeral Kubernetes cluster
+
+▷ `deploy`: Deploy common services to ephemeral Kubernetes cluster
+
+▷ `destroy`: Destroy ephemeral Kubernetes cluster
+
+▷ `stop`: Stop KIND cluster
+
+▷ `start`: Start KIND cluster
+
+<!-- END OF PRE-COMMIT-MAKEFILE HOOK -->
+
 ## Contributing
 
 Contributions are welcome! Feel free to submit a pull request. For major changes, please open an issue first to discuss.
