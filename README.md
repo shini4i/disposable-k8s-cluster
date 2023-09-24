@@ -50,7 +50,7 @@ The following applications (controllers) are deployed to the cluster by default:
 
 * [direnv](https://direnv.net/) - used to automatically load environment variables from `.env` or `.envrc` files
 
-## Usage
+## Configuration
 
 A list of environment variables that can be used to configure the deployment:
 
@@ -61,40 +61,45 @@ A list of environment variables that can be used to configure the deployment:
 | `KUBECONFIG`                  | Path to the kubeconfig file (should be set to `./kubeconfig`)                      | Yes      |
 | `DISPOSABLE_DOMAIN`           | Domain that will be used to create DNS records and TLS certificates                | Yes      |
 
-To create a cluster, run the following command:
+
+<!-- BEGINNING OF PRE-COMMIT-MAKEFILE HOOK -->
+## Makefile targets
+
+To set up a temporary kubernetes cluster, including infrastructure and common services run:
 
 ```bash
 make bootstrap
 ```
 
-It will create a kind cluster and deploy default applications to it.
-
-To bootstrap a DigitalOcean cluster, run the following command:
+To provision ephemeral kubernetes cluster run:
 
 ```bash
-CLOUD_PROVIDER=digitalocean make bootstrap
+make provision
 ```
 
-To destroy the cluster, run the following command:
+To deploy common services to ephemeral kubernetes cluster run:
+
+```bash
+make deploy
+```
+
+To destroy ephemeral kubernetes cluster run:
 
 ```bash
 make destroy
 ```
 
-<!-- BEGINNING OF PRE-COMMIT-MAKEFILE HOOK -->
-## Makefile targets
+To stop kind cluster run:
 
-▷ `bootstrap`: Bootstrap ephemeral Kubernetes cluster (provision infrastructure and deploy common services)
+```bash
+make stop
+```
 
-▷ `provision`: Provision ephemeral Kubernetes cluster
+To start kind cluster run:
 
-▷ `deploy`: Deploy common services to ephemeral Kubernetes cluster
-
-▷ `destroy`: Destroy ephemeral Kubernetes cluster
-
-▷ `stop`: Stop KIND cluster
-
-▷ `start`: Start KIND cluster
+```bash
+make start
+```
 
 <!-- END OF PRE-COMMIT-MAKEFILE HOOK -->
 

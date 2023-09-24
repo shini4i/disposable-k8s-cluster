@@ -21,21 +21,21 @@ help: ## Print this help
 	@grep -E '^[a-z.A-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 .PHONY: bootstrap
-bootstrap: tfswitch provision deploy ## Bootstrap ephemeral Kubernetes cluster (provision infrastructure and deploy common services)
+bootstrap: tfswitch provision deploy ## set up a temporary kubernetes cluster, including infrastructure and common services
 
 .PHONY: provision
-provision: ## Provision ephemeral Kubernetes cluster
+provision: ## provision ephemeral kubernetes cluster
 	@echo "Provisioning ephemeral Kubernetes cluster..."
 	@echo "Using $(CLOUD_PROVIDER) as cloud provider"
 	@$(MAKE) -C provision/$(CLOUD_PROVIDER) provision
 
 .PHONY: deploy
-deploy: ## Deploy common services to ephemeral Kubernetes cluster
+deploy: ## deploy common services to ephemeral kubernetes cluster
 	@echo "Deploying common services to ephemeral Kubernetes cluster..."
 	@$(MAKE) -C deploy deploy $(COMMON_MAKE_VARS)
 
 .PHONY: destroy
-destroy: ## Destroy ephemeral Kubernetes cluster
+destroy: ## destroy ephemeral kubernetes cluster
 	@echo "Purging cluster content..."
 ifeq ($(CLOUD_PROVIDER),kind)
 	@$(MAKE) -C deploy cleanup
@@ -48,13 +48,13 @@ endif
 	@$(MAKE) -C provision/$(CLOUD_PROVIDER) destroy
 
 .PHONY: stop
-stop: ## Stop KIND cluster
+stop: ## stop kind cluster
 	@echo "Stopping kind cluster..."
 	@docker stop disposable-cluster-control-plane
 	@docker stop disposable-cluster-worker
 
 .PHONY: start
-start: ## Start KIND cluster
+start: ## start kind cluster
 	@echo "Starting kind cluster..."
 	@docker start disposable-cluster-control-plane
 	@docker start disposable-cluster-worker
