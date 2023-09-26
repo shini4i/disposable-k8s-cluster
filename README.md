@@ -63,24 +63,12 @@ A list of environment variables that can be used to configure the deployment:
 
 
 <!-- BEGINNING OF PRE-COMMIT-MAKEFILE HOOK -->
-## Makefile targets
+## Usage
 
 To set up a temporary kubernetes cluster, including infrastructure and common services run:
 
 ```bash
 make bootstrap
-```
-
-To provision ephemeral kubernetes cluster run:
-
-```bash
-make provision
-```
-
-To deploy common services to ephemeral kubernetes cluster run:
-
-```bash
-make deploy
 ```
 
 To destroy ephemeral kubernetes cluster run:

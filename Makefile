@@ -24,13 +24,13 @@ help: ## Print this help
 bootstrap: tfswitch provision deploy ## set up a temporary kubernetes cluster, including infrastructure and common services
 
 .PHONY: provision
-provision: ## provision ephemeral kubernetes cluster
+provision:
 	@echo "Provisioning ephemeral Kubernetes cluster..."
 	@echo "Using $(CLOUD_PROVIDER) as cloud provider"
 	@$(MAKE) -C provision/$(CLOUD_PROVIDER) provision
 
 .PHONY: deploy
-deploy: ## deploy common services to ephemeral kubernetes cluster
+deploy:
 	@echo "Deploying common services to ephemeral Kubernetes cluster..."
 	@$(MAKE) -C deploy deploy $(COMMON_MAKE_VARS)
 

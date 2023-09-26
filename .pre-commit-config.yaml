@@ -15,6 +15,8 @@ repos:
       - id: terraform_validate
       - id: terraform_docs
   - repo: https://github.com/shini4i/pre-commit-makefile
-    rev: v0.1.1
+    rev: v0.1.4
     hooks:
       - id: makefile-readme-updater
+        args:
+          - --section-name=## Usage
