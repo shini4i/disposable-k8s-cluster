@@ -48,3 +48,8 @@ variable "skip_expose" {
   description = "If cert-manager and external-dns installation should be skipped"
   type        = bool
 }
+
+variable "application_set_enabled" {
+  description = "If ApplicationSet controller should be installed"
+  type        = bool
+}

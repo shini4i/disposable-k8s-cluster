@@ -1,8 +1,9 @@
 module "argo-cd" {
-  source        = "./argocd"
-  chart_version = var.argo_cd_chart_version
-  domain        = var.domain
-  local_setup   = local.local_setup
+  source                  = "./argocd"
+  chart_version           = var.argo_cd_chart_version
+  domain                  = var.domain
+  local_setup             = local.local_setup
+  application_set_enabled = var.application_set_enabled
 }
 
 module "cert-manager" {
