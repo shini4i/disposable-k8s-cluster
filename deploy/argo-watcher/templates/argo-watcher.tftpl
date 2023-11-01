@@ -25,6 +25,8 @@ spec:
         argo:
           url: http://argo-cd-server.argo-cd
           secretName: "argo-watcher-secret"
+          updater:
+            sshSecretName: "argo-watcher-secret"
 
         ingress:
           enabled: true

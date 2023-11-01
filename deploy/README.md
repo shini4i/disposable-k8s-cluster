@@ -54,4 +54,5 @@ No resources.
 | <a name="output_argo_cd_url"></a> [argo\_cd\_url](#output\_argo\_cd\_url) | The URL of the Argo CD instance |
 | <a name="output_argo_cd_username"></a> [argo\_cd\_username](#output\_argo\_cd\_username) | The username of the Argo CD admin user |
 | <a name="output_argo_watcher_deploy_token"></a> [argo\_watcher\_deploy\_token](#output\_argo\_watcher\_deploy\_token) | The deploy token used to validate tasks for the Argo Watcher |
+| <a name="output_argo_watcher_ssh_public_key"></a> [argo\_watcher\_ssh\_public\_key](#output\_argo\_watcher\_ssh\_public\_key) | The SSH public key used by the Argo Watcher to commit changes to the gtiops repository |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

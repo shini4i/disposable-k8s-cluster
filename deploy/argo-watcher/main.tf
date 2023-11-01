@@ -13,6 +13,11 @@ resource "kubernetes_namespace" "this" {
   }
 }
 
+resource "tls_private_key" "this" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
+
 resource "kubernetes_secret" "this" {
   metadata {
     name      = "argo-watcher-secret"
@@ -22,7 +27,10 @@ resource "kubernetes_secret" "this" {
   data = {
     ARGO_TOKEN                = argocd_account_token.this.jwt
     ARGO_WATCHER_DEPLOY_TOKEN = random_string.this.result
+    sshPrivateKey             = tls_private_key.this.private_key_pem
   }
+
+  depends_on = [tls_private_key.this]
 }
 
 resource "kubernetes_manifest" "this" {
