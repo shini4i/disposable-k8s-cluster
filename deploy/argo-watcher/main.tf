@@ -48,5 +48,9 @@ resource "kubernetes_manifest" "this" {
     }
   }
 
+  field_manager {
+    force_conflicts = true
+  }
+
   depends_on = [kubernetes_secret.this]
 }

@@ -1,13 +1,13 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v4.5.0
     hooks:
       - id: end-of-file-fixer
       - id: trailing-whitespace
       - id: check-executables-have-shebangs
       - id: check-shebang-scripts-are-executable
   - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.83.0
+    rev: v1.83.6
     hooks:
       - id: terraform_fmt
       - id: terraform_tflint
@@ -15,8 +15,9 @@ repos:
       - id: terraform_validate
       - id: terraform_docs
   - repo: https://github.com/shini4i/pre-commit-makefile
-    rev: v0.1.4
+    rev: v0.2.0
     hooks:
+      - id: makefile-validator
       - id: makefile-readme-updater
         args:
           - --section-name=## Usage
