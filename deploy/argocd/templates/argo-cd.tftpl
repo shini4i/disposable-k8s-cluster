@@ -6,6 +6,9 @@ applicationSet:
 notifications:
   enabled: false
 
+global:
+  domain: ${fqdn}
+
 server:
   ingress:
     enabled: true
@@ -14,17 +17,16 @@ server:
 %{ if local_setup == true }
       external-dns.alpha.kubernetes.io/target: 127.0.0.1
 %{ endif ~}
-    hosts:
-      - ${fqdn}
-    tls:
-      - secretName: argo-cd-tls
-        hosts:
+    tls: false
+    extraTls:
+      - hosts:
           - ${fqdn}
-    https: false
-
-  extraArgs: ["--insecure"]
+        secretName: argo-cd-tls
 
 configs:
+  params:
+    server.insecure: true
+
   cm:
    url: https://${fqdn}
    exec.enabled: "true"
