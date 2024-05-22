@@ -1,6 +1,6 @@
 .PHONY: provision
 provision:
-	@terraform init
+	@terraform init -upgrade
 	@terraform apply -auto-approve
 
 .PHONY: destroy

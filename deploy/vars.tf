@@ -33,6 +33,7 @@ variable "domain" {
 
 variable "cloudflare_api_token" {
   description = "Cloudflare API token"
+  default     = ""
 }
 
 variable "le_use_stage_issuer" {

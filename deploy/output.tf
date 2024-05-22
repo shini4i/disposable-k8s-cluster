@@ -1,8 +1,3 @@
-output "argo_watcher_deploy_token" {
-  description = "The deploy token used to validate tasks for the Argo Watcher"
-  value       = var.argo_watcher_enabled ? module.argo-watcher[0].argo_watcher_deploy_token : null
-}
-
 output "argo_cd_url" {
   description = "The URL of the Argo CD instance"
   value       = "https://argo-cd.${var.domain}"
@@ -18,7 +13,12 @@ output "argo_cd_password" {
   value       = nonsensitive(module.argo-cd.admin_password)
 }
 
+output "argo_watcher_deploy_token" {
+  description = "The deploy token used to validate tasks for the Argo Watcher"
+  value       = var.argo_watcher_enabled ? module.argo-watcher[0].argo_watcher_deploy_token : null
+}
+
 output "argo_watcher_ssh_public_key" {
-  description = "The SSH public key used by the Argo Watcher to commit changes to the gtiops repository"
+  description = "The SSH public key used by the Argo Watcher to commit changes to the gitops repository"
   value       = var.argo_watcher_enabled ? module.argo-watcher[0].ssh_public_key : null
 }
