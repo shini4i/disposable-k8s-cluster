@@ -54,13 +54,12 @@ The following applications (controllers) are deployed to the cluster by default:
 
 A list of environment variables that can be used to configure the deployment:
 
-| Variable                      | Description                                                                        | Required |
-|-------------------------------|------------------------------------------------------------------------------------|----------|
-| `TF_VAR_do_token`             | DigitalOcean API token (required only when using DigitalOcean as a cloud provider) | No       |
-| `TF_VAR_cloudflare_api_token` | Cloudflare API token (required for generating TLS certificates and DNS records)    | Yes      |
+| Variable                      | Description                                                                        | Required | Notes                   |
+|-------------------------------|------------------------------------------------------------------------------------|----------|-------------------------|
+| `TF_VAR_do_token`             | DigitalOcean API token (required only when using DigitalOcean as a cloud provider) | No       |                         |
+| `TF_VAR_cloudflare_api_token` | Cloudflare API token (required for generating TLS certificates and DNS records)    | Yes      | Unless SKIP_EXPOSE=true |
 | `KUBECONFIG`                  | Path to the kubeconfig file (should be set to `./kubeconfig`)                      | Yes      |
-| `DISPOSABLE_DOMAIN`           | Domain that will be used to create DNS records and TLS certificates                | Yes      |
-
+| `DISPOSABLE_DOMAIN`           | Domain that will be used to create DNS records and TLS certificates                | Yes      |                         |
 
 <!-- BEGINNING OF PRE-COMMIT-MAKEFILE HOOK -->
 ## Usage

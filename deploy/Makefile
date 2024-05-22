@@ -14,7 +14,7 @@ COMMON_TF_VARS := -var "domain=$(DOMAIN)" \
 
 .PHONY: deploy
 deploy:
-	@terraform init
+	@terraform init -upgrade
 	# Phase 1: ArgoCD installation and token generation
 	@terraform apply $(COMMON_TF_VARS) -target=module.argo-cd -auto-approve
 	# Phase 2: ArgoCD applications deployment
