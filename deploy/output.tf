@@ -20,5 +20,5 @@ output "argo_cd_password" {
 
 output "argo_watcher_ssh_public_key" {
   description = "The SSH public key used by the Argo Watcher to commit changes to the gtiops repository"
-  value       = module.argo-watcher[0].ssh_public_key
+  value       = var.argo_watcher_enabled ? module.argo-watcher[0].ssh_public_key : null
 }
