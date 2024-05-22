@@ -6,9 +6,9 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5 |
-| <a name="requirement_argocd"></a> [argocd](#requirement\_argocd) | <= 6.1.1 |
-| <a name="requirement_helm"></a> [helm](#requirement\_helm) | <= 2.13.2 |
-| <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | <= 2.30.0 |
+| <a name="requirement_argocd"></a> [argocd](#requirement\_argocd) | 6.1.1 |
+| <a name="requirement_helm"></a> [helm](#requirement\_helm) | 2.13.2 |
+| <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | 2.30.0 |
 
 ## Providers
 
