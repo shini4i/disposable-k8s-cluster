@@ -27,6 +27,9 @@ to the cluster.
 Those two controllers will be used to automatically create DNS records and TLS certificates for the ingress resources in
 the cluster.
 
+> [!NOTE]
+> In case the certificates and dns records are not required, the project can be bootstrapped with `SKIP_EXPOSE=true`
+
 ### Default applications
 
 The following applications (controllers) are deployed to the cluster by default:
@@ -35,6 +38,7 @@ The following applications (controllers) are deployed to the cluster by default:
 * [cert-manager](https://cert-manager.io/) - used to automatically create TLS certificates for the ingress resources
 * [external-dns](https://github.com/kubernetes-sigs/external-dns) - used to automatically create DNS records for the
   ingress resources
+* [reflector](https://github.com/emberstack/kubernetes-reflector) - used for copying objects between namespaces <sup>[1]</sup>
 * [traefik](https://traefik.io/) - used as an ingress controller
 
 ## Prerequisites
@@ -60,8 +64,10 @@ A list of environment variables that can be used to configure the deployment:
 | `TF_VAR_cloudflare_api_token` | Cloudflare API token (required for generating TLS certificates and DNS records)    | Yes      | Unless SKIP_EXPOSE=true |
 | `KUBECONFIG`                  | Path to the kubeconfig file (should be set to `./kubeconfig`)                      | Yes      |
 | `DISPOSABLE_DOMAIN`           | Domain that will be used to create DNS records and TLS certificates                | Yes      |                         |
+| `SKIP_EXPOSE`                 | Whether `external-dns` and `cert-manager` deployment should be skipped             | No       |                         |
 
 <!-- BEGINNING OF PRE-COMMIT-MAKEFILE HOOK -->
+
 ## Usage
 
 To set up a temporary kubernetes cluster, including infrastructure and common services run:
@@ -90,6 +96,26 @@ make start
 
 <!-- END OF PRE-COMMIT-MAKEFILE HOOK -->
 
+### Reflector
+
+One of potential use cases would be to configure automatic copy of `docker-registry` secret across all namespaces:
+
+```bash
+kubectl create secret docker-registry regcred \
+--docker-server=registry.example.com \
+--docker-username=user \
+--docker-password=verysecretsecret
+```
+
+And later on add the following annotation to the `regcred` secret:
+```
+reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
+reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
+reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: ""
+```
+
 ## Contributing
 
 Contributions are welcome! Feel free to submit a pull request. For major changes, please open an issue first to discuss.
+
+[1]: #reflector
