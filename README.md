@@ -38,7 +38,7 @@ The following applications (controllers) are deployed to the cluster by default:
 * [cert-manager](https://cert-manager.io/) - used to automatically create TLS certificates for the ingress resources
 * [external-dns](https://github.com/kubernetes-sigs/external-dns) - used to automatically create DNS records for the
   ingress resources
-* [reflector](https://github.com/emberstack/kubernetes-reflector) - used for copying objects between namespaces [1]
+* [reflector](https://github.com/emberstack/kubernetes-reflector) - used for copying objects between namespaces <sup>[1]</sup>
 * [traefik](https://traefik.io/) - used as an ingress controller
 
 ## Prerequisites
