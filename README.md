@@ -28,7 +28,7 @@ Those two controllers will be used to automatically create DNS records and TLS c
 the cluster.
 
 > [!NOTE]
-> In case the certificates and dns records are not required, the project can be bootstrapped with SKIP_EXPOSE=true
+> In case the certificates and dns records are not required, the project can be bootstrapped with `SKIP_EXPOSE=true`
 
 ### Default applications
 
@@ -98,7 +98,7 @@ make start
 
 ### Reflector
 
-One of potential usecases would be to configure automatic copy of `docker-registry` secret across all namespaces:
+One of potential use cases would be to configure automatic copy of `docker-registry` secret across all namespaces:
 
 ```bash
 kubectl create secret docker-registry regcred \
@@ -114,9 +114,8 @@ reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
 reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: ""
 ```
 
-## References
-[1]: #reflector
-
 ## Contributing
 
 Contributions are welcome! Feel free to submit a pull request. For major changes, please open an issue first to discuss.
+
+[1]: #reflector
