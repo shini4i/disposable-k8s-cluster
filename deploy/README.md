@@ -22,6 +22,7 @@ No providers.
 | <a name="module_argo-watcher"></a> [argo-watcher](#module\_argo-watcher) | ./argo-watcher | n/a |
 | <a name="module_cert-manager"></a> [cert-manager](#module\_cert-manager) | ./cert-manager | n/a |
 | <a name="module_external-dns"></a> [external-dns](#module\_external-dns) | ./external-dns | n/a |
+| <a name="module_reflector"></a> [reflector](#module\_reflector) | ./reflector | n/a |
 | <a name="module_traefik"></a> [traefik](#module\_traefik) | ./ingress-controller | n/a |
 
 ## Resources
@@ -43,6 +44,7 @@ No resources.
 | <a name="input_domain"></a> [domain](#input\_domain) | Domain to use for the cluster | `any` | n/a | yes |
 | <a name="input_external_dns_chart_version"></a> [external\_dns\_chart\_version](#input\_external\_dns\_chart\_version) | External DNS chart version | `any` | n/a | yes |
 | <a name="input_le_use_stage_issuer"></a> [le\_use\_stage\_issuer](#input\_le\_use\_stage\_issuer) | Use the Let's Encrypt staging issuer | `bool` | n/a | yes |
+| <a name="input_reflector_chart_version"></a> [reflector\_chart\_version](#input\_reflector\_chart\_version) | Reflector chart version | `any` | n/a | yes |
 | <a name="input_skip_expose"></a> [skip\_expose](#input\_skip\_expose) | If cert-manager and external-dns installation should be skipped | `bool` | n/a | yes |
 | <a name="input_traefik_chart_version"></a> [traefik\_chart\_version](#input\_traefik\_chart\_version) | Traefik chart version | `any` | n/a | yes |
 

@@ -34,3 +34,10 @@ module "traefik" {
 
   depends_on = [module.argo-cd]
 }
+
+module "reflector" {
+  source        = "./reflector"
+  chart_version = var.reflector_chart_version
+
+  depends_on = [module.argo-cd]
+}

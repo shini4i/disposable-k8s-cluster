@@ -19,6 +19,10 @@ variable "traefik_chart_version" {
   description = "Traefik chart version"
 }
 
+variable "reflector_chart_version" {
+  description = "Reflector chart version"
+}
+
 variable "cert_manager_chart_version" {
   description = "Cert Manager chart version"
 }
