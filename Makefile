@@ -18,10 +18,10 @@ tfswitch:
 .PHONY: help
 help: ## Print this help
 	@echo "Usage: make [target]"
-	@grep -E '^[a-z.A-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+	@grep -E '^[a-z.A-Z_-]+:.*?## .*$$' Makefile | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 .PHONY: bootstrap
-bootstrap: tfswitch provision deploy ## set up a temporary kubernetes cluster, including infrastructure and common services
+bootstrap: validate tfswitch provision deploy ## set up a temporary kubernetes cluster, including infrastructure and common services
 
 .PHONY: provision
 provision:
@@ -58,3 +58,9 @@ start: ## start kind cluster
 	@echo "Starting kind cluster..."
 	@docker start disposable-cluster-control-plane
 	@docker start disposable-cluster-worker
+
+.PHONY: validate
+validate: # a super simple validation of project configuration
+	@if [ -z "$(DISPOSABLE_DOMAIN)" ]; then echo "Error: DISPOSABLE_DOMAIN is not set"; exit 1; fi
+	@if [ -z "$(SKIP_EXPOSE)" -o "$(SKIP_EXPOSE)" = "false" ]; then if [ -z "$(TF_VAR_cloudflare_api_token)" ]; then echo "Error: TF_VAR_cloudflare_api_token is not set"; exit 1; fi; fi
+	@if [ "$(CLOUD_PROVIDER)" = "digitalocean" ]; then if [ -z "$(TF_VAR_do_token)" ]; then echo "Error: TF_VAR_do_token is not set"; exit 1; fi; fi

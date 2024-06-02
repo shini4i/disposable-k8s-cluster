@@ -67,7 +67,6 @@ A list of environment variables that can be used to configure the deployment:
 | `SKIP_EXPOSE`                 | Whether `external-dns` and `cert-manager` deployment should be skipped             | No       |                         |
 
 <!-- BEGINNING OF PRE-COMMIT-MAKEFILE HOOK -->
-
 ## Usage
 
 To set up a temporary kubernetes cluster, including infrastructure and common services run:
