@@ -1,9 +1,9 @@
 .PHONY: provision
 provision:
-	@terraform init -upgrade
-	@terraform apply -auto-approve
+	@tofu init -upgrade
+	@tofu apply -auto-approve
 
 .PHONY: destroy
 destroy:
-	@terraform destroy -auto-approve
+	@tofu destroy -auto-approve
 	@rm -f terraform.tfstate terraform.tfstate.backup

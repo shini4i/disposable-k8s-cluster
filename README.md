@@ -45,8 +45,8 @@ The following applications (controllers) are deployed to the cluster by default:
 
 ### Mandatory
 
-* [terraform](https://www.terraform.io/) - used to create the cluster and deploy default applications
-* [tfswitch](https://tfswitch.warrensbox.com/) - used to ensure that the correct version of terraform is used
+* [OpenTofu](https://opentofu.org/) - used to create the cluster and deploy default applications
+* [tfswitch](https://tfswitch.warrensbox.com/) - used to ensure that the correct version of tofu is used
 * [GNU make](https://www.gnu.org/software/make/) - used to orchestrate the deployment
 * [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) - used to interact with the cluster
 

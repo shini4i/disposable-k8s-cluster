@@ -14,15 +14,15 @@ COMMON_TF_VARS := -var "domain=$(DOMAIN)" \
 
 .PHONY: deploy
 deploy:
-	@terraform init -upgrade
+	@tofu init -upgrade
 	# Phase 1: ArgoCD installation and token generation
-	@terraform apply $(COMMON_TF_VARS) -target=module.argo-cd -auto-approve
+	@tofu apply $(COMMON_TF_VARS) -target=module.argo-cd -auto-approve
 	# Phase 2: ArgoCD applications deployment
-	@KUBECONFIG=../kubeconfig terraform apply $(COMMON_TF_VARS)  -auto-approve
+	@KUBECONFIG=../kubeconfig tofu apply $(COMMON_TF_VARS)  -auto-approve
 
 .PHONY: destroy
 destroy:
-	@KUBECONFIG=../kubeconfig terraform destroy $(COMMON_TF_VARS) -auto-approve
+	@KUBECONFIG=../kubeconfig tofu destroy $(COMMON_TF_VARS) -auto-approve
 	@rm -f terraform.tfstate terraform.tfstate.backup
 
 .PHONY: cleanup

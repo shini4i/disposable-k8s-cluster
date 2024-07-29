@@ -13,7 +13,7 @@ COMMON_MAKE_VARS := DOMAIN=$(DOMAIN) \
 .PHONY: tfswitch
 tfswitch:
 	@echo "===> Ensuring the correct terraform version is used"
-	@tfswitch
+	@tfswitch --product opentofu
 
 .PHONY: help
 help: ## Print this help
