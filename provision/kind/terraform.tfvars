@@ -1,1 +1,1 @@
-kind_version = "v1.29.4"
+kind_version = "v1.30.2"
