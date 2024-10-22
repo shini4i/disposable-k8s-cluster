@@ -18,7 +18,7 @@ deploy:
 	# Phase 1: ArgoCD installation and token generation
 	@tofu apply $(COMMON_TF_VARS) -target=module.argo-cd -auto-approve
 	# Phase 2: ArgoCD applications deployment
-	@KUBECONFIG=../kubeconfig tofu apply $(COMMON_TF_VARS)  -auto-approve
+	@KUBECONFIG=../kubeconfig tofu apply $(COMMON_TF_VARS) -auto-approve
 
 .PHONY: destroy
 destroy:

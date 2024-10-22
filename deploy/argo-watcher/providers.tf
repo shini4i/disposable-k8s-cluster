@@ -1,15 +1,15 @@
 terraform {
-  required_version = ">= 1.4"
+  required_version = ">= 1.8"
 
   required_providers {
     kubernetes = {
       source  = "hashicorp/kubernetes"
-      version = "2.30.0"
+      version = "2.33.0"
     }
 
     argocd = {
-      source  = "oboukili/argocd"
-      version = "6.1.1"
+      source  = "argoproj-labs/argocd"
+      version = "7.0.3"
     }
   }
 }
