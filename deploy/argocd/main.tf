@@ -10,7 +10,7 @@ resource "helm_release" "this" {
 
   version = var.chart_version
 
-  repository = "https://argoproj.github.io/argo-helm"
+  repository = "oci://ghcr.io/argoproj/argo-helm"
   chart      = "argo-cd"
 
   max_history = 1

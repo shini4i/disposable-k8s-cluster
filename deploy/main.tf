@@ -4,17 +4,17 @@ terraform {
   required_providers {
     kubernetes = {
       source  = "hashicorp/kubernetes"
-      version = "2.30.0"
+      version = "2.33.0"
     }
 
     helm = {
       source  = "hashicorp/helm"
-      version = "2.13.2"
+      version = "2.16.1"
     }
 
     argocd = {
-      source  = "oboukili/argocd"
-      version = "6.1.1"
+      source  = "argoproj-labs/argocd"
+      version = "7.0.3"
     }
   }
 }

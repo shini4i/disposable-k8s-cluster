@@ -12,7 +12,7 @@ spec:
     chart: argo-watcher
     targetRevision: "${targetRevision}"
     helm:
-      values: |
+      valuesObject:
         fullnameOverride: argo-watcher
 
         logLevel: DEBUG
