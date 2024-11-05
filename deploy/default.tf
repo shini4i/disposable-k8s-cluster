@@ -4,27 +4,9 @@ module "argo-cd" {
   domain                  = var.domain
   local_setup             = local.local_setup
   application_set_enabled = var.application_set_enabled
-}
-
-module "cert-manager" {
-  count                = var.skip_expose ? 0 : 1
-  source               = "./cert-manager"
-  chart_version        = var.cert_manager_chart_version
-  cloudflare_api_token = var.cloudflare_api_token
-  domain               = var.domain
-  le_use_stage_issuer  = var.le_use_stage_issuer
-
-  depends_on = [module.argo-cd]
-}
-
-module "external-dns" {
-  count                = var.skip_expose ? 0 : 1
-  source               = "./external-dns"
-  chart_version        = var.external_dns_chart_version
-  cloudflare_api_token = var.cloudflare_api_token
-  domain               = var.domain
-
-  depends_on = [module.argo-cd]
+  use_custom_argocd_image = var.use_custom_argocd_image
+  custom_argocd_image     = var.custom_argocd_image
+  custom_argocd_image_tag = var.custom_argocd_image_tag
 }
 
 module "traefik" {

@@ -2,6 +2,17 @@ variable "argo_cd_chart_version" {
   description = "Argo CD chart version"
 }
 
+variable "use_custom_argocd_image" {
+  description = "If custom Argo CD image should be used (for repoServer)"
+  type        = bool
+}
+variable "custom_argocd_image" {
+  description = "Custom Argo CD image (for repoServer)"
+}
+variable "custom_argocd_image_tag" {
+  description = "Custom Argo CD image tag (for repoServer)"
+}
+
 variable "argo_watcher_chart_version" {
   description = "Argo CD chart version"
 }
