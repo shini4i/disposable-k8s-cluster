@@ -23,6 +23,18 @@ server:
           - ${fqdn}
         secretName: argo-cd-tls
 
+%{ if use_custom_argocd_image == true }
+repoServer:
+  image:
+    repository: ${custom_argocd_image}
+    tag: ${custom_argocd_image_tag}
+    imagePullPolicy: IfNotPresent
+
+  env:
+    - name: HELM_PLUGINS
+      value: "/home/argocd/.local/share/helm/plugins/"
+%{ endif ~}
+
 configs:
   params:
     server.insecure: true

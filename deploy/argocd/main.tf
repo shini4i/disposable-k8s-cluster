@@ -23,6 +23,9 @@ resource "helm_release" "this" {
         fqdn                    = "argo-cd.${var.domain}"
         local_setup             = var.local_setup
         application_set_enabled = var.application_set_enabled
+        use_custom_argocd_image = var.use_custom_argocd_image
+        custom_argocd_image     = var.custom_argocd_image
+        custom_argocd_image_tag = var.custom_argocd_image_tag
     })
   ]
 
