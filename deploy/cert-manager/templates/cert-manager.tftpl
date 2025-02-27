@@ -50,5 +50,10 @@ spec:
     automated:
       prune: true
       selfHeal: true
+    managedNamespaceMetadata:
+      labels:
+        managed_by: argocd
+      annotations:
+        bootstrapped_by: "https://github.com/shini4i/disposable-k8s-cluster"
     syncOptions:
       - CreateNamespace=true
