@@ -1,3 +1,3 @@
-variable "kind_version" {
+variable "kindest_node_version" {
   description = "kindest/node version to use"
 }

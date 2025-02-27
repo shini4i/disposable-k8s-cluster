@@ -12,7 +12,7 @@ spec:
       chart: cert-manager
       targetRevision: "${cm-targetRevision}"
       helm:
-        values: |
+        valuesObject:
           fullnameOverride: cert-manager
           installCRDs: true
           extraArgs:
@@ -22,7 +22,7 @@ spec:
       chart: cert-manager-issuers
       targetRevision: "${cmi-targetRevision}"
       helm:
-        values: |
+        valuesObject:
           clusterIssuers:
             - name: le-disposable-dns
               spec:
