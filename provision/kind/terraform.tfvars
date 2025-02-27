@@ -1,1 +1,1 @@
-kind_version = "v1.31.1"
+kindest_node_version = "v1.32.2"

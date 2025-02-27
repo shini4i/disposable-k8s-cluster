@@ -4,7 +4,7 @@ terraform {
   required_providers {
     kind = {
       source  = "tehcyx/kind"
-      version = "0.6.0"
+      version = "0.8.0"
     }
   }
 }
@@ -13,7 +13,7 @@ resource "kind_cluster" "disposable" {
   name           = "disposable-cluster"
   wait_for_ready = true
 
-  node_image      = "kindest/node:${var.kind_version}"
+  node_image      = "kindest/node:${var.kindest_node_version}"
   kubeconfig_path = "../../kubeconfig"
 
   kind_config {

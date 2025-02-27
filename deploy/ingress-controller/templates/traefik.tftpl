@@ -12,7 +12,7 @@ spec:
     chart: traefik
     targetRevision: "${targetRevision}"
     helm:
-      values: |
+      valuesObject:
         providers:
           kubernetesCRD:
             allowCrossNamespace: true
@@ -24,8 +24,10 @@ spec:
         %{ if local_setup == true }
         ports:
           web:
-            redirectTo:
-              port: websecure
+            redirections:
+              entryPoint:
+                to: websecure
+                scheme: https
             nodePort: 30080
           websecure:
             nodePort: 30443
