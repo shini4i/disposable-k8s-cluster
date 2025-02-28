@@ -38,7 +38,6 @@ The following applications (controllers) are deployed to the cluster by default:
 * [cert-manager](https://cert-manager.io/) - used to automatically create TLS certificates for the ingress resources
 * [external-dns](https://github.com/kubernetes-sigs/external-dns) - used to automatically create DNS records for the
   ingress resources
-* [reflector](https://github.com/emberstack/kubernetes-reflector) - used for copying objects between namespaces <sup>[1]</sup>
 * [traefik](https://traefik.io/) - used as an ingress controller
 
 ## Prerequisites
@@ -95,26 +94,6 @@ make start
 
 <!-- END OF PRE-COMMIT-MAKEFILE HOOK -->
 
-### Reflector
-
-One of potential use cases would be to configure automatic copy of `docker-registry` secret across all namespaces:
-
-```bash
-kubectl create secret docker-registry regcred \
---docker-server=registry.example.com \
---docker-username=user \
---docker-password=verysecretsecret
-```
-
-And later on add the following annotation to the `regcred` secret:
-```
-reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
-reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
-reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: ""
-```
-
 ## Contributing
 
 Contributions are welcome! Feel free to submit a pull request. For major changes, please open an issue first to discuss.
-
-[1]: #reflector

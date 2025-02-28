@@ -16,3 +16,24 @@ variable "use_custom_argocd_image" {
 }
 variable "custom_argocd_image" {}
 variable "custom_argocd_image_tag" {}
+variable "gitops_common_repo" {
+  description = "Git repository contains for common"
+  type        = string
+}
+variable "gitops_common_revision" {
+  description = "Git repository revision/branch/ref for common"
+  type        = string
+}
+variable "gitops_common_basepath" {
+  description = "Git repository base path for common"
+  type        = string
+}
+variable "gitops_common_path" {
+  description = "Git repository path for common"
+  type        = string
+}
+
+variable "argocd_applicationset_addons" {
+  description = "Kubernetes addons"
+  type        = any
+}
