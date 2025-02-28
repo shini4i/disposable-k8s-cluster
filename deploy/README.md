@@ -38,6 +38,7 @@ No resources.
 | <a name="input_argo_watcher_chart_version"></a> [argo\_watcher\_chart\_version](#input\_argo\_watcher\_chart\_version) | Argo CD chart version | `any` | n/a | yes |
 | <a name="input_argo_watcher_enabled"></a> [argo\_watcher\_enabled](#input\_argo\_watcher\_enabled) | If Argo-Watcher should be installed | `bool` | n/a | yes |
 | <a name="input_argo_watcher_image_tag_override"></a> [argo\_watcher\_image\_tag\_override](#input\_argo\_watcher\_image\_tag\_override) | Image override for Argo-Watcher | `any` | n/a | yes |
+| <a name="input_argocd_applicationset_addons"></a> [argocd\_applicationset\_addons](#input\_argocd\_applicationset\_addons) | Kubernetes addons | `any` | n/a | yes |
 | <a name="input_cert_manager_chart_version"></a> [cert\_manager\_chart\_version](#input\_cert\_manager\_chart\_version) | Cert Manager chart version | `any` | n/a | yes |
 | <a name="input_cloud_provider"></a> [cloud\_provider](#input\_cloud\_provider) | Cloud provider to use | `any` | n/a | yes |
 | <a name="input_cloudflare_api_token"></a> [cloudflare\_api\_token](#input\_cloudflare\_api\_token) | Cloudflare API token | `string` | `""` | no |
@@ -45,6 +46,10 @@ No resources.
 | <a name="input_custom_argocd_image_tag"></a> [custom\_argocd\_image\_tag](#input\_custom\_argocd\_image\_tag) | Custom Argo CD image tag (for repoServer) | `any` | n/a | yes |
 | <a name="input_domain"></a> [domain](#input\_domain) | Domain to use for the cluster | `any` | n/a | yes |
 | <a name="input_external_dns_chart_version"></a> [external\_dns\_chart\_version](#input\_external\_dns\_chart\_version) | External DNS chart version | `any` | n/a | yes |
+| <a name="input_gitops_common_basepath"></a> [gitops\_common\_basepath](#input\_gitops\_common\_basepath) | Git repository base path for common | `string` | n/a | yes |
+| <a name="input_gitops_common_path"></a> [gitops\_common\_path](#input\_gitops\_common\_path) | Git repository path for common | `string` | n/a | yes |
+| <a name="input_gitops_common_repo"></a> [gitops\_common\_repo](#input\_gitops\_common\_repo) | Git repository contains for common | `string` | n/a | yes |
+| <a name="input_gitops_common_revision"></a> [gitops\_common\_revision](#input\_gitops\_common\_revision) | Git repository revision/branch/ref for common | `string` | n/a | yes |
 | <a name="input_le_use_stage_issuer"></a> [le\_use\_stage\_issuer](#input\_le\_use\_stage\_issuer) | Use the Let's Encrypt staging issuer | `bool` | n/a | yes |
 | <a name="input_reflector_chart_version"></a> [reflector\_chart\_version](#input\_reflector\_chart\_version) | Reflector chart version | `any` | n/a | yes |
 | <a name="input_skip_expose"></a> [skip\_expose](#input\_skip\_expose) | If cert-manager and external-dns installation should be skipped | `bool` | n/a | yes |
