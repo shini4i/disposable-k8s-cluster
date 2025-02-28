@@ -22,7 +22,6 @@ No providers.
 | <a name="module_argo-watcher"></a> [argo-watcher](#module\_argo-watcher) | ./argo-watcher | n/a |
 | <a name="module_cert-manager"></a> [cert-manager](#module\_cert-manager) | ./cert-manager | n/a |
 | <a name="module_external-dns"></a> [external-dns](#module\_external-dns) | ./external-dns | n/a |
-| <a name="module_reflector"></a> [reflector](#module\_reflector) | ./reflector | n/a |
 | <a name="module_traefik"></a> [traefik](#module\_traefik) | ./ingress-controller | n/a |
 
 ## Resources

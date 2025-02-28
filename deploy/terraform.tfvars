@@ -9,11 +9,13 @@ external_dns_chart_version = "8.7.5"
 reflector_chart_version    = "9.0.313"
 
 ### ApplicationSet
-application_set_enabled = true
+application_set_enabled = false
 gitops_common_repo      = "https://github.com/shini4i/gitops-playground.git"
 gitops_common_revision  = "main"
 gitops_common_basepath  = "common"
 gitops_common_path      = "addons"
 argocd_applicationset_addons = {
-  enable_sealed_secrets = true
+  enable_sealed_secrets = false
+  enable_reflector      = false
+  enable_argo_workflows = false
 }
