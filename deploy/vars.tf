@@ -6,9 +6,11 @@ variable "use_custom_argocd_image" {
   description = "If custom Argo CD image should be used (for repoServer)"
   type        = bool
 }
+
 variable "custom_argocd_image" {
   description = "Custom Argo CD image (for repoServer)"
 }
+
 variable "custom_argocd_image_tag" {
   description = "Custom Argo CD image tag (for repoServer)"
 }
@@ -24,10 +26,6 @@ variable "argo_watcher_enabled" {
 
 variable "argo_watcher_image_tag_override" {
   description = "Image override for Argo-Watcher"
-}
-
-variable "traefik_chart_version" {
-  description = "Traefik chart version"
 }
 
 variable "reflector_chart_version" {
@@ -74,14 +72,17 @@ variable "gitops_common_repo" {
   description = "Git repository contains for common"
   type        = string
 }
+
 variable "gitops_common_revision" {
   description = "Git repository revision/branch/ref for common"
   type        = string
 }
+
 variable "gitops_common_basepath" {
   description = "Git repository base path for common"
   type        = string
 }
+
 variable "gitops_common_path" {
   description = "Git repository path for common"
   type        = string
@@ -90,4 +91,14 @@ variable "gitops_common_path" {
 variable "argocd_applicationset_addons" {
   description = "Kubernetes addons"
   type        = any
+}
+
+variable "ingress_controller" {
+  description = "Ingress controller to use"
+  type        = string
+}
+
+variable "ingress_controller_chart_versions" {
+  description = "A list of ingress controller chart versions"
+  type        = map(string)
 }

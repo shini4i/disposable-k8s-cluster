@@ -22,7 +22,7 @@ No providers.
 | <a name="module_argo-watcher"></a> [argo-watcher](#module\_argo-watcher) | ./argo-watcher | n/a |
 | <a name="module_cert-manager"></a> [cert-manager](#module\_cert-manager) | ./cert-manager | n/a |
 | <a name="module_external-dns"></a> [external-dns](#module\_external-dns) | ./external-dns | n/a |
-| <a name="module_traefik"></a> [traefik](#module\_traefik) | ./ingress-controller | n/a |
+| <a name="module_ingress-controller"></a> [ingress-controller](#module\_ingress-controller) | ./ingress-controller | n/a |
 
 ## Resources
 
@@ -49,10 +49,11 @@ No resources.
 | <a name="input_gitops_common_path"></a> [gitops\_common\_path](#input\_gitops\_common\_path) | Git repository path for common | `string` | n/a | yes |
 | <a name="input_gitops_common_repo"></a> [gitops\_common\_repo](#input\_gitops\_common\_repo) | Git repository contains for common | `string` | n/a | yes |
 | <a name="input_gitops_common_revision"></a> [gitops\_common\_revision](#input\_gitops\_common\_revision) | Git repository revision/branch/ref for common | `string` | n/a | yes |
+| <a name="input_ingress_controller"></a> [ingress\_controller](#input\_ingress\_controller) | Ingress controller to use | `string` | n/a | yes |
+| <a name="input_ingress_controller_chart_versions"></a> [ingress\_controller\_chart\_versions](#input\_ingress\_controller\_chart\_versions) | A list of ingress controller chart versions | `map(string)` | n/a | yes |
 | <a name="input_le_use_stage_issuer"></a> [le\_use\_stage\_issuer](#input\_le\_use\_stage\_issuer) | Use the Let's Encrypt staging issuer | `bool` | n/a | yes |
 | <a name="input_reflector_chart_version"></a> [reflector\_chart\_version](#input\_reflector\_chart\_version) | Reflector chart version | `any` | n/a | yes |
 | <a name="input_skip_expose"></a> [skip\_expose](#input\_skip\_expose) | If cert-manager and external-dns installation should be skipped | `bool` | n/a | yes |
-| <a name="input_traefik_chart_version"></a> [traefik\_chart\_version](#input\_traefik\_chart\_version) | Traefik chart version | `any` | n/a | yes |
 | <a name="input_use_custom_argocd_image"></a> [use\_custom\_argocd\_image](#input\_use\_custom\_argocd\_image) | If custom Argo CD image should be used (for repoServer) | `bool` | n/a | yes |
 
 ## Outputs

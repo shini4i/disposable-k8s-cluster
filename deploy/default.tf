@@ -15,10 +15,11 @@ module "argo-cd" {
   argocd_applicationset_addons = var.argocd_applicationset_addons
 }
 
-module "traefik" {
-  source        = "./ingress-controller"
-  chart_version = var.traefik_chart_version
-  local_setup   = local.local_setup
+module "ingress-controller" {
+  source                            = "./ingress-controller"
+  ingress_controller                = var.ingress_controller
+  ingress_controller_chart_versions = var.ingress_controller_chart_versions
+  local_setup                       = local.local_setup
 
   depends_on = [module.argo-cd]
 }
