@@ -28,7 +28,9 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | n/a | `any` | n/a | yes |
+| <a name="input_ingress_controller"></a> [ingress\_controller](#input\_ingress\_controller) | which ingress controller to use | `string` | `"traefik"` | no |
+| <a name="input_ingress_controller_chart_versions"></a> [ingress\_controller\_chart\_versions](#input\_ingress\_controller\_chart\_versions) | A list of ingress controller chart versions | `map(string)` | n/a | yes |
+| <a name="input_ingress_controller_templates"></a> [ingress\_controller\_templates](#input\_ingress\_controller\_templates) | n/a | `map(string)` | <pre>{<br>  "ingress-nginx": "ingress-nginx.tftpl",<br>  "traefik": "traefik.tftpl"<br>}</pre> | no |
 | <a name="input_local_setup"></a> [local\_setup](#input\_local\_setup) | n/a | `bool` | n/a | yes |
 
 ## Outputs

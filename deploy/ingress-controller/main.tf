@@ -1,6 +1,6 @@
 resource "kubernetes_manifest" "this" {
-  manifest = yamldecode(templatefile("${path.module}/templates/traefik.tftpl", {
-    targetRevision = var.chart_version
+  manifest = yamldecode(templatefile("${path.module}/templates/${var.ingress_controller_templates[var.ingress_controller]}", {
+    targetRevision = var.ingress_controller_chart_versions[var.ingress_controller]
     local_setup    = var.local_setup
   }))
 

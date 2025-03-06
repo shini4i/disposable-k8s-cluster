@@ -3,10 +3,14 @@ use_custom_argocd_image    = true
 custom_argocd_image        = "ghcr.io/shini4i/argocd"
 custom_argocd_image_tag    = "v2.14.2"
 argo_watcher_chart_version = "0.8.0"
-traefik_chart_version      = "34.4.0"
 cert_manager_chart_version = "1.17.1"
 external_dns_chart_version = "8.7.5"
 reflector_chart_version    = "9.0.313"
+ingress_controller         = "traefik"
+ingress_controller_chart_versions = {
+  traefik       = "34.4.1"
+  ingress-nginx = "4.12.0"
+}
 
 ### ApplicationSet
 application_set_enabled = false
