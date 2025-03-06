@@ -13,7 +13,7 @@ ingress_controller_chart_versions = {
 }
 
 ### ApplicationSet
-application_set_enabled = true
+application_set_enabled = false
 gitops_common_repo      = "https://github.com/shini4i/gitops-playground.git"
 gitops_common_revision  = "main"
 gitops_common_basepath  = "common"
