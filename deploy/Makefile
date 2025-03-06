@@ -12,12 +12,22 @@ COMMON_TF_VARS := -var "domain=$(DOMAIN)" \
                   -var "argo_watcher_enabled=${ARGO_WATCHER_ENABLED}" \
                   -var "argo_watcher_image_tag_override=${ARGO_WATCHER_IMAGE_TAG}"
 
+.PHONY: install-crds
+install-crds: # Not sure if this is optimal, but seems to be better than triggering terraform apply twice
+	@echo "===> Installing Argo CD CRDs"
+	@ARGO_CD_CHART_VERSION=$$(grep 'argo_cd_chart_version' terraform.tfvars | awk -F'=' '{print $$2}' | tr -d ' "') && \
+    echo "Extracted ARGO_CD_CHART_VERSION: $${ARGO_CD_CHART_VERSION}" && \
+    ARGO_CD_VERSION=$$(curl -s "https://artifacthub.io/api/v1/packages/helm/argo-cd-oci/argo-cd/$${ARGO_CD_CHART_VERSION}" | jq -r '.app_version') && \
+    echo "Fetched ARGO_CD_VERSION: $${ARGO_CD_VERSION}" && \
+    if [ -z "$${ARGO_CD_VERSION}" ]; then echo "Error: ARGO_CD_VERSION is empty!" && exit 1; fi && \
+	KUBECONFIG=../kubeconfig kubectl apply \
+		-f https://raw.githubusercontent.com/argoproj/argo-cd/refs/tags/$${ARGO_CD_VERSION}/manifests/crds/application-crd.yaml \
+		-f https://raw.githubusercontent.com/argoproj/argo-cd/refs/tags/$${ARGO_CD_VERSION}/manifests/crds/applicationset-crd.yaml \
+		-f https://raw.githubusercontent.com/argoproj/argo-cd/refs/tags/$${ARGO_CD_VERSION}/manifests/crds/appproject-crd.yaml
+
 .PHONY: deploy
-deploy:
+deploy: install-crds
 	@tofu init -upgrade
-	# Phase 1: ArgoCD installation and token generation
-	@tofu apply $(COMMON_TF_VARS) -target=module.argo-cd -auto-approve
-	# Phase 2: ArgoCD applications deployment
 	@KUBECONFIG=../kubeconfig tofu apply $(COMMON_TF_VARS) -auto-approve
 
 .PHONY: destroy
