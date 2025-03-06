@@ -9,6 +9,9 @@ notifications:
 global:
   domain: ${fqdn}
 
+crds:
+  install: false # it is installed outside of terraform
+
 server:
   ingress:
     enabled: true
