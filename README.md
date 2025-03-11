@@ -27,9 +27,6 @@ to the cluster.
 Those two controllers will be used to automatically create DNS records and TLS certificates for the ingress resources in
 the cluster.
 
-> [!NOTE]
-> In case the certificates and dns records are not required, the project can be bootstrapped with `SKIP_EXPOSE=true`
-
 ### Default applications
 
 The following applications (controllers) are deployed to the cluster by default:
@@ -38,7 +35,14 @@ The following applications (controllers) are deployed to the cluster by default:
 * [cert-manager](https://cert-manager.io/) - used to automatically create TLS certificates for the ingress resources
 * [external-dns](https://github.com/kubernetes-sigs/external-dns) - used to automatically create DNS records for the
   ingress resources
-* [traefik](https://traefik.io/) - used as an ingress controller
+* [traefik](https://traefik.io/) - used as an ingress controller (can be replaced by ingress-nginx)
+
+### Optional applications
+
+The following applications can be deployed by enabling them in the `deploy/terraform.tfvars`:
+
+* [ingress-nginx](https://kubernetes.github.io/ingress-nginx/) - used as an alternative ingress controller
+* [gitlab-runner](https://docs.gitlab.com/runner/) - used to run CI/CD pipelines in gitlab
 
 ## Prerequisites
 
@@ -55,16 +59,15 @@ The following applications (controllers) are deployed to the cluster by default:
 
 ## Configuration
 
-A list of environment variables that can be used to configure the deployment:
+To start using the project, copy the `.env.example` file to `.env` and adjust in the required values.
 
-| Variable                      | Description                                                                        | Required | Notes                   |
-|-------------------------------|------------------------------------------------------------------------------------|----------|-------------------------|
-| `TF_VAR_do_token`             | DigitalOcean API token (required only when using DigitalOcean as a cloud provider) | No       |                         |
-| `TF_VAR_cloudflare_api_token` | Cloudflare API token (required for generating TLS certificates and DNS records)    | Yes      | Unless SKIP_EXPOSE=true |
-| `TF_VAR_gitlab_runner_token`  | GitLab runner token (required if gitlab runner deployment is enabled)              | Yes      |                         |
-| `KUBECONFIG`                  | Path to the kubeconfig file (should be set to `./kubeconfig`)                      | Yes      |
-| `DISPOSABLE_DOMAIN`           | Domain that will be used to create DNS records and TLS certificates                | Yes      |                         |
-| `SKIP_EXPOSE`                 | Whether `external-dns` and `cert-manager` deployment should be skipped             | No       |                         |
+```bash
+cp .env.example .env
+```
+
+This mostly includes sensitive configuration.
+
+The remaining configuration can be found in the `deploy/terraform.tfvars` file.
 
 <!-- BEGINNING OF PRE-COMMIT-MAKEFILE HOOK -->
 ## Usage
