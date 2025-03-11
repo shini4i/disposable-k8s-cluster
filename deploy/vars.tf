@@ -102,3 +102,24 @@ variable "ingress_controller_chart_versions" {
   description = "A list of ingress controller chart versions"
   type        = map(string)
 }
+
+variable "gitlab_runner_enabled" {
+  description = "If GitLab Runner should be installed"
+  type        = bool
+}
+
+variable "gitlab_url" {
+  description = "Gitlab URL to use for GitLab Runner"
+  default     = "https://gitlab.com/"
+}
+
+variable "gitlab_runner_chart_version" {
+  description = "GitLab Runner chart version"
+}
+
+variable "gitlab_runner_token" {
+  description = "GitLab Runner registration token"
+  type        = string
+  default     = ""
+  sensitive   = true
+}

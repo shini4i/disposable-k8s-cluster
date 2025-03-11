@@ -22,6 +22,7 @@ No providers.
 | <a name="module_argo-watcher"></a> [argo-watcher](#module\_argo-watcher) | ./argo-watcher | n/a |
 | <a name="module_cert-manager"></a> [cert-manager](#module\_cert-manager) | ./cert-manager | n/a |
 | <a name="module_external-dns"></a> [external-dns](#module\_external-dns) | ./external-dns | n/a |
+| <a name="module_gitlab-runner"></a> [gitlab-runner](#module\_gitlab-runner) | ./gitlab-runner | n/a |
 | <a name="module_ingress-controller"></a> [ingress-controller](#module\_ingress-controller) | ./ingress-controller | n/a |
 
 ## Resources
@@ -45,6 +46,10 @@ No resources.
 | <a name="input_custom_argocd_image_tag"></a> [custom\_argocd\_image\_tag](#input\_custom\_argocd\_image\_tag) | Custom Argo CD image tag (for repoServer) | `any` | n/a | yes |
 | <a name="input_domain"></a> [domain](#input\_domain) | Domain to use for the cluster | `any` | n/a | yes |
 | <a name="input_external_dns_chart_version"></a> [external\_dns\_chart\_version](#input\_external\_dns\_chart\_version) | External DNS chart version | `any` | n/a | yes |
+| <a name="input_gitlab_runner_chart_version"></a> [gitlab\_runner\_chart\_version](#input\_gitlab\_runner\_chart\_version) | GitLab Runner chart version | `any` | n/a | yes |
+| <a name="input_gitlab_runner_enabled"></a> [gitlab\_runner\_enabled](#input\_gitlab\_runner\_enabled) | If GitLab Runner should be installed | `bool` | n/a | yes |
+| <a name="input_gitlab_runner_token"></a> [gitlab\_runner\_token](#input\_gitlab\_runner\_token) | GitLab Runner registration token | `string` | `""` | no |
+| <a name="input_gitlab_url"></a> [gitlab\_url](#input\_gitlab\_url) | Gitlab URL to use for GitLab Runner | `string` | `"https://gitlab.com/"` | no |
 | <a name="input_gitops_common_basepath"></a> [gitops\_common\_basepath](#input\_gitops\_common\_basepath) | Git repository base path for common | `string` | n/a | yes |
 | <a name="input_gitops_common_path"></a> [gitops\_common\_path](#input\_gitops\_common\_path) | Git repository path for common | `string` | n/a | yes |
 | <a name="input_gitops_common_repo"></a> [gitops\_common\_repo](#input\_gitops\_common\_repo) | Git repository contains for common | `string` | n/a | yes |

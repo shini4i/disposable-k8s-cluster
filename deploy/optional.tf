@@ -35,3 +35,14 @@ module "argo-watcher" {
 
   depends_on = [module.argo-cd]
 }
+
+module "gitlab-runner" {
+  count = var.gitlab_runner_enabled ? 1 : 0
+
+  source              = "./gitlab-runner"
+  chart_version       = var.gitlab_runner_chart_version
+  gitlab_url          = var.gitlab_url
+  gitlab_runner_token = var.gitlab_runner_token
+
+  depends_on = [module.argo-cd]
+}
