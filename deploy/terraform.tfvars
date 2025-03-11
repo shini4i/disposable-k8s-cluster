@@ -23,3 +23,7 @@ argocd_applicationset_addons = {
   enable_reflector      = false
   enable_argo_workflows = false
 }
+
+### Gitlab Runner
+gitlab_runner_enabled       = false
+gitlab_runner_chart_version = "0.71.0"
