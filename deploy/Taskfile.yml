@@ -1,0 +1,23 @@
+version: '3'
+
+vars:
+  KUBECONFIG: ../kubeconfig
+
+tasks:
+  deploy:
+    desc: "Deploy ArgoCD and applications"
+    cmds:
+      - tofu init -upgrade
+      - tofu apply -target=module.argo-cd.helm_release.this -var-file=terraform.tfvars.json -auto-approve
+      - KUBECONFIG={{.KUBECONFIG}} tofu apply -var-file=terraform.tfvars.json -auto-approve
+
+  destroy:
+    desc: "Destroy ArgoCD and applications"
+    cmds:
+      - KUBECONFIG={{.KUBECONFIG}} tofu destroy -var-file=terraform.tfvars.json -auto-approve
+      - rm -f terraform.tfstate terraform.tfstate.backup
+
+  cleanup:
+    desc: "Cleanup terraform state files"
+    cmds:
+      - rm -f terraform.tfstate terraform.tfstate.backup

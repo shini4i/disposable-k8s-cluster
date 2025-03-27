@@ -1,0 +1,14 @@
+version: '3'
+
+tasks:
+  provision:
+    desc: "Provision infrastructure"
+    cmds:
+      - tofu init -upgrade
+      - tofu apply -var-file=terraform.tfvars.json -var-file=terraform.tfvars -auto-approve
+
+  destroy:
+    desc: "Destroy infrastructure"
+    cmds:
+      - tofu destroy -var-file=terraform.tfvars.json -var-file=terraform.tfvars -auto-approve
+      - rm -f terraform.tfstate terraform.tfstate.backup
