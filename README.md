@@ -52,6 +52,7 @@ The following applications can be deployed by enabling them in the `deploy/terra
 * [tfswitch](https://tfswitch.warrensbox.com/) - used to ensure that the correct version of tofu is used
 * [GNU make](https://www.gnu.org/software/make/) - used to orchestrate the deployment
 * [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) - used to interact with the cluster
+* [jsonnet](https://jsonnet.org/) - used to generate project configuration
 
 ### Optional
 
@@ -59,15 +60,23 @@ The following applications can be deployed by enabling them in the `deploy/terra
 
 ## Configuration
 
-To start using the project, copy the `.env.example` file to `.env` and adjust in the required values.
+To start using the project, create a `config/local.jsonnet` file with the necessary configuration. Example:
 
-```bash
-cp .env.example .env
+```jsonnet
+{
+  cloud_provider: "kind",
+  domain: "example.com",
+  cloudflare_api_token: "supersecuretoken",
+  application_set_enabled: true,
+  argocd_applicationset_addons: {
+    enable_sealed_secrets: false,
+    enable_reflector: true,
+    enable_argo_workflows: false,
+  },
+}
 ```
 
-This mostly includes sensitive configuration.
-
-The remaining configuration can be found in the `deploy/terraform.tfvars` file.
+Adjust according to the values you want to override. (check `config/default.json` for available settings)
 
 <!-- BEGINNING OF PRE-COMMIT-MAKEFILE HOOK -->
 ## Usage
