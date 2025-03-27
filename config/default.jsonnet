@@ -22,6 +22,7 @@
   external_dns_chart_version: '8.7.8',
   gitlab_runner_chart_version: '0.71.0',
   gitlab_runner_enabled: false, // If gitlab-runner should be deployed
+  gitlab_url: "https://gitlab.com", // URL of the GitLab instance
   gitlab_runner_token: "your-gitlab-runner-token", // runner-token (NOT runner-registration-token)
   gitops_common_basepath: 'common', // Path to the common ApplicationSet templates
   gitops_common_path: 'addons', // Path to the common ApplicationSet templates
