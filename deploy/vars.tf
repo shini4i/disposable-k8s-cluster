@@ -28,10 +28,6 @@ variable "argo_watcher_image_tag_override" {
   description = "Image override for Argo-Watcher"
 }
 
-variable "reflector_chart_version" {
-  description = "Reflector chart version"
-}
-
 variable "cert_manager_chart_version" {
   description = "Cert Manager chart version"
 }
