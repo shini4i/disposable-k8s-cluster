@@ -19,13 +19,6 @@ repos:
       - id: terraform_docs
         args:
           - --hook-config=--tf-path=tofu
-  - repo: https://github.com/shini4i/pre-commit-makefile
-    rev: v0.2.0
-    hooks:
-      - id: makefile-validator
-      - id: makefile-readme-updater
-        args:
-          - --section-name=## Usage
   - repo: https://github.com/gitleaks/gitleaks
     rev: v8.24.2
     hooks:

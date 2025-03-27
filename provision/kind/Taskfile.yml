@@ -1,0 +1,15 @@
+version: '3'
+
+includes:
+  provision: ../../.includes/Taskfile.yml
+
+tasks:
+  provision:
+    desc: "Provision infrastructure"
+    cmds:
+      - task provision:provision
+
+  destroy:
+    desc: "Destroy infrastructure"
+    cmds:
+      - task provision:destroy

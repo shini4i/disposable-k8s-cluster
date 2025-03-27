@@ -1,0 +1,77 @@
+version: '3'
+
+vars:
+  CLOUD_PROVIDER:
+    sh: jsonnet -e 'std.get(std.mergePatch(import "config/default.jsonnet", import "config/local.jsonnet"), "cloud_provider")' | tr -d '"'
+
+tasks:
+  default:
+    desc: "Show help"
+    cmds:
+      - task --list
+
+  tfswitch:
+    desc: "Ensuring the correct OpenTofu version is used"
+    cmds:
+      - tfswitch --product opentofu
+
+  generate-config:
+    desc: "Generating Terraform configuration from JSONnet files"
+    cmds:
+      - jsonnet -e 'std.mergePatch(import "config/default.jsonnet", import "config/local.jsonnet")' > deploy/terraform.tfvars.json
+      - |
+        if [ "{{.CLOUD_PROVIDER}}" = "digitalocean" ]; then
+          jsonnet -e '{ do_token: std.mergePatch(import "config/default.jsonnet", import "config/local.jsonnet").do_token }' > provision/digitalocean/terraform.tfvars.json
+        else
+          echo "{}" > provision/{{.CLOUD_PROVIDER}}/terraform.tfvars.json
+        fi
+
+  bootstrap:
+    desc: "Set up a temporary kubernetes cluster, including infrastructure and common services"
+    cmds:
+      - task: generate-config
+      - task: tfswitch
+      - task: provision
+      - task: deploy
+
+  provision:
+    desc: "Provisioning ephemeral Kubernetes cluster"
+    cmds:
+      - echo "Provisioning ephemeral Kubernetes cluster..."
+      - echo "Using {{.CLOUD_PROVIDER}} as cloud provider"
+      - task -d provision/{{.CLOUD_PROVIDER}} provision
+
+  deploy:
+    desc: "Deploying common services to ephemeral Kubernetes cluster"
+    cmds:
+      - task -d deploy deploy
+
+  destroy:
+    desc: "Destroy ephemeral kubernetes cluster"
+    cmds:
+      - echo "Purging cluster content..."
+      - |
+        if [ "{{.CLOUD_PROVIDER}}" = "kind" ]; then
+          task -d deploy cleanup
+        else
+          task -d deploy destroy
+        fi
+      - rm -f /tmp/disposable-argo-token
+      - echo "Destroying ephemeral Kubernetes cluster..."
+      - echo "Using {{.CLOUD_PROVIDER}} as cloud provider"
+      - task -d provision/{{.CLOUD_PROVIDER}} destroy
+      - find . -name "terraform.tfvars.json" -exec rm {} +
+
+  stop:
+    desc: "Stop kind cluster"
+    cmds:
+      - echo "Stopping kind cluster..."
+      - docker stop disposable-cluster-control-plane
+      - docker stop disposable-cluster-worker
+
+  start:
+    desc: "Start kind cluster"
+    cmds:
+      - echo "Starting kind cluster..."
+      - docker start disposable-cluster-control-plane
+      - docker start disposable-cluster-worker

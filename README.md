@@ -50,7 +50,7 @@ The following applications can be deployed by enabling them in the `deploy/terra
 
 * [OpenTofu](https://opentofu.org/) - used to create the cluster and deploy default applications
 * [tfswitch](https://tfswitch.warrensbox.com/) - used to ensure that the correct version of tofu is used
-* [GNU make](https://www.gnu.org/software/make/) - used to orchestrate the deployment
+* [Taskfile](https://taskfile.dev/#/) - used to orchestrate the deployment
 * [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) - used to interact with the cluster
 * [jsonnet](https://jsonnet.org/) - used to generate project configuration
 
@@ -78,34 +78,31 @@ To start using the project, create a `config/local.jsonnet` file with the necess
 
 Adjust according to the values you want to override. (check `config/default.json` for available settings)
 
-<!-- BEGINNING OF PRE-COMMIT-MAKEFILE HOOK -->
 ## Usage
 
 To set up a temporary kubernetes cluster, including infrastructure and common services run:
 
 ```bash
-make bootstrap
+task bootstrap
 ```
 
 To destroy ephemeral kubernetes cluster run:
 
 ```bash
-make destroy
+task destroy
 ```
 
 To stop kind cluster run:
 
 ```bash
-make stop
+task stop
 ```
 
 To start kind cluster run:
 
 ```bash
-make start
+task start
 ```
-
-<!-- END OF PRE-COMMIT-MAKEFILE HOOK -->
 
 ## Contributing
 
