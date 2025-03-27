@@ -5,6 +5,11 @@ vars:
     sh: jsonnet -e 'std.get(std.mergePatch(import "config/default.jsonnet", import "config/local.jsonnet"), "cloud_provider")' | tr -d '"'
 
 tasks:
+  default:
+    desc: "Show help"
+    cmds:
+      - task --list
+
   tfswitch:
     desc: "Ensuring the correct OpenTofu version is used"
     cmds:
