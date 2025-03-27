@@ -8,6 +8,8 @@ tasks:
     desc: "Provision infrastructure"
     cmds:
       - task provision:provision
+      - docker update --restart=no disposable-cluster-control-plane
+      - docker update --restart=no disposable-cluster-worker
 
   destroy:
     desc: "Destroy infrastructure"
