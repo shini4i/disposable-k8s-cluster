@@ -59,7 +59,6 @@ tasks:
     sources:
       - provision/{{.CLOUD_PROVIDER}}/terraform.tfvars.json
       - provision/{{.CLOUD_PROVIDER}}/*.tf
-    method: timestamp
 
   deploy:
     desc: "Deploying common services to ephemeral Kubernetes cluster"
@@ -88,6 +87,7 @@ tasks:
     cmds:
       - echo "Cleaning up local environment..."
       - rm -f /tmp/disposable-argo-token
+      - rm -rf .task
       - find . -type f -name "terraform.tfvars.json" -exec rm {} +
       - find . -type f -name "terraform.tfstate*" -exec rm {} +
       - find . -type f -name ".terraform.lock.hcl" -exec rm {} +
