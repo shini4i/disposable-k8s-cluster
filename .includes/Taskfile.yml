@@ -5,7 +5,7 @@ tasks:
     desc: "Provision infrastructure"
     cmds:
       - tofu init -upgrade
-      - tofu apply -var-file=terraform.tfvars.json -var-file=terraform.tfvars -auto-approve
+      - tofu apply -backup=- -var-file=terraform.tfvars.json -var-file=terraform.tfvars -auto-approve
 
   destroy:
     desc: "Destroy infrastructure"

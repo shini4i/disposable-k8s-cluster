@@ -9,8 +9,8 @@ tasks:
     desc: "Deploy ArgoCD and applications"
     cmds:
       - tofu init -upgrade
-      - tofu apply -compact-warnings -target=module.argo-cd.helm_release.this -var-file=terraform.tfvars.json -auto-approve -input=false
-      - KUBECONFIG={{.KUBECONFIG}} tofu apply -compact-warnings -var-file=terraform.tfvars.json -auto-approve
+      - tofu apply -compact-warnings -backup=- -target=module.argo-cd.helm_release.this -var-file=terraform.tfvars.json -auto-approve -input=false
+      - KUBECONFIG={{.KUBECONFIG}} tofu apply -compact-warnings -backup=- -var-file=terraform.tfvars.json -auto-approve
 
   info:
     desc: "Print information about the current environment"
