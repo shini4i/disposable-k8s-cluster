@@ -12,6 +12,11 @@ tasks:
       - tofu apply -compact-warnings -target=module.argo-cd.helm_release.this -var-file=terraform.tfvars.json -auto-approve -input=false
       - KUBECONFIG={{.KUBECONFIG}} tofu apply -compact-warnings -var-file=terraform.tfvars.json -auto-approve
 
+  info:
+    desc: "Print information about the current environment"
+    cmds:
+      - tofu output
+
   destroy:
     desc: "Destroy ArgoCD and applications"
     cmds:
