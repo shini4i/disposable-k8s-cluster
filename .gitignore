@@ -6,6 +6,7 @@
 .env
 config/local.jsonnet
 **/terraform.tfvars.json
+**/.task
 
 # Terraform related excludes
 **/.terraform
