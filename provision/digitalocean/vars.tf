@@ -1,4 +1,6 @@
-variable "do_token" {}
+variable "do_token" {
+  sensitive = true
+}
 variable "region" {}
 variable "kubernetes_minor_version" {}
 variable "kubernetes_cluster_name" {}

@@ -76,7 +76,7 @@ To start using the project, create a `config/local.jsonnet` file with the necess
 }
 ```
 
-Adjust according to the values you want to override. (check `config/default.json` for available settings)
+Adjust according to the values you want to override. (check `config/default.jsonnet` for available settings)
 
 ## Usage
 
