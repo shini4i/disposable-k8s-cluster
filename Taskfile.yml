@@ -1,4 +1,5 @@
 version: '3'
+silent: true
 
 vars:
   CLOUD_PROVIDER:
@@ -28,9 +29,8 @@ tasks:
 
   bootstrap:
     desc: "Set up a temporary kubernetes cluster, including infrastructure and common services"
+    deps: [generate-config, tfswitch]
     cmds:
-      - task: generate-config
-      - task: tfswitch
       - task: provision
       - task: deploy
 
@@ -50,17 +50,21 @@ tasks:
     desc: "Destroy ephemeral kubernetes cluster"
     cmds:
       - echo "Purging cluster content..."
-      - |
-        if [ "{{.CLOUD_PROVIDER}}" = "kind" ]; then
-          task -d deploy cleanup
-        else
-          task -d deploy destroy
-        fi
-      - rm -f /tmp/disposable-argo-token
+      - if [ "{{.CLOUD_PROVIDER}}" != "kind" ]; then task -d deploy destroy; fi
       - echo "Destroying ephemeral Kubernetes cluster..."
       - echo "Using {{.CLOUD_PROVIDER}} as cloud provider"
       - task -d provision/{{.CLOUD_PROVIDER}} destroy
-      - find . -name "terraform.tfvars.json" -exec rm {} +
+      - task: cleanup
+
+  cleanup:
+    desc: "Cleanup local environment"
+    cmds:
+      - echo "Cleaning up local environment..."
+      - rm -f /tmp/disposable-argo-token
+      - find . -type f -name "terraform.tfvars.json" -exec rm {} +
+      - find . -type f -name "terraform.tfstate*" -exec rm {} +
+      - find . -type f -name ".terraform.lock.hcl" -exec rm {} +
+      - find . -type d -name ".terraform" -exec rm -rf {} +
 
   stop:
     desc: "Stop kind cluster"

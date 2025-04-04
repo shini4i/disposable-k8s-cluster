@@ -11,4 +11,3 @@ tasks:
     desc: "Destroy infrastructure"
     cmds:
       - tofu destroy -var-file=terraform.tfvars.json -var-file=terraform.tfvars -auto-approve
-      - rm -f terraform.tfstate terraform.tfstate.backup
