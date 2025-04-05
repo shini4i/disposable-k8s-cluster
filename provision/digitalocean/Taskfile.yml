@@ -8,9 +8,9 @@ tasks:
   provision:
     desc: "Provision infrastructure"
     cmds:
-      - task provision:provision
+      - task: provision:provision
 
   destroy:
     desc: "Destroy infrastructure"
     cmds:
-      - task provision:destroy
+      - task: provision:destroy

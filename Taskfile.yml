@@ -7,18 +7,25 @@ vars:
 
 tasks:
   default:
-    desc: "Show help"
+    aliases: [ bootstrap ]
+    desc: "Set up a temporary kubernetes cluster, including infrastructure and common services"
+    deps: [ generate-config, tfswitch ]
     cmds:
-      - task --list
+      - task: provision
+      - task: deploy
+      - task: info
 
   tfswitch:
     desc: "Ensuring the correct OpenTofu version is used"
+    internal: true
     cmds:
       - tfswitch --product opentofu
 
   generate-config:
     desc: "Generating Terraform configuration from JSONnet files"
+    internal: true
     cmds:
+      - echo "Generating Terraform configuration from JSONnet files..."
       - jsonnet -e 'std.mergePatch(import "config/default.jsonnet", import "config/local.jsonnet")' > deploy/terraform.tfvars.json
       - |
         if [ "{{.CLOUD_PROVIDER}}" = "digitalocean" ]; then
@@ -26,33 +33,46 @@ tasks:
         else
           echo "{}" > provision/{{.CLOUD_PROVIDER}}/terraform.tfvars.json
         fi
-
-  bootstrap:
-    desc: "Set up a temporary kubernetes cluster, including infrastructure and common services"
-    deps: [generate-config, tfswitch]
-    cmds:
-      - task: provision
-      - task: deploy
+    sources:
+      - config/*.jsonnet
+    generates:
+      - deploy/terraform.tfvars.json
+      - provision/**/terraform.tfvars.json
 
   info:
     desc: "Print information about the current environment"
     cmds:
+      - echo "===> Current environment configuration:"
       - task -d deploy info
 
   provision:
     desc: "Provisioning ephemeral Kubernetes cluster"
+    internal: true
     cmds:
       - echo "Provisioning ephemeral Kubernetes cluster..."
       - echo "Using {{.CLOUD_PROVIDER}} as cloud provider"
       - task -d provision/{{.CLOUD_PROVIDER}} provision
+    requires:
+      vars:
+        - name: CLOUD_PROVIDER
+          enum: [ digitalocean, kind ]
+    sources:
+      - provision/{{.CLOUD_PROVIDER}}/terraform.tfvars.json
+      - provision/{{.CLOUD_PROVIDER}}/*.tf
 
   deploy:
     desc: "Deploying common services to ephemeral Kubernetes cluster"
+    internal: true
     cmds:
       - task -d deploy deploy
+    sources:
+      - deploy/**/*.tf
+      - deploy/**/*.tftpl
+      - deploy/terraform.tfvars.json
 
   destroy:
     desc: "Destroy ephemeral kubernetes cluster"
+    prompt: "Are you sure you want to destroy the ephemeral Kubernetes cluster?"
     cmds:
       - echo "Purging cluster content..."
       - if [ "{{.CLOUD_PROVIDER}}" != "kind" ]; then task -d deploy destroy; fi
@@ -63,9 +83,11 @@ tasks:
 
   cleanup:
     desc: "Cleanup local environment"
+    internal: true
     cmds:
       - echo "Cleaning up local environment..."
       - rm -f /tmp/disposable-argo-token
+      - rm -rf .task
       - find . -type f -name "terraform.tfvars.json" -exec rm {} +
       - find . -type f -name "terraform.tfstate*" -exec rm {} +
       - find . -type f -name ".terraform.lock.hcl" -exec rm {} +
