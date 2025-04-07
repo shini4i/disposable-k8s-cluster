@@ -13,6 +13,8 @@ resource "kubernetes_secret" "this" {
   data = {
     api-token = var.cloudflare_api_token
   }
+
+  depends_on = [kubernetes_namespace.this]
 }
 
 resource "kubernetes_manifest" "this" {
