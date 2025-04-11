@@ -39,21 +39,14 @@ spec:
                     - dns01:
                         cloudflare:
                           apiTokenSecretRef:
-                            name: cloudflare-api-token-secret
+                            name: ${cloudflare_secret_name}
                             key: api-token
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: cert-manager
+    namespace: ${namespace}
 
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-    managedNamespaceMetadata:
-      labels:
-        managed_by: argocd
-      annotations:
-        bootstrapped_by: "https://github.com/shini4i/disposable-k8s-cluster"
-    syncOptions:
-      - CreateNamespace=true

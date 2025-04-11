@@ -39,7 +39,7 @@ The following applications (controllers) are deployed to the cluster by default:
 
 ### Optional applications
 
-The following applications can be deployed by enabling them in the `deploy/terraform.tfvars`:
+The following applications can be deployed by enabling them in the `config/local.jsonnet`:
 
 * [ingress-nginx](https://kubernetes.github.io/ingress-nginx/) - used as an alternative ingress controller
 * [gitlab-runner](https://docs.gitlab.com/runner/) - used to run CI/CD pipelines in gitlab
