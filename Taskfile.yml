@@ -106,3 +106,4 @@ tasks:
       - echo "Starting kind cluster..."
       - docker start disposable-cluster-control-plane
       - docker start disposable-cluster-worker
+      - task: info

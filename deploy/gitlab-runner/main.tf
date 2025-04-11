@@ -1,6 +1,12 @@
 resource "kubernetes_namespace" "this" {
   metadata {
     name = var.namespace
+    labels = {
+      managed-by = "terraform"
+    }
+    annotations = {
+      bootstrapped_by = "https://github.com/shini4i/disposable-k8s-cluster"
+    }
   }
 }
 
