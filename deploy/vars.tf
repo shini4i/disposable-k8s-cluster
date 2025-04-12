@@ -28,6 +28,11 @@ variable "argo_watcher_image_tag_override" {
   description = "Image override for Argo-Watcher"
 }
 
+variable "argo_watcher_persistence_enabled" {
+  description = "If persistence should be enabled for Argo-Watcher"
+  type        = bool
+}
+
 variable "cert_manager_chart_version" {
   description = "Cert Manager chart version"
 }

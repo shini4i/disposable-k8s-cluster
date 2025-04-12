@@ -20,3 +20,8 @@ variable "image_tag" {
   description = "The image tag to use for the deployment"
   type        = string
 }
+
+variable "persistence_enabled" {
+  description = "Whether to enable persistence or not"
+  type        = bool
+}
