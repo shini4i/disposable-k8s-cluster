@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: cluster-addons
   namespace: ${namespace}
+  labels:
+    managed-by: terraform
 spec:
   project: default
   source:
