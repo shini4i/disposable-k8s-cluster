@@ -10,6 +10,12 @@ resource "random_string" "this" {
 resource "kubernetes_namespace" "this" {
   metadata {
     name = var.namespace
+    labels = {
+      managed-by = "terraform"
+    }
+    annotations = {
+      bootstrapped_by = "https://github.com/shini4i/disposable-k8s-cluster"
+    }
   }
 }
 
@@ -33,12 +39,32 @@ resource "kubernetes_secret" "this" {
   depends_on = [tls_private_key.this]
 }
 
+resource "kubernetes_manifest" "postgres" {
+  count = var.persistence_enabled ? 1 : 0
+
+  manifest = yamldecode(templatefile("${path.module}/templates/argo-watcher-psql.tftpl", {
+    namespace = kubernetes_namespace.this.metadata[0].name
+  }))
+
+  wait {
+    fields = {
+      "status.sync.status"   = "Synced",
+      "status.health.status" = "Healthy"
+    }
+  }
+
+  depends_on = [kubernetes_namespace.this]
+}
+
 resource "kubernetes_manifest" "this" {
   manifest = yamldecode(templatefile("${path.module}/templates/argo-watcher.tftpl", {
-    domain         = var.domain
-    targetRevision = var.chart_version
-    local_setup    = var.local_setup
-    imageTag       = var.image_tag
+    domain              = var.domain
+    targetRevision      = var.chart_version
+    local_setup         = var.local_setup
+    imageTag            = var.image_tag
+    persistence_enabled = var.persistence_enabled
+    secretName          = kubernetes_secret.this.metadata[0].name
+    namespace           = kubernetes_namespace.this.metadata[0].name
   }))
 
   wait {
@@ -52,5 +78,8 @@ resource "kubernetes_manifest" "this" {
     force_conflicts = true
   }
 
-  depends_on = [kubernetes_secret.this]
+  depends_on = [
+    kubernetes_secret.this,
+    kubernetes_manifest.postgres
+  ]
 }

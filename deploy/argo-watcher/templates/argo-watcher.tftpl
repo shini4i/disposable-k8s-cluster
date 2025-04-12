@@ -24,7 +24,7 @@ spec:
 
         argo:
           url: http://argo-cd-server.argo-cd
-          secretName: "argo-watcher-secret"
+          secretName: "${secretName}"
           updater:
             sshSecretName: "argo-watcher-secret"
 
@@ -45,18 +45,19 @@ spec:
               hosts:
                 - argo-watcher.${domain}
 
+        postgres:
+          enabled: ${persistence_enabled}
+          host: argo-watcher-psql
+          name: watcher
+          user: watcher
+          secretName: argo-watcher-psql
+          secretKey: password
+
   destination:
     server: https://kubernetes.default.svc
-    namespace: argo-watcher
+    namespace: ${namespace}
 
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-    managedNamespaceMetadata:
-      labels:
-        managed_by: argocd
-      annotations:
-        bootstrapped_by: "https://github.com/shini4i/disposable-k8s-cluster"
-    syncOptions:
-      - CreateNamespace=true
