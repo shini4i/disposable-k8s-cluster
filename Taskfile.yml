@@ -10,6 +10,9 @@ tasks:
     aliases: [ bootstrap ]
     desc: "Set up a temporary kubernetes cluster, including infrastructure and common services"
     deps: [ generate-config, tfswitch ]
+    preconditions:
+      - sh: type tfswitch tofu kubectl jsonnet
+        msg: "One or more required tools are missing. Please make sure you have all the dependencies from the README installed."
     cmds:
       - task: provision
       - task: deploy
