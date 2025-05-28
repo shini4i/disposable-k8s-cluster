@@ -19,11 +19,20 @@ resource "helm_release" "this" {
   repository = "oci://ghcr.io/argoproj/argo-helm"
   chart      = "argo-cd"
 
+  # hide metadata output due to too much information produced on each helm value change
+  # this lifecycle block produces warning during plan - "redundant ignore_changes element"
+  # https://github.com/hashicorp/terraform-provider-helm/issues/1315
+  lifecycle {
+    ignore_changes = [metadata]
+  }
+
   max_history = 1
   timeout     = 600
 
+  # hide the field with sensitive function as it produces unreadable diff
+  # https://github.com/hashicorp/terraform-provider-helm/issues/1121#issuecomment-1719873950
   values = [
-    templatefile(
+    sensitive(templatefile(
       "${path.module}/templates/argo-cd.tftpl",
       {
         fqdn                     = "argo-cd.${var.domain}"
@@ -32,7 +41,7 @@ resource "helm_release" "this" {
         use_custom_argocd_image  = var.use_custom_argocd_image
         custom_argocd_image      = var.custom_argocd_image
         custom_argocd_image_tag  = var.custom_argocd_image_tag
-    })
+      }))
   ]
 
   depends_on = [
