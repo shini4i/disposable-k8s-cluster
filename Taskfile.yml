@@ -61,6 +61,7 @@ tasks:
           enum: [ digitalocean, kind ]
     sources:
       - provision/{{.CLOUD_PROVIDER}}/terraform.tfvars.json
+      - provision/{{.CLOUD_PROVIDER}}/*.tfvars
       - provision/{{.CLOUD_PROVIDER}}/*.tf
 
   deploy:
