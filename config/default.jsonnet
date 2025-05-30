@@ -9,6 +9,7 @@
     enable_sealed_secrets: false, // a controller for encrypting secrets to safely store them in a Git repository
     enable_reflector: false, // a controller for syncing resources between namespaces
     enable_argo_workflows: false, // a controller for running Argo Workflows
+    enable_argo_rollouts: false, // a controller for managing progressive delivery with Argo Rollouts
   },
   argo_cd_chart_version: '8.0.10',
   use_custom_argocd_image: true, // If true, will use the custom image for repo-server

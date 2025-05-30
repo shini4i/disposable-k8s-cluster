@@ -52,7 +52,7 @@ spec:
           host: argo-watcher-psql
           name: watcher
           user: watcher
-          secretName: argo-watcher-psql
+          secretName: ${postgresSecretName}
           secretKey: password
 
   destination:
