@@ -79,7 +79,7 @@ resource "kubernetes_manifest" "this" {
     persistence_enabled = var.persistence_enabled
     secretName          = kubernetes_secret.this.metadata[0].name
     namespace           = kubernetes_namespace.this.metadata[0].name
-    postgresSecretName  = var.persistence_enabled ? kubernetes_secret.postgres_credentials.metadata[0].name : ""
+    postgresSecretName  = var.persistence_enabled ? kubernetes_secret.postgres_credentials.metadata[0].name : "dummy-value"
   }))
 
   wait {
