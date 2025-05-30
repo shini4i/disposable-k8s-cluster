@@ -41,7 +41,8 @@ resource "helm_release" "this" {
         use_custom_argocd_image  = var.use_custom_argocd_image
         custom_argocd_image      = var.custom_argocd_image
         custom_argocd_image_tag  = var.custom_argocd_image_tag
-      }))
+        argo_rollouts_enabled    = var.argocd_applicationset_addons.enable_argo_rollouts
+    }))
   ]
 
   depends_on = [
