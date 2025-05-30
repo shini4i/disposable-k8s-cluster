@@ -39,11 +39,25 @@ resource "kubernetes_secret" "this" {
   depends_on = [tls_private_key.this]
 }
 
+resource "kubernetes_secret" "postgres_credentials" {
+  metadata {
+    name      = "argo-watcher-psql"
+    namespace = kubernetes_namespace.this.metadata[0].name
+  }
+
+  data = {
+    postgres-password    = random_string.this.result
+    password             = random_string.this.result
+    replication-password = random_string.this.result
+  }
+}
+
 resource "kubernetes_manifest" "postgres" {
   count = var.persistence_enabled ? 1 : 0
 
   manifest = yamldecode(templatefile("${path.module}/templates/argo-watcher-psql.tftpl", {
-    namespace = kubernetes_namespace.this.metadata[0].name
+    namespace  = kubernetes_namespace.this.metadata[0].name
+    secretName = kubernetes_secret.postgres_credentials.metadata[0].name
   }))
 
   wait {
@@ -65,6 +79,7 @@ resource "kubernetes_manifest" "this" {
     persistence_enabled = var.persistence_enabled
     secretName          = kubernetes_secret.this.metadata[0].name
     namespace           = kubernetes_namespace.this.metadata[0].name
+    postgresSecretName  = var.persistence_enabled ? kubernetes_secret.postgres_credentials.metadata[0].name : ""
   }))
 
   wait {
