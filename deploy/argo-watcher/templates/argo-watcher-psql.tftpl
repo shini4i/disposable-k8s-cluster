@@ -23,6 +23,7 @@ spec:
           enablePostgresUser: false
           username: watcher
           database: watcher
+          existingSecret: ${secretName}
         primary:
           persistence:
             enabled: true

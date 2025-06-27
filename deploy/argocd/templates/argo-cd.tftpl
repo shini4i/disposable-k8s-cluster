@@ -22,6 +22,15 @@ server:
       - hosts:
           - ${fqdn}
         secretName: argo-cd-tls
+%{ if argo_rollouts_enabled == true }
+  extensions:
+    enabled: true
+    extensionList:
+      - name: rollout-extension
+        env:
+          - name: EXTENSION_URL
+            value: https://github.com/argoproj-labs/rollout-extension/releases/download/v0.3.7/extension.tar
+%{ endif ~}
 
 %{ if use_custom_argocd_image == true }
 repoServer:

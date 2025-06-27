@@ -19,6 +19,8 @@ spec:
 
         controller:
           watchIngressWithoutClass: true
+          config:
+            enable-underscores-in-headers: "true" # this is required for argo-watcher
         %{ if local_setup == true }
           service:
             type: NodePort
