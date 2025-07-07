@@ -13,6 +13,8 @@ module "argo-cd" {
   gitops_common_basepath       = var.gitops_common_basepath
   gitops_common_path           = var.gitops_common_path
   argocd_applicationset_addons = var.argocd_applicationset_addons
+
+  use_wildcard_certificate = var.cert_manager_wildcard_enabled
 }
 
 module "ingress-controller" {

@@ -7,21 +7,27 @@ notifications:
   enabled: false
 
 global:
-  domain: ${fqdn}
+  domain: argo-cd.${domain}
 
 server:
   ingress:
     enabled: true
     annotations:
+      %{ if !use_wildcard_certificate }
       cert-manager.io/cluster-issuer: "le-disposable-dns"
+      %{ endif }
 %{ if local_setup == true }
       external-dns.alpha.kubernetes.io/target: 127.0.0.1
 %{ endif ~}
     tls: false
     extraTls:
       - hosts:
-          - ${fqdn}
+          - argo-cd.${domain}
+        %{ if !use_wildcard_certificate }
         secretName: argo-cd-tls
+        %{ else }
+        secretName: wildcard-${replace(domain, ".", "-")}-tls
+        %{ endif }
 %{ if argo_rollouts_enabled == true }
   extensions:
     enabled: true
@@ -49,7 +55,7 @@ configs:
     server.insecure: true
 
   cm:
-   url: https://${fqdn}
+   url: https://argo-cd.${domain}
    exec.enabled: "true"
 
    # this should not be set in production, but for testing purposes it's fine

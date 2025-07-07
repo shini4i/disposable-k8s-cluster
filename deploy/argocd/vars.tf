@@ -37,3 +37,9 @@ variable "argocd_applicationset_addons" {
   description = "Kubernetes addons"
   type        = any
 }
+
+variable "use_wildcard_certificate" {
+  description = "Whether to use a wildcard certificate for the ingress"
+  type        = bool
+  default     = false
+}

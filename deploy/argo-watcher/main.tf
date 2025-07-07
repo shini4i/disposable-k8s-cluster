@@ -72,14 +72,15 @@ resource "kubernetes_manifest" "postgres" {
 
 resource "kubernetes_manifest" "this" {
   manifest = yamldecode(templatefile("${path.module}/templates/argo-watcher.tftpl", {
-    domain              = var.domain
-    targetRevision      = var.chart_version
-    local_setup         = var.local_setup
-    imageTag            = var.image_tag
-    persistence_enabled = var.persistence_enabled
-    secretName          = kubernetes_secret.this.metadata[0].name
-    namespace           = kubernetes_namespace.this.metadata[0].name
-    postgresSecretName  = var.persistence_enabled ? kubernetes_secret.postgres_credentials.metadata[0].name : "dummy-value"
+    domain                   = var.domain
+    targetRevision           = var.chart_version
+    local_setup              = var.local_setup
+    imageTag                 = var.image_tag
+    persistence_enabled      = var.persistence_enabled
+    secretName               = kubernetes_secret.this.metadata[0].name
+    namespace                = kubernetes_namespace.this.metadata[0].name
+    use_wildcard_certificate = var.use_wildcard_certificate
+    postgresSecretName       = var.persistence_enabled ? kubernetes_secret.postgres_credentials.metadata[0].name : "dummy-value"
   }))
 
   wait {

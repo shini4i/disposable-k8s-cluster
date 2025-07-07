@@ -38,3 +38,38 @@ resource "kubernetes_manifest" "this" {
     }
   }
 }
+
+resource "kubernetes_manifest" "wildcard_certificate" {
+  count = var.wildcard_enabled ? 1 : 0
+
+  manifest = {
+    apiVersion = "cert-manager.io/v1"
+    kind       = "Certificate"
+    metadata = {
+      name      = "wildcard-${replace(var.domain, ".", "-")}"
+      namespace = kubernetes_namespace.this.metadata[0].name
+    }
+    spec = {
+      secretName = "wildcard-${replace(var.domain, ".", "-")}-tls"
+      secretTemplate = {
+        annotations = {
+          "reflector.v1.k8s.emberstack.com/reflection-allowed"            = "true"
+          "reflector.v1.k8s.emberstack.com/reflection-auto-enabled"       = "true"
+          "reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces" = ""
+        }
+      }
+      issuerRef = {
+        name = "le-disposable-dns"
+        kind = "ClusterIssuer"
+      }
+      dnsNames = [
+        "*.${var.domain}",
+        var.domain
+      ]
+    }
+  }
+
+  depends_on = [
+    kubernetes_manifest.this
+  ]
+}

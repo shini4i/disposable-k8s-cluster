@@ -25,3 +25,9 @@ variable "persistence_enabled" {
   description = "Whether to enable persistence or not"
   type        = bool
 }
+
+variable "use_wildcard_certificate" {
+  description = "Whether to use a wildcard certificate for the ingress"
+  type        = bool
+  default     = false
+}

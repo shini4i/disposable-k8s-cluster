@@ -37,6 +37,12 @@ variable "cert_manager_chart_version" {
   description = "Cert Manager chart version"
 }
 
+variable "cert_manager_wildcard_enabled" {
+  description = "Issue a wildcard certificate"
+  type        = bool
+  default     = false
+}
+
 variable "external_dns_chart_version" {
   description = "External DNS chart version"
 }
@@ -102,7 +108,7 @@ variable "ingress_controller" {
 
 variable "ingress_controller_chart_versions" {
   description = "A list of ingress controller chart versions"
-  type        = map(string)
+  type = map(string)
 }
 
 variable "gitlab_runner_enabled" {

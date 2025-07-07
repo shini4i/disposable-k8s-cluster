@@ -20,6 +20,7 @@
   argo_watcher_persistence_enabled: false, // If true, will deploy postgresql and use it for persistence
   argo_watcher_image_tag_override: '',
   cert_manager_chart_version: '1.17.1',
+  cert_manager_wildcard_enabled: false, // If true, will generate a wildcard certificate for the domain
   le_use_stage_issuer: false, // If true, use the staging issuer
   external_dns_chart_version: '8.7.8',
   gitlab_runner_chart_version: '0.71.0',

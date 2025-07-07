@@ -35,14 +35,15 @@ resource "helm_release" "this" {
     sensitive(templatefile(
       "${path.module}/templates/argo-cd.tftpl",
       {
-        fqdn                     = "argo-cd.${var.domain}"
+        domain                   = var.domain
         local_setup              = var.local_setup
         application_set_replicas = var.application_set_enabled ? 1 : 0
         use_custom_argocd_image  = var.use_custom_argocd_image
         custom_argocd_image      = var.custom_argocd_image
         custom_argocd_image_tag  = var.custom_argocd_image_tag
+        use_wildcard_certificate = var.use_wildcard_certificate
         argo_rollouts_enabled    = var.argocd_applicationset_addons.enable_argo_rollouts
-    }))
+      }))
   ]
 
   depends_on = [
