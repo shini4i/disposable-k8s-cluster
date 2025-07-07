@@ -13,7 +13,7 @@
 | Name | Version |
 |------|---------|
 | <a name="provider_digitalocean"></a> [digitalocean](#provider\_digitalocean) | 2.50.0 |
-| <a name="provider_local"></a> [local](#provider\_local) | 2.5.2 |
+| <a name="provider_local"></a> [local](#provider\_local) | 2.5.3 |
 
 ## Modules
 

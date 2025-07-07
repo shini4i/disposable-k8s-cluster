@@ -108,7 +108,7 @@ variable "ingress_controller" {
 
 variable "ingress_controller_chart_versions" {
   description = "A list of ingress controller chart versions"
-  type = map(string)
+  type        = map(string)
 }
 
 variable "gitlab_runner_enabled" {

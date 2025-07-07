@@ -23,6 +23,7 @@ No modules.
 | Name | Type |
 |------|------|
 | [kubernetes_manifest.this](https://registry.terraform.io/providers/hashicorp/kubernetes/2.33.0/docs/resources/manifest) | resource |
+| [kubernetes_manifest.wildcard_certificate](https://registry.terraform.io/providers/hashicorp/kubernetes/2.33.0/docs/resources/manifest) | resource |
 | [kubernetes_namespace.this](https://registry.terraform.io/providers/hashicorp/kubernetes/2.33.0/docs/resources/namespace) | resource |
 | [kubernetes_secret.this](https://registry.terraform.io/providers/hashicorp/kubernetes/2.33.0/docs/resources/secret) | resource |
 
@@ -35,6 +36,7 @@ No modules.
 | <a name="input_cloudflare_api_token"></a> [cloudflare\_api\_token](#input\_cloudflare\_api\_token) | n/a | `any` | n/a | yes |
 | <a name="input_domain"></a> [domain](#input\_domain) | n/a | `any` | n/a | yes |
 | <a name="input_le_use_stage_issuer"></a> [le\_use\_stage\_issuer](#input\_le\_use\_stage\_issuer) | Use Let's Encrypt staging server | `bool` | `false` | no |
+| <a name="input_wildcard_enabled"></a> [wildcard\_enabled](#input\_wildcard\_enabled) | Issue a wildcard certificate | `any` | n/a | yes |
 
 ## Outputs
 

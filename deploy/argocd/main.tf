@@ -43,7 +43,7 @@ resource "helm_release" "this" {
         custom_argocd_image_tag  = var.custom_argocd_image_tag
         use_wildcard_certificate = var.use_wildcard_certificate
         argo_rollouts_enabled    = var.argocd_applicationset_addons.enable_argo_rollouts
-      }))
+    }))
   ]
 
   depends_on = [

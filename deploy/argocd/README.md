@@ -13,7 +13,7 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_helm"></a> [helm](#provider\_helm) | 2.16.1 |
+| <a name="provider_helm"></a> [helm](#provider\_helm) | 2.17.0 |
 | <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.33.0 |
 
 ## Modules
@@ -47,6 +47,7 @@ No modules.
 | <a name="input_local_setup"></a> [local\_setup](#input\_local\_setup) | n/a | `bool` | n/a | yes |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | n/a | `string` | `"argo-cd"` | no |
 | <a name="input_use_custom_argocd_image"></a> [use\_custom\_argocd\_image](#input\_use\_custom\_argocd\_image) | n/a | `bool` | `false` | no |
+| <a name="input_use_wildcard_certificate"></a> [use\_wildcard\_certificate](#input\_use\_wildcard\_certificate) | Whether to use a wildcard certificate for the ingress | `bool` | `false` | no |
 
 ## Outputs
 
