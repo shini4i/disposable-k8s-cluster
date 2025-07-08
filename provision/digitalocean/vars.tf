@@ -17,3 +17,6 @@ variable "node_type" {
 variable "node_count" {
   type = number
 }
+variable "vpc_cidr" {
+  type = string
+}

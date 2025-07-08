@@ -6,14 +6,14 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.8 |
-| <a name="requirement_digitalocean"></a> [digitalocean](#requirement\_digitalocean) | 2.50.0 |
+| <a name="requirement_digitalocean"></a> [digitalocean](#requirement\_digitalocean) | 2.58.0 |
 | <a name="requirement_local"></a> [local](#requirement\_local) | 2.5.3 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_digitalocean"></a> [digitalocean](#provider\_digitalocean) | 2.50.0 |
+| <a name="provider_digitalocean"></a> [digitalocean](#provider\_digitalocean) | 2.58.0 |
 | <a name="provider_local"></a> [local](#provider\_local) | 2.5.3 |
 
 ## Modules
@@ -24,9 +24,10 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [digitalocean_kubernetes_cluster.disposable](https://registry.terraform.io/providers/digitalocean/digitalocean/2.50.0/docs/resources/kubernetes_cluster) | resource |
+| [digitalocean_kubernetes_cluster.disposable](https://registry.terraform.io/providers/digitalocean/digitalocean/2.58.0/docs/resources/kubernetes_cluster) | resource |
+| [digitalocean_vpc.this](https://registry.terraform.io/providers/digitalocean/digitalocean/2.58.0/docs/resources/vpc) | resource |
 | [local_file.kubeconfig](https://registry.terraform.io/providers/hashicorp/local/2.5.3/docs/resources/file) | resource |
-| [digitalocean_kubernetes_versions.disposable](https://registry.terraform.io/providers/digitalocean/digitalocean/2.50.0/docs/data-sources/kubernetes_versions) | data source |
+| [digitalocean_kubernetes_versions.disposable](https://registry.terraform.io/providers/digitalocean/digitalocean/2.58.0/docs/data-sources/kubernetes_versions) | data source |
 
 ## Inputs
 
@@ -38,6 +39,7 @@ No modules.
 | <a name="input_node_count"></a> [node\_count](#input\_node\_count) | n/a | `number` | n/a | yes |
 | <a name="input_node_type"></a> [node\_type](#input\_node\_type) | n/a | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | n/a | `string` | n/a | yes |
+| <a name="input_vpc_cidr"></a> [vpc\_cidr](#input\_vpc\_cidr) | n/a | `string` | n/a | yes |
 
 ## Outputs
 
