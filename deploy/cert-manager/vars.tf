@@ -22,3 +22,8 @@ variable "le_use_stage_issuer" {
   default     = false
   type        = bool
 }
+variable "raw_chart_version" {
+  description = "RAW chart version"
+  default     = "2.0.0"
+  type        = string
+}
