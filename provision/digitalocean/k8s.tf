@@ -7,6 +7,8 @@ resource "digitalocean_kubernetes_cluster" "disposable" {
   region  = var.region
   version = data.digitalocean_kubernetes_versions.disposable.latest_version
 
+  vpc_uuid = digitalocean_vpc.this.id
+
   surge_upgrade = true
   auto_upgrade  = true
 
@@ -15,6 +17,8 @@ resource "digitalocean_kubernetes_cluster" "disposable" {
     size       = var.node_type
     node_count = var.node_count
   }
+
+  depends_on = [digitalocean_vpc.this]
 }
 
 resource "local_file" "kubeconfig" {
