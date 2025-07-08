@@ -19,5 +19,5 @@ resource "digitalocean_kubernetes_cluster" "disposable" {
 
 resource "local_file" "kubeconfig" {
   filename = "../../kubeconfig"
-  content  = digitalocean_kubernetes_cluster.disposable.kube_config.0.raw_config
+  content  = digitalocean_kubernetes_cluster.disposable.kube_config[0].raw_config
 }

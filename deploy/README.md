@@ -7,7 +7,7 @@
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.8 |
 | <a name="requirement_argocd"></a> [argocd](#requirement\_argocd) | 7.0.3 |
-| <a name="requirement_helm"></a> [helm](#requirement\_helm) | 2.16.1 |
+| <a name="requirement_helm"></a> [helm](#requirement\_helm) | 2.17.0 |
 | <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | 2.33.0 |
 
 ## Providers
@@ -34,20 +34,21 @@ No resources.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_application_set_enabled"></a> [application\_set\_enabled](#input\_application\_set\_enabled) | If ApplicationSet controller should be installed | `bool` | n/a | yes |
-| <a name="input_argo_cd_chart_version"></a> [argo\_cd\_chart\_version](#input\_argo\_cd\_chart\_version) | Argo CD chart version | `any` | n/a | yes |
-| <a name="input_argo_watcher_chart_version"></a> [argo\_watcher\_chart\_version](#input\_argo\_watcher\_chart\_version) | Argo CD chart version | `any` | n/a | yes |
+| <a name="input_argo_cd_chart_version"></a> [argo\_cd\_chart\_version](#input\_argo\_cd\_chart\_version) | Argo CD chart version | `string` | n/a | yes |
+| <a name="input_argo_watcher_chart_version"></a> [argo\_watcher\_chart\_version](#input\_argo\_watcher\_chart\_version) | Argo CD chart version | `string` | n/a | yes |
 | <a name="input_argo_watcher_enabled"></a> [argo\_watcher\_enabled](#input\_argo\_watcher\_enabled) | If Argo-Watcher should be installed | `bool` | n/a | yes |
-| <a name="input_argo_watcher_image_tag_override"></a> [argo\_watcher\_image\_tag\_override](#input\_argo\_watcher\_image\_tag\_override) | Image override for Argo-Watcher | `any` | n/a | yes |
+| <a name="input_argo_watcher_image_tag_override"></a> [argo\_watcher\_image\_tag\_override](#input\_argo\_watcher\_image\_tag\_override) | Image override for Argo-Watcher | `string` | n/a | yes |
 | <a name="input_argo_watcher_persistence_enabled"></a> [argo\_watcher\_persistence\_enabled](#input\_argo\_watcher\_persistence\_enabled) | If persistence should be enabled for Argo-Watcher | `bool` | n/a | yes |
 | <a name="input_argocd_applicationset_addons"></a> [argocd\_applicationset\_addons](#input\_argocd\_applicationset\_addons) | Kubernetes addons | `any` | n/a | yes |
-| <a name="input_cert_manager_chart_version"></a> [cert\_manager\_chart\_version](#input\_cert\_manager\_chart\_version) | Cert Manager chart version | `any` | n/a | yes |
-| <a name="input_cloud_provider"></a> [cloud\_provider](#input\_cloud\_provider) | Cloud provider to use | `any` | n/a | yes |
+| <a name="input_cert_manager_chart_version"></a> [cert\_manager\_chart\_version](#input\_cert\_manager\_chart\_version) | Cert Manager chart version | `string` | n/a | yes |
+| <a name="input_cert_manager_wildcard_enabled"></a> [cert\_manager\_wildcard\_enabled](#input\_cert\_manager\_wildcard\_enabled) | Issue a wildcard certificate | `bool` | `false` | no |
+| <a name="input_cloud_provider"></a> [cloud\_provider](#input\_cloud\_provider) | Cloud provider to use | `string` | n/a | yes |
 | <a name="input_cloudflare_api_token"></a> [cloudflare\_api\_token](#input\_cloudflare\_api\_token) | Cloudflare API token | `string` | `""` | no |
-| <a name="input_custom_argocd_image"></a> [custom\_argocd\_image](#input\_custom\_argocd\_image) | Custom Argo CD image (for repoServer) | `any` | n/a | yes |
-| <a name="input_custom_argocd_image_tag"></a> [custom\_argocd\_image\_tag](#input\_custom\_argocd\_image\_tag) | Custom Argo CD image tag (for repoServer) | `any` | n/a | yes |
-| <a name="input_domain"></a> [domain](#input\_domain) | Domain to use for the cluster | `any` | n/a | yes |
-| <a name="input_external_dns_chart_version"></a> [external\_dns\_chart\_version](#input\_external\_dns\_chart\_version) | External DNS chart version | `any` | n/a | yes |
-| <a name="input_gitlab_runner_chart_version"></a> [gitlab\_runner\_chart\_version](#input\_gitlab\_runner\_chart\_version) | GitLab Runner chart version | `any` | n/a | yes |
+| <a name="input_custom_argocd_image"></a> [custom\_argocd\_image](#input\_custom\_argocd\_image) | Custom Argo CD image (for repoServer) | `string` | n/a | yes |
+| <a name="input_custom_argocd_image_tag"></a> [custom\_argocd\_image\_tag](#input\_custom\_argocd\_image\_tag) | Custom Argo CD image tag (for repoServer) | `string` | n/a | yes |
+| <a name="input_domain"></a> [domain](#input\_domain) | Domain to use for the cluster | `string` | n/a | yes |
+| <a name="input_external_dns_chart_version"></a> [external\_dns\_chart\_version](#input\_external\_dns\_chart\_version) | External DNS chart version | `string` | n/a | yes |
+| <a name="input_gitlab_runner_chart_version"></a> [gitlab\_runner\_chart\_version](#input\_gitlab\_runner\_chart\_version) | GitLab Runner chart version | `string` | n/a | yes |
 | <a name="input_gitlab_runner_enabled"></a> [gitlab\_runner\_enabled](#input\_gitlab\_runner\_enabled) | If GitLab Runner should be installed | `bool` | n/a | yes |
 | <a name="input_gitlab_runner_token"></a> [gitlab\_runner\_token](#input\_gitlab\_runner\_token) | GitLab Runner registration token | `string` | `""` | no |
 | <a name="input_gitlab_url"></a> [gitlab\_url](#input\_gitlab\_url) | Gitlab URL to use for GitLab Runner | `string` | `"https://gitlab.com/"` | no |

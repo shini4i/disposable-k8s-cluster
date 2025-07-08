@@ -29,7 +29,7 @@ resource "kubernetes_manifest" "this" {
     targetRevision = var.chart_version
     namespace      = var.namespace
     gitlabUrl      = var.gitlab_url
-    secretName     = kubernetes_secret.this.metadata.0.name
+    secretName     = kubernetes_secret.this.metadata[0].name
   }))
 
   wait {

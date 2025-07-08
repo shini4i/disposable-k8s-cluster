@@ -1,6 +1,6 @@
 # kind
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -28,9 +28,9 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_kindest_node_version"></a> [kindest\_node\_version](#input\_kindest\_node\_version) | kindest/node version to use | `any` | n/a | yes |
+| <a name="input_kindest_node_version"></a> [kindest\_node\_version](#input\_kindest\_node\_version) | kindest/node version to use | `string` | n/a | yes |
 
 ## Outputs
 
 No outputs.
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

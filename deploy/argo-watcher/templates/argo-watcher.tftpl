@@ -33,8 +33,10 @@ spec:
         ingress:
           enabled: true
           annotations:
+            %{ if !use_wildcard_certificate }
             cert-manager.io/cluster-issuer: "le-disposable-dns"
-            %{ if local_setup == true }
+            %{ endif }
+            %{ if local_setup  }
             external-dns.alpha.kubernetes.io/target: 127.0.0.1
             %{ endif }
           hosts:
@@ -43,7 +45,11 @@ spec:
                 - path: /
                   pathType: ImplementationSpecific
           tls:
+            %{ if !use_wildcard_certificate }
             - secretName: argo-watcher-tls
+            %{ else }
+            - secretName: wildcard-${replace(domain, ".", "-")}-tls
+            %{ endif }
               hosts:
                 - argo-watcher.${domain}
 

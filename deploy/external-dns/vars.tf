@@ -1,3 +1,10 @@
-variable "cloudflare_api_token" {}
-variable "chart_version" {}
-variable "domain" {}
+variable "cloudflare_api_token" {
+  type      = string
+  sensitive = true
+}
+variable "chart_version" {
+  type = string
+}
+variable "domain" {
+  type = string
+}

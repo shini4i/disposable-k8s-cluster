@@ -5,6 +5,7 @@ module "cert-manager" {
   cloudflare_api_token = var.cloudflare_api_token
   domain               = var.domain
   le_use_stage_issuer  = var.le_use_stage_issuer
+  wildcard_enabled     = var.cert_manager_wildcard_enabled
 
   depends_on = [module.argo-cd]
 }
@@ -22,11 +23,12 @@ module "external-dns" {
 module "argo-watcher" {
   count = var.argo_watcher_enabled ? 1 : 0
 
-  source              = "./argo-watcher"
-  chart_version       = var.argo_watcher_chart_version
-  local_setup         = local.local_setup
-  domain              = var.domain
-  persistence_enabled = var.argo_watcher_persistence_enabled
+  source                   = "./argo-watcher"
+  chart_version            = var.argo_watcher_chart_version
+  local_setup              = local.local_setup
+  domain                   = var.domain
+  persistence_enabled      = var.argo_watcher_persistence_enabled
+  use_wildcard_certificate = var.cert_manager_wildcard_enabled
 
   image_tag = var.argo_watcher_image_tag_override
 
