@@ -10,10 +10,9 @@ repos:
       - id: terraform_fmt
         args:
           - --hook-config=--tf-path=tofu
-#      - id: terraform_tflint
-#        args:
-#          - --hook-config=--tf-path=tofu
-#          - --args=--disable-rule=terraform_typed_variables
+      - id: terraform_tflint
+        args:
+          - --hook-config=--tf-path=tofu
       - id: terraform_validate
         args:
           - --hook-config=--tf-path=tofu

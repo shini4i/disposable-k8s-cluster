@@ -1,7 +1,12 @@
-variable "chart_version" {}
-variable "domain" {}
+variable "chart_version" {
+  type = string
+}
+variable "domain" {
+  type = string
+}
 variable "namespace" {
   default = "argo-cd"
+  type    = string
 }
 variable "local_setup" {
   type = bool
@@ -14,8 +19,12 @@ variable "use_custom_argocd_image" {
   type    = bool
   default = false
 }
-variable "custom_argocd_image" {}
-variable "custom_argocd_image_tag" {}
+variable "custom_argocd_image" {
+  type = string
+}
+variable "custom_argocd_image_tag" {
+  type = string
+}
 variable "gitops_common_repo" {
   description = "Git repository contains for common"
   type        = string

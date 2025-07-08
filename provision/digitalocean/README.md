@@ -7,6 +7,7 @@
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.8 |
 | <a name="requirement_digitalocean"></a> [digitalocean](#requirement\_digitalocean) | 2.50.0 |
+| <a name="requirement_local"></a> [local](#requirement\_local) | 2.5.3 |
 
 ## Providers
 
@@ -24,19 +25,19 @@ No modules.
 | Name | Type |
 |------|------|
 | [digitalocean_kubernetes_cluster.disposable](https://registry.terraform.io/providers/digitalocean/digitalocean/2.50.0/docs/resources/kubernetes_cluster) | resource |
-| [local_file.kubeconfig](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [local_file.kubeconfig](https://registry.terraform.io/providers/hashicorp/local/2.5.3/docs/resources/file) | resource |
 | [digitalocean_kubernetes_versions.disposable](https://registry.terraform.io/providers/digitalocean/digitalocean/2.50.0/docs/data-sources/kubernetes_versions) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_do_token"></a> [do\_token](#input\_do\_token) | n/a | `any` | n/a | yes |
-| <a name="input_kubernetes_cluster_name"></a> [kubernetes\_cluster\_name](#input\_kubernetes\_cluster\_name) | n/a | `any` | n/a | yes |
-| <a name="input_kubernetes_minor_version"></a> [kubernetes\_minor\_version](#input\_kubernetes\_minor\_version) | n/a | `any` | n/a | yes |
-| <a name="input_node_count"></a> [node\_count](#input\_node\_count) | n/a | `any` | n/a | yes |
-| <a name="input_node_type"></a> [node\_type](#input\_node\_type) | n/a | `any` | n/a | yes |
-| <a name="input_region"></a> [region](#input\_region) | n/a | `any` | n/a | yes |
+| <a name="input_do_token"></a> [do\_token](#input\_do\_token) | n/a | `string` | n/a | yes |
+| <a name="input_kubernetes_cluster_name"></a> [kubernetes\_cluster\_name](#input\_kubernetes\_cluster\_name) | n/a | `string` | n/a | yes |
+| <a name="input_kubernetes_minor_version"></a> [kubernetes\_minor\_version](#input\_kubernetes\_minor\_version) | n/a | `string` | n/a | yes |
+| <a name="input_node_count"></a> [node\_count](#input\_node\_count) | n/a | `number` | n/a | yes |
+| <a name="input_node_type"></a> [node\_type](#input\_node\_type) | n/a | `string` | n/a | yes |
+| <a name="input_region"></a> [region](#input\_region) | n/a | `string` | n/a | yes |
 
 ## Outputs
 

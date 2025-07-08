@@ -1,8 +1,19 @@
 variable "do_token" {
+  type      = string
   sensitive = true
 }
-variable "region" {}
-variable "kubernetes_minor_version" {}
-variable "kubernetes_cluster_name" {}
-variable "node_type" {}
-variable "node_count" {}
+variable "region" {
+  type = string
+}
+variable "kubernetes_minor_version" {
+  type = string
+}
+variable "kubernetes_cluster_name" {
+  type = string
+}
+variable "node_type" {
+  type = string
+}
+variable "node_count" {
+  type = number
+}

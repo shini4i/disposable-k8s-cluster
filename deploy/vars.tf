@@ -1,5 +1,6 @@
 variable "argo_cd_chart_version" {
   description = "Argo CD chart version"
+  type        = string
 }
 
 variable "use_custom_argocd_image" {
@@ -9,14 +10,17 @@ variable "use_custom_argocd_image" {
 
 variable "custom_argocd_image" {
   description = "Custom Argo CD image (for repoServer)"
+  type        = string
 }
 
 variable "custom_argocd_image_tag" {
   description = "Custom Argo CD image tag (for repoServer)"
+  type        = string
 }
 
 variable "argo_watcher_chart_version" {
   description = "Argo CD chart version"
+  type        = string
 }
 
 variable "argo_watcher_enabled" {
@@ -26,6 +30,7 @@ variable "argo_watcher_enabled" {
 
 variable "argo_watcher_image_tag_override" {
   description = "Image override for Argo-Watcher"
+  type        = string
 }
 
 variable "argo_watcher_persistence_enabled" {
@@ -35,6 +40,7 @@ variable "argo_watcher_persistence_enabled" {
 
 variable "cert_manager_chart_version" {
   description = "Cert Manager chart version"
+  type        = string
 }
 
 variable "cert_manager_wildcard_enabled" {
@@ -45,16 +51,19 @@ variable "cert_manager_wildcard_enabled" {
 
 variable "external_dns_chart_version" {
   description = "External DNS chart version"
+  type        = string
 }
 
 variable "domain" {
   description = "Domain to use for the cluster"
+  type        = string
 }
 
 variable "cloudflare_api_token" {
   description = "Cloudflare API token"
   sensitive   = true
   default     = ""
+  type        = string
 }
 
 variable "le_use_stage_issuer" {
@@ -64,6 +73,7 @@ variable "le_use_stage_issuer" {
 
 variable "cloud_provider" {
   description = "Cloud provider to use"
+  type        = string
 }
 
 variable "skip_expose" {
@@ -119,10 +129,12 @@ variable "gitlab_runner_enabled" {
 variable "gitlab_url" {
   description = "Gitlab URL to use for GitLab Runner"
   default     = "https://gitlab.com/"
+  type        = string
 }
 
 variable "gitlab_runner_chart_version" {
   description = "GitLab Runner chart version"
+  type        = string
 }
 
 variable "gitlab_runner_token" {

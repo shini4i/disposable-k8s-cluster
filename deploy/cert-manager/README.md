@@ -32,11 +32,11 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_cert_manager_issuers_chart_version"></a> [cert\_manager\_issuers\_chart\_version](#input\_cert\_manager\_issuers\_chart\_version) | Version of the cert-manager-issuers chart to use | `string` | `"0.2.5"` | no |
-| <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | n/a | `any` | n/a | yes |
-| <a name="input_cloudflare_api_token"></a> [cloudflare\_api\_token](#input\_cloudflare\_api\_token) | n/a | `any` | n/a | yes |
-| <a name="input_domain"></a> [domain](#input\_domain) | n/a | `any` | n/a | yes |
+| <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | n/a | `string` | n/a | yes |
+| <a name="input_cloudflare_api_token"></a> [cloudflare\_api\_token](#input\_cloudflare\_api\_token) | n/a | `string` | n/a | yes |
+| <a name="input_domain"></a> [domain](#input\_domain) | n/a | `string` | n/a | yes |
 | <a name="input_le_use_stage_issuer"></a> [le\_use\_stage\_issuer](#input\_le\_use\_stage\_issuer) | Use Let's Encrypt staging server | `bool` | `false` | no |
-| <a name="input_wildcard_enabled"></a> [wildcard\_enabled](#input\_wildcard\_enabled) | Issue a wildcard certificate | `any` | n/a | yes |
+| <a name="input_wildcard_enabled"></a> [wildcard\_enabled](#input\_wildcard\_enabled) | Issue a wildcard certificate | `bool` | `false` | no |
 
 ## Outputs
 

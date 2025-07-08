@@ -1,14 +1,17 @@
 variable "chart_version" {
   description = "The version of the chart to deploy"
+  type        = string
 }
 
 variable "domain" {
   description = "The domain to use for the ingress"
+  type        = string
 }
 
 variable "namespace" {
   description = "The namespace to deploy the chart into"
   default     = "argo-watcher"
+  type        = string
 }
 
 variable "local_setup" {
