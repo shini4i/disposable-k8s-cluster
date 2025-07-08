@@ -7,6 +7,10 @@ repos:
   - repo: https://github.com/antonbabenko/pre-commit-terraform
     rev: v1.99.4
     hooks:
+      - id: terraform_checkov
+        args:
+          - --args=--quiet
+          - --args=--skip-path=terraform.tfvars.json # These files are generated dynamically, and added to .gitignore
       - id: terraform_fmt
         args:
           - --hook-config=--tf-path=tofu
@@ -19,7 +23,9 @@ repos:
       - id: terraform_docs
         args:
           - --hook-config=--tf-path=tofu
-  - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.24.2
+  - repo: local
     hooks:
-      - id: gitleaks
+      - id: trufflehog
+        name: Scan for commited secrets with TruffleHog
+        entry: bash -c 'trufflehog --no-update git file://. --since-commit HEAD --results=verified,unknown --fail'
+        language: system

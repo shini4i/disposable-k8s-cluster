@@ -72,4 +72,11 @@ resource "kubernetes_manifest" "wildcard_certificate" {
   depends_on = [
     kubernetes_manifest.this
   ]
+
+  wait {
+    condition {
+      type   = "Ready"
+      status = "True"
+    }
+  }
 }
