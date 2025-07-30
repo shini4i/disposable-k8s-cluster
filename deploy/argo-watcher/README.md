@@ -7,6 +7,7 @@
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.8 |
 | <a name="requirement_argocd"></a> [argocd](#requirement\_argocd) | 7.0.3 |
+| <a name="requirement_github"></a> [github](#requirement\_github) | 6.6.0 |
 | <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | 2.33.0 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | 3.7.2 |
 | <a name="requirement_tls"></a> [tls](#requirement\_tls) | 4.1.0 |
@@ -16,6 +17,7 @@
 | Name | Version |
 |------|---------|
 | <a name="provider_argocd"></a> [argocd](#provider\_argocd) | 7.0.3 |
+| <a name="provider_github"></a> [github](#provider\_github) | 6.6.0 |
 | <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.33.0 |
 | <a name="provider_random"></a> [random](#provider\_random) | 3.7.2 |
 | <a name="provider_tls"></a> [tls](#provider\_tls) | 4.1.0 |
@@ -32,10 +34,15 @@ No modules.
 | [kubernetes_manifest.postgres](https://registry.terraform.io/providers/hashicorp/kubernetes/2.33.0/docs/resources/manifest) | resource |
 | [kubernetes_manifest.this](https://registry.terraform.io/providers/hashicorp/kubernetes/2.33.0/docs/resources/manifest) | resource |
 | [kubernetes_namespace.this](https://registry.terraform.io/providers/hashicorp/kubernetes/2.33.0/docs/resources/namespace) | resource |
+| [kubernetes_network_policy_v1.allow_all_internal](https://registry.terraform.io/providers/hashicorp/kubernetes/2.33.0/docs/resources/network_policy_v1) | resource |
+| [kubernetes_network_policy_v1.allow_ingress_from_web](https://registry.terraform.io/providers/hashicorp/kubernetes/2.33.0/docs/resources/network_policy_v1) | resource |
+| [kubernetes_network_policy_v1.argo_watcher_egress](https://registry.terraform.io/providers/hashicorp/kubernetes/2.33.0/docs/resources/network_policy_v1) | resource |
+| [kubernetes_network_policy_v1.egress_dns](https://registry.terraform.io/providers/hashicorp/kubernetes/2.33.0/docs/resources/network_policy_v1) | resource |
 | [kubernetes_secret.postgres_credentials](https://registry.terraform.io/providers/hashicorp/kubernetes/2.33.0/docs/resources/secret) | resource |
 | [kubernetes_secret.this](https://registry.terraform.io/providers/hashicorp/kubernetes/2.33.0/docs/resources/secret) | resource |
 | [random_string.this](https://registry.terraform.io/providers/hashicorp/random/3.7.2/docs/resources/string) | resource |
 | [tls_private_key.this](https://registry.terraform.io/providers/hashicorp/tls/4.1.0/docs/resources/private_key) | resource |
+| [github_ip_ranges.this](https://registry.terraform.io/providers/integrations/github/6.6.0/docs/data-sources/ip_ranges) | data source |
 
 ## Inputs
 
