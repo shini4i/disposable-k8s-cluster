@@ -11,10 +11,10 @@
     enable_argo_workflows: false, // a controller for running Argo Workflows
     enable_argo_rollouts: false, // a controller for managing progressive delivery with Argo Rollouts
   },
-  argo_cd_chart_version: '8.0.10',
+  argo_cd_chart_version: '8.2.4',
   use_custom_argocd_image: true, // If true, will use the custom image for repo-server
   custom_argocd_image: 'ghcr.io/shini4i/argocd',
-  custom_argocd_image_tag: 'v3.0.3',
+  custom_argocd_image_tag: 'v3.0.12',
   argo_watcher_chart_version: '0.8.0',
   argo_watcher_enabled: false,
   argo_watcher_persistence_enabled: false, // If true, will deploy postgresql and use it for persistence

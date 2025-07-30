@@ -9,6 +9,12 @@ notifications:
 global:
   domain: argo-cd.${domain}
 
+  %{ if netpol_enabled }
+  networkPolicy:
+    create: true
+    defaultDenyIngress: true
+  %{ endif ~}
+
 server:
   ingress:
     enabled: true
