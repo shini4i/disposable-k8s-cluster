@@ -34,3 +34,9 @@ variable "use_wildcard_certificate" {
   type        = bool
   default     = false
 }
+
+variable "netpol_enabled" {
+  description = "Whether to enable the network policies or not"
+  type        = bool
+  default     = false
+}

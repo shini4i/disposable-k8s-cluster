@@ -1,6 +1,8 @@
 data "github_ip_ranges" "this" {}
 
 resource "kubernetes_network_policy_v1" "allow_all_internal" {
+  count = var.netpol_enabled ? 1 : 0
+
   metadata {
     name      = "allow-all-internal"
     namespace = var.namespace
@@ -26,6 +28,8 @@ resource "kubernetes_network_policy_v1" "allow_all_internal" {
 }
 
 resource "kubernetes_network_policy_v1" "allow_ingress_from_web" {
+  count = var.netpol_enabled ? 1 : 0
+
   metadata {
     name      = "allow-ingress-from-web"
     namespace = var.namespace
@@ -57,6 +61,8 @@ resource "kubernetes_network_policy_v1" "allow_ingress_from_web" {
 }
 
 resource "kubernetes_network_policy_v1" "argo_watcher_egress" {
+  count = var.netpol_enabled ? 1 : 0
+
   metadata {
     name      = "argo-watcher-egress"
     namespace = var.namespace
@@ -115,6 +121,8 @@ resource "kubernetes_network_policy_v1" "argo_watcher_egress" {
 }
 
 resource "kubernetes_network_policy_v1" "egress_dns" {
+  count = var.netpol_enabled ? 1 : 0
+
   metadata {
     name      = "egress-to-dns"
     namespace = var.namespace

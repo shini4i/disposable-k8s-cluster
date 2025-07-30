@@ -35,5 +35,6 @@
   ingress_controller_chart_versions: { // Helm chart versions for the ingress controllers
     traefik: '34.4.1',
     "ingress-nginx": '4.12.1',
-  }
+  },
+  netpol_enabled: false, // If true, will deploy network policies for all supported services
 }

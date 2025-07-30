@@ -53,6 +53,7 @@ No modules.
 | <a name="input_image_tag"></a> [image\_tag](#input\_image\_tag) | The image tag to use for the deployment | `string` | n/a | yes |
 | <a name="input_local_setup"></a> [local\_setup](#input\_local\_setup) | Whether the setup is KIND based or not | `bool` | n/a | yes |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | The namespace to deploy the chart into | `string` | `"argo-watcher"` | no |
+| <a name="input_netpol_enabled"></a> [netpol\_enabled](#input\_netpol\_enabled) | Whether to enable the network policies or not | `bool` | `false` | no |
 | <a name="input_persistence_enabled"></a> [persistence\_enabled](#input\_persistence\_enabled) | Whether to enable persistence or not | `bool` | n/a | yes |
 | <a name="input_use_wildcard_certificate"></a> [use\_wildcard\_certificate](#input\_use\_wildcard\_certificate) | Whether to use a wildcard certificate for the ingress | `bool` | `false` | no |
 

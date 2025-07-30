@@ -29,6 +29,7 @@ module "argo-watcher" {
   domain                   = var.domain
   persistence_enabled      = var.argo_watcher_persistence_enabled
   use_wildcard_certificate = var.cert_manager_wildcard_enabled
+  netpol_enabled           = var.netpol_enabled
 
   image_tag = var.argo_watcher_image_tag_override
 
