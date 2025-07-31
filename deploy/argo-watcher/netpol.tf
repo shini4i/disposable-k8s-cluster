@@ -110,7 +110,6 @@ resource "kubernetes_network_policy_v1" "argo_watcher_egress" {
           port     = "22"
           protocol = "TCP"
         }
-
         ports {
           port     = "443"
           protocol = "TCP"
