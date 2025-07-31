@@ -143,3 +143,9 @@ variable "gitlab_runner_token" {
   default     = ""
   sensitive   = true
 }
+
+variable "netpol_enabled" {
+  description = "If network policies should be enabled"
+  type        = bool
+  default     = false
+}

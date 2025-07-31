@@ -7,6 +7,7 @@ module "argo-cd" {
   use_custom_argocd_image = var.use_custom_argocd_image
   custom_argocd_image     = var.custom_argocd_image
   custom_argocd_image_tag = var.custom_argocd_image_tag
+  netpol_enabled          = var.netpol_enabled
 
   gitops_common_repo           = var.gitops_common_repo
   gitops_common_revision       = var.gitops_common_revision

@@ -26,6 +26,7 @@ spec:
 
         argo:
           url: http://argo-cd-server.argo-cd
+          urlAlias: https://argo-cd.${domain}
           secretName: "${secretName}"
           updater:
             sshSecretName: "argo-watcher-secret"
