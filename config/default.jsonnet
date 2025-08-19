@@ -22,7 +22,7 @@
   cert_manager_chart_version: '1.17.1',
   cert_manager_wildcard_enabled: false, // If true, will generate a wildcard certificate for the domain
   le_use_stage_issuer: false, // If true, use the staging issuer
-  external_dns_chart_version: '8.7.8',
+  external_dns_chart_version: '1.18.0',
   gitlab_runner_chart_version: '0.71.0',
   gitlab_runner_enabled: false, // If gitlab-runner should be deployed
   gitlab_url: "https://gitlab.com", // URL of the GitLab instance
