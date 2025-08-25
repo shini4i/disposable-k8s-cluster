@@ -10,9 +10,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://shini4i.github.io/charts/
-    chart: argo-watcher
-    targetRevision: "${targetRevision}"
+    repoURL: https://github.com/shini4i/charts.git
+    path: charts/argo-watcher
+    targetRevision: chore/argo-watcher-refactor
     helm:
       valuesObject:
         fullnameOverride: argo-watcher
@@ -28,8 +28,9 @@ spec:
           url: http://argo-cd-server.argo-cd
           urlAlias: https://argo-cd.${domain}
           secretName: "${secretName}"
-          updater:
-            sshSecretName: "argo-watcher-secret"
+
+        updater:
+          sshSecretName: "argo-watcher-secret"
 
         ingress:
           enabled: true
