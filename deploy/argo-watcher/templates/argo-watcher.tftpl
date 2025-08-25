@@ -10,9 +10,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/shini4i/charts.git
-    path: charts/argo-watcher
-    targetRevision: chore/argo-watcher-refactor
+    repoURL: https://shini4i.github.io/charts/
+    chart: argo-watcher
+    targetRevision: "${targetRevision}"
     helm:
       valuesObject:
         fullnameOverride: argo-watcher
