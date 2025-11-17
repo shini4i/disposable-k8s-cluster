@@ -21,6 +21,8 @@ resource "kubernetes_secret" "this" {
   }
 }
 
+# We no longer have wait block due to the provider bug that makes it impossible
+# to follow multi source Applications
 resource "kubernetes_manifest" "this" {
   manifest = yamldecode(templatefile("${path.module}/templates/cert-manager.tftpl", {
     cm-targetRevision      = var.chart_version
@@ -32,11 +34,4 @@ resource "kubernetes_manifest" "this" {
     cloudflare_secret_name = kubernetes_secret.this.metadata[0].name
     namespace              = kubernetes_namespace.this.metadata[0].name
   }))
-
-  wait {
-    fields = {
-      "status.sync.status"   = "Synced",
-      "status.health.status" = "Healthy"
-    }
-  }
 }
