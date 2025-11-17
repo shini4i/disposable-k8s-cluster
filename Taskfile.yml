@@ -55,6 +55,8 @@ tasks:
       - echo "Provisioning ephemeral Kubernetes cluster..."
       - echo "Using {{.CLOUD_PROVIDER}} as cloud provider"
       - task -d provision/{{.CLOUD_PROVIDER}} provision
+      - docker update --restart=no disposable-cluster-control-plane
+      - docker update --restart=no disposable-cluster-worker
     requires:
       vars:
         - name: CLOUD_PROVIDER
