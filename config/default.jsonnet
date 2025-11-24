@@ -11,18 +11,18 @@
     enable_argo_workflows: false, // a controller for running Argo Workflows
     enable_argo_rollouts: false, // a controller for managing progressive delivery with Argo Rollouts
   },
-  argo_cd_chart_version: '8.2.4',
-  use_custom_argocd_image: true, // If true, will use the custom image for repo-server
+  argo_cd_chart_version: '9.1.3',
+  use_custom_argocd_image: false, // If true, will use the custom image for repo-server
   custom_argocd_image: 'ghcr.io/shini4i/argocd',
-  custom_argocd_image_tag: 'v3.0.12',
-  argo_watcher_chart_version: '0.8.0',
+  custom_argocd_image_tag: 'v3.1.0',
+  argo_watcher_chart_version: '0.8.1',
   argo_watcher_enabled: false,
   argo_watcher_persistence_enabled: false, // If true, will deploy postgresql and use it for persistence
   argo_watcher_image_tag_override: '',
-  cert_manager_chart_version: '1.17.1',
+  cert_manager_chart_version: '1.19.1',
   cert_manager_wildcard_enabled: false, // If true, will generate a wildcard certificate for the domain
   le_use_stage_issuer: false, // If true, use the staging issuer
-  external_dns_chart_version: '8.7.8',
+  external_dns_chart_version: '1.19.0',
   gitlab_runner_chart_version: '0.71.0',
   gitlab_runner_enabled: false, // If gitlab-runner should be deployed
   gitlab_url: "https://gitlab.com", // URL of the GitLab instance
@@ -33,8 +33,8 @@
   gitops_common_revision: 'main', // Branch or tag to use from the common repository
   ingress_controller: 'traefik', // Which ingress controller to use (ingress-nginx or traefik)
   ingress_controller_chart_versions: { // Helm chart versions for the ingress controllers
-    traefik: '34.4.1',
-    "ingress-nginx": '4.12.1',
+    traefik: '37.3.0',
+    "ingress-nginx": '4.14.0',
   },
   netpol_enabled: false, // If true, will deploy network policies for all supported services
 }

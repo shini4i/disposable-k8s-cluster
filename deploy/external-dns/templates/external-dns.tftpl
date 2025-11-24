@@ -10,7 +10,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: registry-1.docker.io/bitnamicharts
+    repoURL: https://kubernetes-sigs.github.io/external-dns
     chart: external-dns
     targetRevision: "${targetRevision}"
     helm:
@@ -26,13 +26,17 @@ spec:
         registry: "txt"
         txtOwnerId: "disposable"
 
-        provider: "cloudflare"
+        provider:
+          name: cloudflare
+
+        env:
+          - name: CF_API_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: cloudflare-token
+                key: cloudflare_api_token
 
         policy: sync
-
-        cloudflare:
-          proxied: false
-          secretName: cloudflare-token
 
         logLevel: "debug"
 

@@ -3,12 +3,8 @@ provider "kubernetes" {
 }
 
 provider "helm" {
-  kubernetes {
+  kubernetes = {
     config_path = "../kubeconfig"
-  }
-  experiments {
-    # enables diff support of kubernetes manifests rendered by helm
-    manifest = true
   }
 }
 
