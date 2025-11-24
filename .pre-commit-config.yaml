@@ -28,5 +28,5 @@ repos:
     hooks:
       - id: trufflehog
         name: Scan for commited secrets with TruffleHog
-        entry: bash -c 'trufflehog --no-update git file://. --since-commit HEAD --results=verified,unknown --fail'
+        entry: bash -c 'trufflehog git file://. --since-commit HEAD --results=verified,unknown --fail'
         language: system
