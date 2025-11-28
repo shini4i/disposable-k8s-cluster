@@ -19,6 +19,7 @@
               go-task
               jsonnet
               kubectl
+              kind
               tfswitch
               terraform-docs
               tflint
