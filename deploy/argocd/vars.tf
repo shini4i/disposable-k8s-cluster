@@ -26,7 +26,7 @@ variable "custom_argocd_image_tag" {
   type = string
 }
 variable "gitops_common_repo" {
-  description = "Git repository contains for common"
+  description = "Git repository URL for common addons"
   type        = string
 }
 variable "gitops_common_revision" {
@@ -43,8 +43,13 @@ variable "gitops_common_path" {
 }
 
 variable "argocd_applicationset_addons" {
-  description = "Kubernetes addons"
-  type        = any
+  description = "ApplicationSet addons configuration"
+  type = object({
+    enable_sealed_secrets = optional(bool, false)
+    enable_reflector      = optional(bool, false)
+    enable_argo_workflows = optional(bool, false)
+    enable_argo_rollouts  = optional(bool, false)
+  })
 }
 
 variable "use_wildcard_certificate" {

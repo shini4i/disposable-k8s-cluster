@@ -7,7 +7,9 @@ variable "cert_manager_issuers_chart_version" {
   type        = string
 }
 variable "cloudflare_api_token" {
-  type = string
+  description = "Cloudflare API token for DNS validation"
+  type        = string
+  sensitive   = true
 }
 variable "domain" {
   type = string
