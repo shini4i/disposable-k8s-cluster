@@ -19,7 +19,7 @@ variable "custom_argocd_image_tag" {
 }
 
 variable "argo_watcher_chart_version" {
-  description = "Argo CD chart version"
+  description = "Argo Watcher chart version"
   type        = string
 }
 
@@ -74,6 +74,11 @@ variable "le_use_stage_issuer" {
 variable "cloud_provider" {
   description = "Cloud provider to use"
   type        = string
+
+  validation {
+    condition     = contains(["kind", "digitalocean"], var.cloud_provider)
+    error_message = "Cloud provider must be 'kind' or 'digitalocean'."
+  }
 }
 
 variable "skip_expose" {
@@ -87,7 +92,7 @@ variable "application_set_enabled" {
 }
 
 variable "gitops_common_repo" {
-  description = "Git repository contains for common"
+  description = "Git repository URL for common addons"
   type        = string
 }
 
@@ -107,13 +112,23 @@ variable "gitops_common_path" {
 }
 
 variable "argocd_applicationset_addons" {
-  description = "Kubernetes addons"
-  type        = any
+  description = "ApplicationSet addons configuration"
+  type = object({
+    enable_sealed_secrets = optional(bool, false)
+    enable_reflector      = optional(bool, false)
+    enable_argo_workflows = optional(bool, false)
+    enable_argo_rollouts  = optional(bool, false)
+  })
 }
 
 variable "ingress_controller" {
   description = "Ingress controller to use"
   type        = string
+
+  validation {
+    condition     = contains(["traefik", "ingress-nginx"], var.ingress_controller)
+    error_message = "Ingress controller must be 'traefik' or 'ingress-nginx'."
+  }
 }
 
 variable "ingress_controller_chart_versions" {

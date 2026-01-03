@@ -35,14 +35,14 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_application_set_enabled"></a> [application\_set\_enabled](#input\_application\_set\_enabled) | If ApplicationSet controller should be installed | `bool` | n/a | yes |
-| <a name="input_argocd_applicationset_addons"></a> [argocd\_applicationset\_addons](#input\_argocd\_applicationset\_addons) | Kubernetes addons | `any` | n/a | yes |
+| <a name="input_argocd_applicationset_addons"></a> [argocd\_applicationset\_addons](#input\_argocd\_applicationset\_addons) | ApplicationSet addons configuration | <pre>object({<br/>    enable_sealed_secrets = optional(bool, false)<br/>    enable_reflector      = optional(bool, false)<br/>    enable_argo_workflows = optional(bool, false)<br/>    enable_argo_rollouts  = optional(bool, false)<br/>  })</pre> | n/a | yes |
 | <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | n/a | `string` | n/a | yes |
 | <a name="input_custom_argocd_image"></a> [custom\_argocd\_image](#input\_custom\_argocd\_image) | n/a | `string` | n/a | yes |
 | <a name="input_custom_argocd_image_tag"></a> [custom\_argocd\_image\_tag](#input\_custom\_argocd\_image\_tag) | n/a | `string` | n/a | yes |
 | <a name="input_domain"></a> [domain](#input\_domain) | n/a | `string` | n/a | yes |
 | <a name="input_gitops_common_basepath"></a> [gitops\_common\_basepath](#input\_gitops\_common\_basepath) | Git repository base path for common | `string` | n/a | yes |
 | <a name="input_gitops_common_path"></a> [gitops\_common\_path](#input\_gitops\_common\_path) | Git repository path for common | `string` | n/a | yes |
-| <a name="input_gitops_common_repo"></a> [gitops\_common\_repo](#input\_gitops\_common\_repo) | Git repository contains for common | `string` | n/a | yes |
+| <a name="input_gitops_common_repo"></a> [gitops\_common\_repo](#input\_gitops\_common\_repo) | Git repository URL for common addons | `string` | n/a | yes |
 | <a name="input_gitops_common_revision"></a> [gitops\_common\_revision](#input\_gitops\_common\_revision) | Git repository revision/branch/ref for common | `string` | n/a | yes |
 | <a name="input_local_setup"></a> [local\_setup](#input\_local\_setup) | n/a | `bool` | n/a | yes |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | n/a | `string` | `"argo-cd"` | no |
