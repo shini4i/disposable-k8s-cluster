@@ -62,5 +62,5 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_argo_watcher_deploy_token"></a> [argo\_watcher\_deploy\_token](#output\_argo\_watcher\_deploy\_token) | Argo Watcher deploy token |
-| <a name="output_ssh_public_key"></a> [ssh\_public\_key](#output\_ssh\_public\_key) | The SSH public key used by the Argo Watcher to commit changes to the gtiops repository |
+| <a name="output_ssh_public_key"></a> [ssh\_public\_key](#output\_ssh\_public\_key) | The SSH public key used by the Argo Watcher to commit changes to the gitops repository |
 <!-- END_TF_DOCS -->
