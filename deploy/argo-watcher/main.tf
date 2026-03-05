@@ -7,7 +7,7 @@ resource "random_string" "this" {
   special = false
 }
 
-resource "kubernetes_namespace" "this" {
+resource "kubernetes_namespace_v1" "this" {
   metadata {
     name = var.namespace
     labels = {
@@ -24,7 +24,7 @@ resource "tls_private_key" "this" {
   rsa_bits  = 4096
 }
 
-resource "kubernetes_secret" "this" {
+resource "kubernetes_secret_v1" "this" {
   metadata {
     name      = "argo-watcher-secret"
     namespace = var.namespace
@@ -39,10 +39,10 @@ resource "kubernetes_secret" "this" {
   depends_on = [tls_private_key.this]
 }
 
-resource "kubernetes_secret" "postgres_credentials" {
+resource "kubernetes_secret_v1" "postgres_credentials" {
   metadata {
     name      = "argo-watcher-psql"
-    namespace = kubernetes_namespace.this.metadata[0].name
+    namespace = kubernetes_namespace_v1.this.metadata[0].name
   }
 
   data = {
@@ -56,8 +56,8 @@ resource "kubernetes_manifest" "postgres" {
   count = var.persistence_enabled ? 1 : 0
 
   manifest = yamldecode(templatefile("${path.module}/templates/argo-watcher-psql.tftpl", {
-    namespace  = kubernetes_namespace.this.metadata[0].name
-    secretName = kubernetes_secret.postgres_credentials.metadata[0].name
+    namespace  = kubernetes_namespace_v1.this.metadata[0].name
+    secretName = kubernetes_secret_v1.postgres_credentials.metadata[0].name
   }))
 
   wait {
@@ -67,7 +67,7 @@ resource "kubernetes_manifest" "postgres" {
     }
   }
 
-  depends_on = [kubernetes_namespace.this]
+  depends_on = [kubernetes_namespace_v1.this]
 }
 
 resource "kubernetes_manifest" "this" {
@@ -77,10 +77,10 @@ resource "kubernetes_manifest" "this" {
     local_setup              = var.local_setup
     imageTag                 = var.image_tag
     persistence_enabled      = var.persistence_enabled
-    secretName               = kubernetes_secret.this.metadata[0].name
-    namespace                = kubernetes_namespace.this.metadata[0].name
+    secretName               = kubernetes_secret_v1.this.metadata[0].name
+    namespace                = kubernetes_namespace_v1.this.metadata[0].name
     use_wildcard_certificate = var.use_wildcard_certificate
-    postgresSecretName       = var.persistence_enabled ? kubernetes_secret.postgres_credentials.metadata[0].name : "dummy-value"
+    postgresSecretName       = var.persistence_enabled ? kubernetes_secret_v1.postgres_credentials.metadata[0].name : "dummy-value"
   }))
 
   wait {
@@ -95,7 +95,7 @@ resource "kubernetes_manifest" "this" {
   }
 
   depends_on = [
-    kubernetes_secret.this,
+    kubernetes_secret_v1.this,
     kubernetes_manifest.postgres
   ]
 }

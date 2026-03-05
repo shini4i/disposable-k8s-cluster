@@ -1,4 +1,4 @@
-resource "kubernetes_namespace" "this" {
+resource "kubernetes_namespace_v1" "this" {
   metadata {
     name = var.namespace
     labels = {
@@ -48,7 +48,7 @@ resource "helm_release" "this" {
   ]
 
   depends_on = [
-    kubernetes_namespace.this
+    kubernetes_namespace_v1.this
   ]
 }
 
@@ -87,7 +87,7 @@ resource "kubernetes_manifest" "this" {
   ]
 }
 
-data "kubernetes_secret" "admin_password" {
+data "kubernetes_secret_v1" "admin_password" {
   metadata {
     name      = "argocd-initial-admin-secret"
     namespace = var.namespace

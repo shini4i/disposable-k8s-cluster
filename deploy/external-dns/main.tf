@@ -1,4 +1,4 @@
-resource "kubernetes_secret" "this" {
+resource "kubernetes_secret_v1" "this" {
   metadata {
     name      = "cloudflare-token"
     namespace = "kube-system"
@@ -23,6 +23,6 @@ resource "kubernetes_manifest" "this" {
   }
 
   depends_on = [
-    kubernetes_secret.this
+    kubernetes_secret_v1.this
   ]
 }

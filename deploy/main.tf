@@ -4,17 +4,32 @@ terraform {
   required_providers {
     kubernetes = {
       source  = "hashicorp/kubernetes"
-      version = "2.38.0"
+      version = "3.0.1"
     }
 
     helm = {
       source  = "hashicorp/helm"
-      version = "3.1.0"
+      version = "3.1.1"
     }
 
     argocd = {
       source  = "argoproj-labs/argocd"
-      version = "7.11.2"
+      version = "7.13.0"
+    }
+
+    random = {
+      source  = "hashicorp/random"
+      version = "3.8.1"
+    }
+
+    tls = {
+      source  = "hashicorp/tls"
+      version = "4.2.1"
+    }
+
+    github = {
+      source  = "integrations/github"
+      version = "6.11.1"
     }
   }
 }

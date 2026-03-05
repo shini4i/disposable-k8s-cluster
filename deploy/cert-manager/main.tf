@@ -1,4 +1,4 @@
-resource "kubernetes_namespace" "this" {
+resource "kubernetes_namespace_v1" "this" {
   metadata {
     name = "cert-manager"
     labels = {
@@ -10,10 +10,10 @@ resource "kubernetes_namespace" "this" {
   }
 }
 
-resource "kubernetes_secret" "this" {
+resource "kubernetes_secret_v1" "this" {
   metadata {
     name      = "cloudflare-api-token-secret"
-    namespace = kubernetes_namespace.this.metadata[0].name
+    namespace = kubernetes_namespace_v1.this.metadata[0].name
   }
 
   data = {
@@ -31,7 +31,7 @@ resource "kubernetes_manifest" "this" {
     domain                 = var.domain
     use_staging_server     = var.le_use_stage_issuer
     wildcard_enabled       = var.wildcard_enabled
-    cloudflare_secret_name = kubernetes_secret.this.metadata[0].name
-    namespace              = kubernetes_namespace.this.metadata[0].name
+    cloudflare_secret_name = kubernetes_secret_v1.this.metadata[0].name
+    namespace              = kubernetes_namespace_v1.this.metadata[0].name
   }))
 }

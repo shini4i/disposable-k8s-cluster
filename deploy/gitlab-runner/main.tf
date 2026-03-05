@@ -1,4 +1,4 @@
-resource "kubernetes_namespace" "this" {
+resource "kubernetes_namespace_v1" "this" {
   metadata {
     name = var.namespace
     labels = {
@@ -10,7 +10,7 @@ resource "kubernetes_namespace" "this" {
   }
 }
 
-resource "kubernetes_secret" "this" {
+resource "kubernetes_secret_v1" "this" {
   metadata {
     name      = "gitlab-token"
     namespace = var.namespace
@@ -21,7 +21,7 @@ resource "kubernetes_secret" "this" {
     runner-token              = var.gitlab_runner_token
   }
 
-  depends_on = [kubernetes_namespace.this]
+  depends_on = [kubernetes_namespace_v1.this]
 }
 
 resource "kubernetes_manifest" "this" {
@@ -29,7 +29,7 @@ resource "kubernetes_manifest" "this" {
     targetRevision = var.chart_version
     namespace      = var.namespace
     gitlabUrl      = var.gitlab_url
-    secretName     = kubernetes_secret.this.metadata[0].name
+    secretName     = kubernetes_secret_v1.this.metadata[0].name
   }))
 
   wait {
@@ -40,6 +40,6 @@ resource "kubernetes_manifest" "this" {
   }
 
   depends_on = [
-    kubernetes_secret.this
+    kubernetes_secret_v1.this
   ]
 }
