@@ -119,6 +119,79 @@ resource "kubernetes_network_policy_v1" "argo_watcher_egress" {
   }
 }
 
+# Patroni uses the Kubernetes API as its DCS for leader election, and the API
+# server cannot be selected by pod_selector, so egress is bounded by port only.
+resource "kubernetes_network_policy_v1" "spilo_egress_apiserver" {
+  count = var.netpol_enabled && var.persistence_enabled ? 1 : 0
+
+  metadata {
+    name      = "spilo-egress-to-apiserver"
+    namespace = var.namespace
+  }
+
+  spec {
+    pod_selector {
+      match_labels = local.spilo_labels
+    }
+
+    policy_types = ["Egress"]
+
+    egress {
+      to {
+        ip_block {
+          cidr = "0.0.0.0/0"
+        }
+      }
+      ports {
+        port     = "443"
+        protocol = "TCP"
+      }
+      ports {
+        port     = "6443"
+        protocol = "TCP"
+      }
+    }
+  }
+}
+
+# The operator runs in its own namespace and reaches the pods on two ports: 5432
+# to create the declared role and database, and the Patroni REST API on 8008
+# during resync, which reports SyncFailed if unreachable.
+resource "kubernetes_network_policy_v1" "spilo_ingress_operator" {
+  count = var.netpol_enabled && var.persistence_enabled ? 1 : 0
+
+  metadata {
+    name      = "spilo-ingress-from-operator"
+    namespace = var.namespace
+  }
+
+  spec {
+    pod_selector {
+      match_labels = local.spilo_labels
+    }
+
+    policy_types = ["Ingress"]
+
+    ingress {
+      from {
+        namespace_selector {
+          match_labels = {
+            "kubernetes.io/metadata.name" = var.postgres_operator_namespace
+          }
+        }
+      }
+      ports {
+        port     = "5432"
+        protocol = "TCP"
+      }
+      ports {
+        port     = "8008"
+        protocol = "TCP"
+      }
+    }
+  }
+}
+
 resource "kubernetes_network_policy_v1" "egress_dns" {
   count = var.netpol_enabled ? 1 : 0
 

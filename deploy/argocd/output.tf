@@ -1,3 +1,4 @@
 output "admin_password" {
-  value = data.kubernetes_secret.admin_password.data["password"]
+  value     = data.kubernetes_secret.admin_password.data["password"]
+  sensitive = true
 }

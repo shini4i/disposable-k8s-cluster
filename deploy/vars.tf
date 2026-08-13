@@ -36,6 +36,16 @@ variable "argo_watcher_image_tag_override" {
 variable "argo_watcher_persistence_enabled" {
   description = "If persistence should be enabled for Argo-Watcher"
   type        = bool
+
+  # The postgresql cluster is reconciled by the Zalando operator, which ships as
+  # an ApplicationSet addon. Without it nothing serves the CR and the module
+  # waits for a Healthy Application that never arrives.
+  validation {
+    condition = !(var.argo_watcher_enabled && var.argo_watcher_persistence_enabled) || (
+      var.application_set_enabled && var.argocd_applicationset_addons.enable_postgres_operator
+    )
+    error_message = "argo_watcher_persistence_enabled requires application_set_enabled and argocd_applicationset_addons.enable_postgres_operator."
+  }
 }
 
 variable "cert_manager_chart_version" {
@@ -114,10 +124,11 @@ variable "gitops_common_path" {
 variable "argocd_applicationset_addons" {
   description = "ApplicationSet addons configuration"
   type = object({
-    enable_sealed_secrets = optional(bool, false)
-    enable_reflector      = optional(bool, false)
-    enable_argo_workflows = optional(bool, false)
-    enable_argo_rollouts  = optional(bool, false)
+    enable_sealed_secrets    = optional(bool, false)
+    enable_reflector         = optional(bool, false)
+    enable_argo_workflows    = optional(bool, false)
+    enable_argo_rollouts     = optional(bool, false)
+    enable_postgres_operator = optional(bool, false)
   })
 }
 

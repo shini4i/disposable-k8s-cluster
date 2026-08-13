@@ -49,6 +49,13 @@ The following applications can be deployed by enabling them in the `config/local
 
 * [gitlab-runner](https://docs.gitlab.com/runner/) - used to run CI/CD pipelines in gitlab
 
+To enable persistence for argo-watcher (`argo_watcher_persistence_enabled`), you also need `application_set_enabled` and
+`argocd_applicationset_addons.enable_postgres_operator` — PostgreSQL is provisioned by the
+[Zalando postgres operator](https://github.com/zalando/postgres-operator), which ships as an ApplicationSet addon.
+
+Switching an existing cluster onto the operator is not an in-place upgrade: the previous database and its volume are
+pruned, and the replacement reuses the same names. Destroy and re-provision the cluster instead.
+
 ## Prerequisites
 
 ### Mandatory

@@ -62,9 +62,9 @@ spec:
 
         postgres:
           enabled: ${persistence_enabled}
-          host: argo-watcher-psql
-          name: watcher
-          user: watcher
+          host: ${postgresHost}
+          name: ${postgresDatabase}
+          user: ${postgresUser}
           secretName: ${postgresSecretName}
           secretKey: password
 

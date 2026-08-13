@@ -10,6 +10,7 @@
     enable_reflector: false, // a controller for syncing resources between namespaces
     enable_argo_workflows: false, // a controller for running Argo Workflows
     enable_argo_rollouts: false, // a controller for managing progressive delivery with Argo Rollouts
+    enable_postgres_operator: false, // a controller for running PostgreSQL clusters, required by argo_watcher_persistence_enabled
   },
   argo_cd_chart_version: '10.3.3',
   use_custom_argocd_image: false, // If true, will use the custom image for repo-server
@@ -17,7 +18,7 @@
   custom_argocd_image_tag: 'v3.2.0',
   argo_watcher_chart_version: '1.2.2',
   argo_watcher_enabled: false,
-  argo_watcher_persistence_enabled: false, // If true, will deploy postgresql and use it for persistence
+  argo_watcher_persistence_enabled: false, // If true, will deploy postgresql and use it for persistence (requires enable_postgres_operator)
   argo_watcher_image_tag_override: '',
   cert_manager_chart_version: '1.21.1',
   cert_manager_wildcard_enabled: false, // If true, will generate a wildcard certificate for the domain
