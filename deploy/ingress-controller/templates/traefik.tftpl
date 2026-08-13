@@ -36,7 +36,8 @@ spec:
             nodePort: 30443
 
         service:
-          type: NodePort
+          spec:
+            type: NodePort
         %{ endif ~}
 
   destination:
