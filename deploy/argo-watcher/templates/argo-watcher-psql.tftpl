@@ -26,6 +26,12 @@ spec:
             spec:
               teamId: ${teamId}
               numberOfInstances: 1
+              # Spilo's default pg_hba rejects unencrypted connections, and the
+              # argo-watcher chart gives its migration job no way to set
+              # DB_SSL_MODE. ALLOW_NOSSL swaps the reject rule for a host rule.
+              env:
+                - name: ALLOW_NOSSL
+                  value: "true"
               postgresql:
                 version: "${postgresVersion}"
               volume:
