@@ -4,11 +4,11 @@
 ## Requirements
 
 | Name | Version |
-|------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.8 |
-| <a name="requirement_argocd"></a> [argocd](#requirement\_argocd) | 7.11.2 |
-| <a name="requirement_helm"></a> [helm](#requirement\_helm) | 3.1.0 |
-| <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | 2.38.0 |
+| ---- | ------- |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9 |
+| <a name="requirement_argocd"></a> [argocd](#requirement\_argocd) | 7.16.0 |
+| <a name="requirement_helm"></a> [helm](#requirement\_helm) | 3.2.0 |
+| <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | 3.2.1 |
 
 ## Providers
 
@@ -17,7 +17,7 @@ No providers.
 ## Modules
 
 | Name | Source | Version |
-|------|--------|---------|
+| ---- | ------ | ------- |
 | <a name="module_argo-cd"></a> [argo-cd](#module\_argo-cd) | ./argocd | n/a |
 | <a name="module_argo-watcher"></a> [argo-watcher](#module\_argo-watcher) | ./argo-watcher | n/a |
 | <a name="module_cert-manager"></a> [cert-manager](#module\_cert-manager) | ./cert-manager | n/a |
@@ -32,7 +32,7 @@ No resources.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_application_set_enabled"></a> [application\_set\_enabled](#input\_application\_set\_enabled) | If ApplicationSet controller should be installed | `bool` | n/a | yes |
 | <a name="input_argo_cd_chart_version"></a> [argo\_cd\_chart\_version](#input\_argo\_cd\_chart\_version) | Argo CD chart version | `string` | n/a | yes |
 | <a name="input_argo_watcher_chart_version"></a> [argo\_watcher\_chart\_version](#input\_argo\_watcher\_chart\_version) | Argo Watcher chart version | `string` | n/a | yes |
@@ -57,7 +57,7 @@ No resources.
 | <a name="input_gitops_common_repo"></a> [gitops\_common\_repo](#input\_gitops\_common\_repo) | Git repository URL for common addons | `string` | n/a | yes |
 | <a name="input_gitops_common_revision"></a> [gitops\_common\_revision](#input\_gitops\_common\_revision) | Git repository revision/branch/ref for common | `string` | n/a | yes |
 | <a name="input_ingress_controller"></a> [ingress\_controller](#input\_ingress\_controller) | Ingress controller to use | `string` | n/a | yes |
-| <a name="input_ingress_controller_chart_versions"></a> [ingress\_controller\_chart\_versions](#input\_ingress\_controller\_chart\_versions) | A list of ingress controller chart versions | `map(string)` | n/a | yes |
+| <a name="input_ingress_controller_chart_versions"></a> [ingress\_controller\_chart\_versions](#input\_ingress\_controller\_chart\_versions) | Chart version per supported ingress controller, keyed by controller name | `map(string)` | n/a | yes |
 | <a name="input_le_use_stage_issuer"></a> [le\_use\_stage\_issuer](#input\_le\_use\_stage\_issuer) | Use the Let's Encrypt staging issuer | `bool` | n/a | yes |
 | <a name="input_netpol_enabled"></a> [netpol\_enabled](#input\_netpol\_enabled) | If network policies should be enabled | `bool` | `false` | no |
 | <a name="input_skip_expose"></a> [skip\_expose](#input\_skip\_expose) | If cert-manager and external-dns installation should be skipped | `bool` | n/a | yes |
@@ -66,7 +66,7 @@ No resources.
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_argo_cd_password"></a> [argo\_cd\_password](#output\_argo\_cd\_password) | The password of the Argo CD admin user |
 | <a name="output_argo_cd_url"></a> [argo\_cd\_url](#output\_argo\_cd\_url) | The URL of the Argo CD instance |
 | <a name="output_argo_cd_username"></a> [argo\_cd\_username](#output\_argo\_cd\_username) | The username of the Argo CD admin user |

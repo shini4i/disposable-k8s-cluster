@@ -126,13 +126,13 @@ variable "ingress_controller" {
   type        = string
 
   validation {
-    condition     = contains(["traefik", "ingress-nginx"], var.ingress_controller)
-    error_message = "Ingress controller must be 'traefik' or 'ingress-nginx'."
+    condition     = contains(keys(var.ingress_controller_chart_versions), var.ingress_controller)
+    error_message = "Ingress controller must be one of: ${join(", ", keys(var.ingress_controller_chart_versions))}."
   }
 }
 
 variable "ingress_controller_chart_versions" {
-  description = "A list of ingress controller chart versions"
+  description = "Chart version per supported ingress controller, keyed by controller name"
   type        = map(string)
 }
 

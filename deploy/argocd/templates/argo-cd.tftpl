@@ -9,11 +9,10 @@ notifications:
 global:
   domain: argo-cd.${domain}
 
-  %{ if netpol_enabled }
+  # create is set explicitly: the chart defaults it to true since 10.0.0
   networkPolicy:
-    create: true
+    create: ${netpol_enabled}
     defaultDenyIngress: true
-  %{ endif ~}
 
 server:
   ingress:
@@ -41,7 +40,7 @@ server:
       - name: rollout-extension
         env:
           - name: EXTENSION_URL
-            value: https://github.com/argoproj-labs/rollout-extension/releases/download/v0.3.7/extension.tar
+            value: https://github.com/argoproj-labs/rollout-extension/releases/download/v0.4.0/extension.tar
 %{ endif ~}
 
 %{ if use_custom_argocd_image == true }
