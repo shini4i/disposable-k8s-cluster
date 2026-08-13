@@ -66,6 +66,11 @@ resource "kubernetes_manifest" "postgres" {
     database        = local.postgres_user
   }))
 
+  # Argo CD writes `operation` when it starts a sync, which the provider would
+  # otherwise report as an inconsistent result. Listing computed_fields replaces
+  # the defaults, so the metadata entries have to be repeated.
+  computed_fields = ["metadata.annotations", "metadata.labels", "operation"]
+
   wait {
     fields = {
       "status.sync.status"   = "Synced",
@@ -91,6 +96,8 @@ resource "kubernetes_manifest" "this" {
     postgresDatabase         = local.postgres_user
     postgresSecretName       = var.persistence_enabled ? local.postgres_secret_name : "dummy-value"
   }))
+
+  computed_fields = ["metadata.annotations", "metadata.labels", "operation"]
 
   wait {
     fields = {
