@@ -4,17 +4,17 @@
 ## Requirements
 
 | Name | Version |
-|------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.8 |
-| <a name="requirement_helm"></a> [helm](#requirement\_helm) | 3.1.0 |
-| <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | 2.38.0 |
+| ---- | ------- |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9 |
+| <a name="requirement_helm"></a> [helm](#requirement\_helm) | 3.2.0 |
+| <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | 3.2.1 |
 
 ## Providers
 
 | Name | Version |
-|------|---------|
-| <a name="provider_helm"></a> [helm](#provider\_helm) | 3.1.0 |
-| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.38.0 |
+| ---- | ------- |
+| <a name="provider_helm"></a> [helm](#provider\_helm) | 3.2.0 |
+| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 3.2.1 |
 
 ## Modules
 
@@ -23,17 +23,17 @@ No modules.
 ## Resources
 
 | Name | Type |
-|------|------|
-| [helm_release.this](https://registry.terraform.io/providers/hashicorp/helm/3.1.0/docs/resources/release) | resource |
-| [kubernetes_manifest.this](https://registry.terraform.io/providers/hashicorp/kubernetes/2.38.0/docs/resources/manifest) | resource |
-| [kubernetes_namespace.this](https://registry.terraform.io/providers/hashicorp/kubernetes/2.38.0/docs/resources/namespace) | resource |
-| [kubernetes_secret_v1.this](https://registry.terraform.io/providers/hashicorp/kubernetes/2.38.0/docs/resources/secret_v1) | resource |
-| [kubernetes_secret.admin_password](https://registry.terraform.io/providers/hashicorp/kubernetes/2.38.0/docs/data-sources/secret) | data source |
+| ---- | ---- |
+| [helm_release.this](https://registry.terraform.io/providers/hashicorp/helm/3.2.0/docs/resources/release) | resource |
+| [kubernetes_manifest.this](https://registry.terraform.io/providers/hashicorp/kubernetes/3.2.1/docs/resources/manifest) | resource |
+| [kubernetes_namespace.this](https://registry.terraform.io/providers/hashicorp/kubernetes/3.2.1/docs/resources/namespace) | resource |
+| [kubernetes_secret_v1.this](https://registry.terraform.io/providers/hashicorp/kubernetes/3.2.1/docs/resources/secret_v1) | resource |
+| [kubernetes_secret.admin_password](https://registry.terraform.io/providers/hashicorp/kubernetes/3.2.1/docs/data-sources/secret) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_application_set_enabled"></a> [application\_set\_enabled](#input\_application\_set\_enabled) | If ApplicationSet controller should be installed | `bool` | n/a | yes |
 | <a name="input_argocd_applicationset_addons"></a> [argocd\_applicationset\_addons](#input\_argocd\_applicationset\_addons) | ApplicationSet addons configuration | <pre>object({<br/>    enable_sealed_secrets = optional(bool, false)<br/>    enable_reflector      = optional(bool, false)<br/>    enable_argo_workflows = optional(bool, false)<br/>    enable_argo_rollouts  = optional(bool, false)<br/>  })</pre> | n/a | yes |
 | <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | n/a | `string` | n/a | yes |
@@ -53,6 +53,6 @@ No modules.
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_admin_password"></a> [admin\_password](#output\_admin\_password) | n/a |
 <!-- END_TF_DOCS -->

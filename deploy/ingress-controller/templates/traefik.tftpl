@@ -26,16 +26,18 @@ spec:
         %{ if local_setup == true }
         ports:
           web:
-            redirections:
-              entryPoint:
-                to: websecure
-                scheme: https
+            http:
+              redirections:
+                entryPoint:
+                  to: websecure
+                  scheme: https
             nodePort: 30080
           websecure:
             nodePort: 30443
 
         service:
-          type: NodePort
+          spec:
+            type: NodePort
         %{ endif ~}
 
   destination:

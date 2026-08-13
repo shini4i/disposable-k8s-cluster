@@ -35,13 +35,18 @@ The following applications (controllers) are deployed to the cluster by default:
 * [cert-manager](https://cert-manager.io/) - used to automatically create TLS certificates for the ingress resources
 * [external-dns](https://github.com/kubernetes-sigs/external-dns) - used to automatically create DNS records for the
   ingress resources
-* [traefik](https://traefik.io/) - used as an ingress controller (can be replaced by ingress-nginx)
+* [traefik](https://traefik.io/) - used as an ingress controller
+
+To add another ingress controller, drop an Argo CD `Application` template into `deploy/ingress-controller/templates/` —
+it is rendered with `targetRevision` (the chart version) and `local_setup` (true for kind, where the controller has to be
+exposed via NodePort). Map the controller name to that file in the `ingress_controller_templates` default map in
+`deploy/ingress-controller/vars.tf`, and add its chart version under `ingress_controller_chart_versions` in
+`config/default.jsonnet`. It is then selectable by setting `ingress_controller` in `config/local.jsonnet`.
 
 ### Optional applications
 
 The following applications can be deployed by enabling them in the `config/local.jsonnet`:
 
-* [ingress-nginx](https://kubernetes.github.io/ingress-nginx/) - used as an alternative ingress controller
 * [gitlab-runner](https://docs.gitlab.com/runner/) - used to run CI/CD pipelines in gitlab
 
 ## Prerequisites

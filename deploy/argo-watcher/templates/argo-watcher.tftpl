@@ -28,8 +28,14 @@ spec:
           url: http://argo-cd-server.argo-cd
           urlAlias: https://argo-cd.${domain}
           secretName: "${secretName}"
-          updater:
-            sshSecretName: "argo-watcher-secret"
+
+        updater:
+          sshSecretName: "argo-watcher-secret"
+
+        # State lives in memory or in postgres; the chart defaults this to true
+        # since 1.0.0, and a StatefulSet volumeClaimTemplate cannot be pruned.
+        persistence:
+          enabled: false
 
         ingress:
           enabled: true
