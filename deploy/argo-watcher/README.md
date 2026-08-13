@@ -38,7 +38,8 @@ No modules.
 | [kubernetes_network_policy_v1.allow_ingress_from_web](https://registry.terraform.io/providers/hashicorp/kubernetes/3.2.1/docs/resources/network_policy_v1) | resource |
 | [kubernetes_network_policy_v1.argo_watcher_egress](https://registry.terraform.io/providers/hashicorp/kubernetes/3.2.1/docs/resources/network_policy_v1) | resource |
 | [kubernetes_network_policy_v1.egress_dns](https://registry.terraform.io/providers/hashicorp/kubernetes/3.2.1/docs/resources/network_policy_v1) | resource |
-| [kubernetes_secret.postgres_credentials](https://registry.terraform.io/providers/hashicorp/kubernetes/3.2.1/docs/resources/secret) | resource |
+| [kubernetes_network_policy_v1.spilo_egress_apiserver](https://registry.terraform.io/providers/hashicorp/kubernetes/3.2.1/docs/resources/network_policy_v1) | resource |
+| [kubernetes_network_policy_v1.spilo_ingress_operator](https://registry.terraform.io/providers/hashicorp/kubernetes/3.2.1/docs/resources/network_policy_v1) | resource |
 | [kubernetes_secret.this](https://registry.terraform.io/providers/hashicorp/kubernetes/3.2.1/docs/resources/secret) | resource |
 | [random_string.this](https://registry.terraform.io/providers/hashicorp/random/3.9.0/docs/resources/string) | resource |
 | [tls_private_key.this](https://registry.terraform.io/providers/hashicorp/tls/4.3.0/docs/resources/private_key) | resource |
@@ -55,6 +56,10 @@ No modules.
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | The namespace to deploy the chart into | `string` | `"argo-watcher"` | no |
 | <a name="input_netpol_enabled"></a> [netpol\_enabled](#input\_netpol\_enabled) | Whether to enable the network policies or not | `bool` | `false` | no |
 | <a name="input_persistence_enabled"></a> [persistence\_enabled](#input\_persistence\_enabled) | Whether to enable persistence or not | `bool` | n/a | yes |
+| <a name="input_postgres_operator_namespace"></a> [postgres\_operator\_namespace](#input\_postgres\_operator\_namespace) | Namespace the Zalando operator runs in, allowed to reach the database | `string` | `"postgres-operator"` | no |
+| <a name="input_postgres_team_id"></a> [postgres\_team\_id](#input\_postgres\_team\_id) | teamId of the postgresql cluster, required by the Zalando operator | `string` | `"disposable"` | no |
+| <a name="input_postgres_version"></a> [postgres\_version](#input\_postgres\_version) | PostgreSQL major version to run | `string` | `"18"` | no |
+| <a name="input_raw_chart_version"></a> [raw\_chart\_version](#input\_raw\_chart\_version) | Version of the bedag/raw chart used to deliver the postgresql cluster manifest | `string` | `"2.0.2"` | no |
 | <a name="input_use_wildcard_certificate"></a> [use\_wildcard\_certificate](#input\_use\_wildcard\_certificate) | Whether to use a wildcard certificate for the ingress | `bool` | `false` | no |
 
 ## Outputs

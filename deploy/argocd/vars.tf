@@ -45,10 +45,11 @@ variable "gitops_common_path" {
 variable "argocd_applicationset_addons" {
   description = "ApplicationSet addons configuration"
   type = object({
-    enable_sealed_secrets = optional(bool, false)
-    enable_reflector      = optional(bool, false)
-    enable_argo_workflows = optional(bool, false)
-    enable_argo_rollouts  = optional(bool, false)
+    enable_sealed_secrets    = optional(bool, false)
+    enable_reflector         = optional(bool, false)
+    enable_argo_workflows    = optional(bool, false)
+    enable_argo_rollouts     = optional(bool, false)
+    enable_postgres_operator = optional(bool, false)
   })
 }
 

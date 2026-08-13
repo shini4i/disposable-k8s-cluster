@@ -35,7 +35,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 | ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_application_set_enabled"></a> [application\_set\_enabled](#input\_application\_set\_enabled) | If ApplicationSet controller should be installed | `bool` | n/a | yes |
-| <a name="input_argocd_applicationset_addons"></a> [argocd\_applicationset\_addons](#input\_argocd\_applicationset\_addons) | ApplicationSet addons configuration | <pre>object({<br/>    enable_sealed_secrets = optional(bool, false)<br/>    enable_reflector      = optional(bool, false)<br/>    enable_argo_workflows = optional(bool, false)<br/>    enable_argo_rollouts  = optional(bool, false)<br/>  })</pre> | n/a | yes |
+| <a name="input_argocd_applicationset_addons"></a> [argocd\_applicationset\_addons](#input\_argocd\_applicationset\_addons) | ApplicationSet addons configuration | <pre>object({<br/>    enable_sealed_secrets    = optional(bool, false)<br/>    enable_reflector         = optional(bool, false)<br/>    enable_argo_workflows    = optional(bool, false)<br/>    enable_argo_rollouts     = optional(bool, false)<br/>    enable_postgres_operator = optional(bool, false)<br/>  })</pre> | n/a | yes |
 | <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | n/a | `string` | n/a | yes |
 | <a name="input_custom_argocd_image"></a> [custom\_argocd\_image](#input\_custom\_argocd\_image) | n/a | `string` | n/a | yes |
 | <a name="input_custom_argocd_image_tag"></a> [custom\_argocd\_image\_tag](#input\_custom\_argocd\_image\_tag) | n/a | `string` | n/a | yes |
