@@ -37,24 +37,11 @@ The following applications (controllers) are deployed to the cluster by default:
   ingress resources
 * [traefik](https://traefik.io/) - used as an ingress controller
 
-To add another ingress controller, drop an Argo CD `Application` template into `deploy/ingress-controller/templates/` —
-it is rendered with `targetRevision` (the chart version) and `local_setup` (true for kind, where the controller has to be
-exposed via NodePort). Map the controller name to that file in the `ingress_controller_templates` default map in
-`deploy/ingress-controller/vars.tf`, and add its chart version under `ingress_controller_chart_versions` in
-`config/default.jsonnet`. It is then selectable by setting `ingress_controller` in `config/local.jsonnet`.
-
 ### Optional applications
 
 The following applications can be deployed by enabling them in the `config/local.jsonnet`:
 
 * [gitlab-runner](https://docs.gitlab.com/runner/) - used to run CI/CD pipelines in gitlab
-
-To enable persistence for argo-watcher (`argo_watcher_persistence_enabled`), you also need `application_set_enabled` and
-`argocd_applicationset_addons.enable_postgres_operator` — PostgreSQL is provisioned by the
-[Zalando postgres operator](https://github.com/zalando/postgres-operator), which ships as an ApplicationSet addon.
-
-Switching an existing cluster onto the operator is not an in-place upgrade: the previous database and its volume are
-pruned, and the replacement reuses the same names. Destroy and re-provision the cluster instead.
 
 ## Prerequisites
 
